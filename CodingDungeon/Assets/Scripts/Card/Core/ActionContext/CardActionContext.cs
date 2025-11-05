@@ -6,11 +6,11 @@ public class CardActionContext
 	
 	public Character User;
 
-	public Character Target;
+	public Enemy Target;
 	
 	public ParameterProvider[] Providers;
 
-	public CardActionContext(AbstractCardSo card, Character user, Character target, ParameterProvider[] providers)
+	public CardActionContext(AbstractCardSo card, Character user, Enemy target, ParameterProvider[] providers)
 	{
 		Card = card;
 		User = user;
