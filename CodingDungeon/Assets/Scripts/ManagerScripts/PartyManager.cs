@@ -5,7 +5,8 @@ using UnityEngine;
 public class PartyManager : SceneSingleMono<PartyManager>
 {
     public List<Character> Characters;
-    [SerializeField]private Character _selectedCharacter;
+    [SerializeField] private Character _selectedCharacter;
+    public Character SelectedCharacter => _selectedCharacter;
 
     public void OnSelectCharacter(Character character)
     {
