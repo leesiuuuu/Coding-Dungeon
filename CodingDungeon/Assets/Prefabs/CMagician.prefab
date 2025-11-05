@@ -4638,6 +4638,7 @@ GameObject:
   - component: {fileID: 588639882231952406}
   - component: {fileID: 7644541836973631648}
   - component: {fileID: 374778447583203127}
+  - component: {fileID: 688722153881104671}
   m_Layer: 5
   m_Name: CMagician
   m_TagString: Untagged
@@ -4691,6 +4692,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   _chAnimator: {fileID: 7644541836973631648}
+--- !u!114 &688722153881104671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833575657907809490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2eeab57bff7453296e478ba4461e6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterCardManager
+  _deckSo: {fileID: 0}
+  _hand: []
 --- !u!1 &8968162556406108507
 GameObject:
   m_ObjectHideFlags: 0
