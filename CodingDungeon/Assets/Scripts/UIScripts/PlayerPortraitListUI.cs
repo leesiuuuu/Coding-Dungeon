@@ -9,6 +9,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     private Character _character;
     public Character Character=>_character;
     private GameObject _selectedPortrait;
+    public event Action<Character> OnSelected;
 
     private void Start()
     {
