@@ -12,6 +12,8 @@ public abstract class AbstractCardSo : ScriptableObject
 	[SerializeField]
 	private string Description;
 	
+	public string DescriptionProperty => Description;
+	
 	[SerializeField]
 	public int Cost;
 

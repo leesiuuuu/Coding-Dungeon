@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using CardSystem;
 
 namespace UI
 {
@@ -13,10 +12,10 @@ namespace UI
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private Button cardButton;
 
-        private AbstractCardSo<object> cardData;
+        private AbstractCardSo cardData;
         private System.Action<CardUI> onCardClicked;
 
-        public AbstractCardSo<object> CardData => cardData;
+        public AbstractCardSo CardData => cardData;
 
         private void Awake()
         {
@@ -26,7 +25,7 @@ namespace UI
             }
         }
 
-        public void SetCardData(AbstractCardSo<object> card)
+        public void SetCardData(AbstractCardSo card)
         {
             cardData = card;
             UpdateUI();
@@ -49,14 +48,14 @@ namespace UI
 
             if (descriptionText != null)
             {
-                descriptionText.text = cardData.Description;
+                descriptionText.text = cardData.DescriptionProperty;
             }
 
             // 카드 이미지는 카드 데이터에 따라 설정
-            // if (cardImage != null && cardData.Icon != null)
-            // {
-            //     cardImage.sprite = cardData.Icon;
-            // }
+            if (cardImage != null && cardData.Image != null)
+            {
+                cardImage.sprite = cardData.Image;
+            }
         }
 
         public void SetOnCardClicked(System.Action<CardUI> callback)

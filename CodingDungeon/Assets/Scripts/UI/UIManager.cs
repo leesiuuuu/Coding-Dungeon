@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using CardSystem;
 using UI;
 
 public class UIManager : MonoBehaviour
