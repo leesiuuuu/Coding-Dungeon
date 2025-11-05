@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class CardHandSystem : MonoBehaviour
 {
+    [SerializeField] private Character character;
+    
     [Header("카드 설정")]
     [SerializeField] private GameObject cardPrefab;
     
@@ -12,12 +16,12 @@ public class CardHandSystem : MonoBehaviour
     [SerializeField] private Transform handCenter; 
     
     [Header("애니메이션 설정")]
-    [SerializeField] private float slideInDuration = 0.5f;
+    [SerializeField] private float slideInDuration = 0.2f;
     [SerializeField] private float slideInDistance = 300f; 
     [SerializeField] private AnimationCurve slideInCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     
-    private List<GameObject> cards = new List<GameObject>();
-    private List<Vector3> targetPositions = new List<Vector3>();
+    private List<CardInHandUI> cards = new();
+    private List<Vector3> targetPositions = new();
     
     private Coroutine repositionCoroutine;
     private bool isAddingCard = false;
@@ -26,28 +30,22 @@ public class CardHandSystem : MonoBehaviour
     {
         if (handCenter == null)
             handCenter = transform;
-    }
-    
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddCard();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ClearAllCards();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha1)) RemoveCardAt(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) RemoveCardAt(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) RemoveCardAt(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) RemoveCardAt(3);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) RemoveCardAt(4);
+
+        character.CardHolder.OnCardAdded += AddCard;
+        character.CardHolder.OnCardRemoved += RemoveCard;
+        UpdateCards(character.CardHolder.Hand);
     }
 
-    public void AddCard()
+    public void UpdateCards(List<AbstractCardSo> cardParam)
+    {
+        ClearAllCards();
+        foreach (var card in cardParam)
+        {
+            AddCard(card);
+        }
+    }
+
+    public void AddCard(AbstractCardSo card)
     {
         if (cardPrefab == null)
         {
@@ -57,7 +55,7 @@ public class CardHandSystem : MonoBehaviour
         
         if (isAddingCard)
         {
-            StartCoroutine(WaitAndAddCard());
+            StartCoroutine(WaitAndAddCard(card));
             return;
         }
         
@@ -68,20 +66,21 @@ public class CardHandSystem : MonoBehaviour
             StopCoroutine(repositionCoroutine);
         }
         
-        GameObject newCard = Instantiate(cardPrefab, handCenter);
-        newCard.SetActive(false);
-        cards.Add(newCard);
+        CardInHandUI cardInHandUI = Instantiate(cardPrefab, handCenter).GetComponent<CardInHandUI>();
+        cardInHandUI.gameObject.SetActive(false);
+        cardInHandUI.UpdateInformation(card);
+        cards.Add(cardInHandUI);
         
         RecalculatePositions();
         
         int cardIndex = cards.Count - 1;
-        StartCoroutine(SlideInCard(newCard, cardIndex));
+        StartCoroutine(SlideInCard(cardInHandUI.transform, cardIndex));
     }
     
-    private IEnumerator WaitAndAddCard()
+    private IEnumerator WaitAndAddCard(AbstractCardSo card)
     {
         yield return new WaitUntil(() => !isAddingCard);
-        AddCard();
+        AddCard(card);
     }
     
     private void RecalculatePositions()
@@ -99,15 +98,15 @@ public class CardHandSystem : MonoBehaviour
         }
     }
     
-    private IEnumerator SlideInCard(GameObject card, int index)
+    private IEnumerator SlideInCard(Transform card, int index)
     {
         if (index >= targetPositions.Count) yield break;
         
         Vector3 targetPos = targetPositions[index];
         Vector3 startPos = targetPos + new Vector3(slideInDistance, 0, 0);
         
-        card.transform.position = startPos;
-        card.SetActive(true);
+        card.position = startPos;
+        card.gameObject.SetActive(true);
         
         float elapsed = 0f;
         
@@ -127,7 +126,7 @@ public class CardHandSystem : MonoBehaviour
             if (index < targetPositions.Count)
             {
                 targetPos = targetPositions[index];
-                card.transform.position = Vector3.Lerp(startPos, targetPos, curveValue);
+                card.position = Vector3.Lerp(startPos, targetPos, curveValue);
             }
 
             for (int i = 0; i < cards.Count - 1; i++)
@@ -190,12 +189,13 @@ public class CardHandSystem : MonoBehaviour
         }
     }
     
-    public void RemoveCard(GameObject card)
+    public void RemoveCard(AbstractCardSo card)
     {
-        if (cards.Contains(card))
+        CardInHandUI cardInHandUI = cards.FirstOrDefault(i => i.Card == card);
+        if (cardInHandUI != null)
         {
-            cards.Remove(card);
-            Destroy(card);
+            cards.Remove(cardInHandUI);
+            Destroy(cardInHandUI.gameObject);
             RecalculatePositions();
             
             if (repositionCoroutine != null)
@@ -208,9 +208,9 @@ public class CardHandSystem : MonoBehaviour
     {
         if (index >= 0 && index < cards.Count)
         {
-            GameObject card = cards[index];
+            CardInHandUI cardInHandUI = cards[index];
             cards.RemoveAt(index);
-            Destroy(card);
+            Destroy(cardInHandUI.gameObject);
             
             RecalculatePositions();
             
@@ -231,7 +231,7 @@ public class CardHandSystem : MonoBehaviour
         foreach (var card in cards)
         {
             if (card != null)
-                Destroy(card);
+                Destroy(card.gameObject);
         }
         
         cards.Clear();
@@ -244,7 +244,7 @@ public class CardHandSystem : MonoBehaviour
         return cards.Count;
     }
     
-    public GameObject GetCardAt(int index)
+    public CardInHandUI GetCardAt(int index)
     {
         if (index >= 0 && index < cards.Count)
             return cards[index];

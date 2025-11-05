@@ -28,7 +28,7 @@ public class CharacterCardHolder
 
 	private void FillHand()
 	{
-		List<AbstractCardSo> newCards = RandomCardProvider.Fill(_deckSo, _hand, 5);
+		List<AbstractCardSo> newCards = RandomCardProvider.Fill(_deckSo, _hand, 8);
 		foreach (var card in newCards)
 		{
 			AddHandCard(card);
