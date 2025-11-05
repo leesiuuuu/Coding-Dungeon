@@ -23,8 +23,7 @@ public class GridSelector : MonoBehaviour
 
 			Vector3Int dir1 = new Vector3Int(dirX, dirY, 0);
 
-			// 유닛 기준으로 방향 타일 표시
-			transform.position = gridMovement.transform.position + (Vector3)dir1;
+			transform.position = transform.position + (Vector3)dir1;
 		}
 
 		// 마우스 클릭 시
@@ -34,7 +33,6 @@ public class GridSelector : MonoBehaviour
 
 			if (grid != null)
 			{
-				Debug.Log("선택됨");
 				gridMovement = grid;
 				//gridMovement.Select();
 			}
@@ -47,8 +45,6 @@ public class GridSelector : MonoBehaviour
 				int _dirY = Mathf.RoundToInt(moveDir.y);
 
 				Vector3Int moveDir1 = new Vector3Int(_dirX, _dirY, 0);
-				Debug.Log($"방향 벡터 : {moveDir}");
-				Debug.Log($"최종 벡터 : {moveDir1}");
 
 				gridMovement.Move(moveDir1);
 				//gridMovement.Deselect();
