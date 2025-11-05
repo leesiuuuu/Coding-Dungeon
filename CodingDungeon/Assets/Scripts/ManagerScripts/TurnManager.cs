@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public enum TurnStatus
 	
 }
 
-public class TurnManager : SceneSingleMono<TurnManager>
+public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 {
 	[SerializeField] private TurnStatus _currentTurnStatus;
 	private int _turn;
@@ -19,8 +20,19 @@ public class TurnManager : SceneSingleMono<TurnManager>
 	public event Action OnPlayerSelection;
 	public event Action OnMonsterMoves;
 	public event Action OnPlayerMoves;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		BootManager.Register(this);
+	}
 	
-	
+	public IEnumerator BootStrap()
+	{
+		yield return new WaitForSeconds(0.1f);
+		SetTurnStatus(TurnStatus.PlayerSelection);
+	}
+
 	private void TurnChange()
 	{
 		++_turn;
