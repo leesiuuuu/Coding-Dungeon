@@ -49,7 +49,7 @@ namespace UI
 
             if (descriptionText != null)
             {
-                descriptionText.text = cardData.Description;
+                //descriptionText.text = cardData.Description;
             }
 
             // 카드 이미지는 카드 데이터에 따라 설정
