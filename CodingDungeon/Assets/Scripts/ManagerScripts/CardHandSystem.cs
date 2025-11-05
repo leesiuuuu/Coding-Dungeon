@@ -36,6 +36,12 @@ public class CardHandSystem : MonoBehaviour
         UpdateCards(character.CardHolder.Hand);
     }
 
+    private void OnCardSelected(AbstractCardSo selected)
+    {
+        int count = character.CardHolder.ActiveQueueCards.Count(i => i != null);
+        character.CardHolder.AddCardAtActiveQueue(count, selected);
+    }
+
     public void UpdateCards(List<AbstractCardSo> cardParam)
     {
         ClearAllCards();
@@ -65,16 +71,22 @@ public class CardHandSystem : MonoBehaviour
         {
             StopCoroutine(repositionCoroutine);
         }
-        
-        CardInHandUI cardInHandUI = Instantiate(cardPrefab, handCenter).GetComponent<CardInHandUI>();
-        cardInHandUI.gameObject.SetActive(false);
-        cardInHandUI.UpdateInformation(card);
-        cards.Add(cardInHandUI);
+        CardInHandUI cardInHandUI = InstantiateCard(card);
         
         RecalculatePositions();
         
         int cardIndex = cards.Count - 1;
         StartCoroutine(SlideInCard(cardInHandUI.transform, cardIndex));
+    }
+
+    protected CardInHandUI InstantiateCard(AbstractCardSo card)
+    {
+        CardInHandUI cardInHandUI = Instantiate(cardPrefab, handCenter).GetComponent<CardInHandUI>();
+        cardInHandUI.gameObject.SetActive(false);
+        cardInHandUI.UpdateInformation(card);
+        cards.Add(cardInHandUI);
+        cardInHandUI.OnSelected += () => OnCardSelected(card);
+        return cardInHandUI;
     }
     
     private IEnumerator WaitAndAddCard(AbstractCardSo card)
@@ -83,7 +95,7 @@ public class CardHandSystem : MonoBehaviour
         AddCard(card);
     }
     
-    private void RecalculatePositions()
+    protected void RecalculatePositions()
     {
         targetPositions.Clear();
         
@@ -194,8 +206,8 @@ public class CardHandSystem : MonoBehaviour
         CardInHandUI cardInHandUI = cards.FirstOrDefault(i => i.Card == card);
         if (cardInHandUI != null)
         {
-            cards.Remove(cardInHandUI);
-            Destroy(cardInHandUI.gameObject);
+            DestroyCard(cardInHandUI);
+
             RecalculatePositions();
             
             if (repositionCoroutine != null)
@@ -209,8 +221,7 @@ public class CardHandSystem : MonoBehaviour
         if (index >= 0 && index < cards.Count)
         {
             CardInHandUI cardInHandUI = cards[index];
-            cards.RemoveAt(index);
-            Destroy(cardInHandUI.gameObject);
+            DestroyCard(cardInHandUI);
             
             RecalculatePositions();
             
@@ -231,12 +242,17 @@ public class CardHandSystem : MonoBehaviour
         foreach (var card in cards)
         {
             if (card != null)
-                Destroy(card.gameObject);
+                DestroyCard(card);
         }
         
-        cards.Clear();
         targetPositions.Clear();
         isAddingCard = false;
+    }
+
+    protected void DestroyCard(CardInHandUI card)
+    {
+        Destroy(card);
+        cards.Remove(card);
     }
     
     public int GetCardCount()

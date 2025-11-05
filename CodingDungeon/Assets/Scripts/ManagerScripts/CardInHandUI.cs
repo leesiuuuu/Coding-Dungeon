@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,16 @@ public class CardInHandUI : MonoBehaviour
 
 	[SerializeField]
 	private Image _image;
+
+	public event Action OnSelected;
+
+	/// <summary>
+	/// Called By UGUI Button
+	/// </summary>
+	public void OnClicked()
+	{
+		OnSelected?.Invoke();
+	}
 	
 	public void UpdateInformation(AbstractCardSo card)
 	{
