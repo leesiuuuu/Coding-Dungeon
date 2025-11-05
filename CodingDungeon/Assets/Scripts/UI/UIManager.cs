@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using UnityEngine;
-using CardSystem;
+//using CardSystem;
 using UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private IngameCardModel cardModel;
+    //[SerializeField] private IngameCardModel cardModel;
     [SerializeField] private Transform cardContainer;
     [SerializeField] private CardUI cardPrefab;
 
@@ -112,5 +112,5 @@ public class UIManager : MonoBehaviour
         character = targetCharacter;
         UpdateProfileUI();
     }
-}
+}*/
 

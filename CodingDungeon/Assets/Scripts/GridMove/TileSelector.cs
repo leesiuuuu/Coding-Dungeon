@@ -42,7 +42,7 @@ public class TileSelector : MonoBehaviour
 					// 타일이 실제로 존재하는지 확인
 					if (tilemap.GetTile(cellPos) != null)
 					{
-						Debug.Log($"타일 선택됨! 좌표: {cellPos}");
+						//Debug.Log($"타일 선택됨! 좌표: {cellPos}");
 
 						// 이전에 선택한 타일의 색 원복
 						if (currentTilemap != null)

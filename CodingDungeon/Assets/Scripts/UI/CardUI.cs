@@ -1,7 +1,7 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using CardSystem;
+//using CardSystem;
 
 namespace UI
 {
@@ -16,7 +16,7 @@ namespace UI
         private AbstractCardSo<object> cardData;
         private System.Action<CardUI> onCardClicked;
 
-        public AbstractCardSo<object> CardData => cardData;
+        //public AbstractCardSo<object> CardData => cardData;
 
         private void Awake()
         {
@@ -79,3 +79,4 @@ namespace UI
     }
 }
 
+*/
