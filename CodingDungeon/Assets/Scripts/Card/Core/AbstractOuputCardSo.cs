@@ -1,3 +1,3 @@
-public abstract class AbstractOuputCardSo<T> : AbstractCardSo<T> where T : OutputCardActionParams
+public abstract class AbstractOuputCardSo<T> : CardSo<T> where T : OutputCardActionParams
 {
 }
