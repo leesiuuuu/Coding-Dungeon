@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -152,10 +153,16 @@ public class PathFinder : MonoBehaviour
     
     public void MoveTowards()
     {
+        StartCoroutine(MoveFlow());
+    }
+
+    private IEnumerator MoveFlow()
+    {
         Vector3Int nextCell = _pathQueue.Dequeue();
         Vector3 targetPos = walkableTilemap.GetCellCenterWorld(nextCell); 
         var dir=targetPos-transform.position;
         gridMovement.Move(dir);
+        yield return new WaitForSeconds(0.2f);
         transform.position = targetPos;
     }
     
