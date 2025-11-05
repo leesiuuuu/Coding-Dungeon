@@ -1,15 +1,20 @@
 using UnityEngine;
 
-public abstract class AbstractCardSo<TParam> : ScriptableObject
+public abstract class AbstractCardSo : ScriptableObject
 {
-	[SerializeField] public string Name;
+	[SerializeField]
+	public string Name;
 
-	[SerializeField] private string Description;
+	[SerializeField]
+	[TextArea(3, 3)]
+	public Sprite Image;
+	
+	[SerializeField]
+	private string Description;
+	
+	[SerializeField]
+	public int Cost;
 
-	public void StartAction(object param)
-	{
-		StartActionInternal((TParam)param);
-	}
+	public abstract void StartAction(object param);
 
-	protected abstract void StartActionInternal(TParam param);
 }
