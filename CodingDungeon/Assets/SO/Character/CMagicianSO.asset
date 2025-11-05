@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CMagicianSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
   Name: "C\uC758 \uB9C8\uBC95\uC0AC"
-  Image: {fileID: 0}
+  Image: {fileID: 811960651493979081, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
     MaxHp: 100
