@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0c20aa28234d2db5a20d2b2d93eff1, type: 3}
-  m_Name: SweepOutputCard
-  m_EditorClassIdentifier: Assembly-CSharp::SweepOutputCard
-  Name: sweep()
+  m_Script: {fileID: 11500000, guid: 877eecd04c5332c4b9e7c48ba1d9f272, type: 3}
+  m_Name: SmashOutputCard
+  m_EditorClassIdentifier: Assembly-CSharp::SmashOutputCard
+  Name: smash()
   Image: {fileID: 0}
-  Description: "\uCE7C\uC744 \uD718\uB458\uB800\uB2E4."
+  Description: "\uBC29\uD328\uB85C \uAC15\uD558\uAC8C \uD0C0\uACA9\uD55C\uB2E4."
   Cost: 2

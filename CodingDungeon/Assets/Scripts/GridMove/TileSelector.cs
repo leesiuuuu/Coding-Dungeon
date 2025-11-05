@@ -29,7 +29,7 @@ public class TileSelector : MonoBehaviour
 		// 마우스 위치 기준으로 콜라이더 찾기
 		Collider2D col = Physics2D.OverlapPoint(point, tilemapLayer);
 
-		if (Input.GetMouseButton(0))
+		if (Input.GetMouseButtonDown(0))
 		{
 			if (col != null)
 			{

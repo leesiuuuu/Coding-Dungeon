@@ -1,11 +1,19 @@
+using System;
+
+public enum TurnStatus
+{
+	PlayerSelection,
+	MonsterMoves,
+	PlayerMoves,
+	
+}
+
 public class TurnManager : SceneSingleMono<TurnManager>
 {
-	private int turn = 1;
-
-	// 전투 상태인지를 확인하는 변수
-	private bool isFight = false;
-
-	// 다음 턴으로 넘기는 함수
+	private int turn;
+	public event Action OnTurnChange;
+	
+	
 	public void AddTurn()
 	{
 		++turn;
