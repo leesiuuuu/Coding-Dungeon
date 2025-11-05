@@ -12,7 +12,7 @@ public class TurnManager : SceneSingleMono<TurnManager>
 {
 	private int turn;
 	public event Action OnTurnChange;
-	
+	public bool isFight;
 	
 	public void AddTurn()
 	{
