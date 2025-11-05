@@ -89,8 +89,8 @@ public class UIManager : MonoBehaviour
         // HP 바 업데이트
         if (hpFillImage != null)
         {
-            float hpPercentage = (float)character.CurrentHP / character.MaxHP;
-            hpFillImage.fillAmount = hpPercentage;
+//            float hpPercentage = (float)character.CurrentHP / character.MaxHP;
+//            hpFillImage.fillAmount = hpPercentage;
         }
 
         // 프로필 이미지는 필요시 구현
