@@ -4639,6 +4639,8 @@ GameObject:
   - component: {fileID: 7644541836973631648}
   - component: {fileID: 374778447583203127}
   - component: {fileID: 4531640818630323193}
+  - component: {fileID: -5678663600576976359}
+  - component: {fileID: 7654113758352521584}
   m_Layer: 5
   m_Name: CMagician
   m_TagString: Untagged
@@ -4710,6 +4712,32 @@ MonoBehaviour:
     MaxHp: 0
     DamageModifier: 0
     DefenseModifier: 0
+--- !u!114 &-5678663600576976359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833575657907809490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+--- !u!114 &7654113758352521584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833575657907809490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7247555a45a89f248a3417247f7dcb81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PathFinder
+  showDebugPath: 1
+  gridMovement: {fileID: -5678663600576976359}
 --- !u!1 &8968162556406108507
 GameObject:
   m_ObjectHideFlags: 0

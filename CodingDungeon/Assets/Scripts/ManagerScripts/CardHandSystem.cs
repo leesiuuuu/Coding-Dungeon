@@ -30,7 +30,6 @@ public class CardHandSystem : MonoBehaviour
     {
         if (handCenter == null)
             handCenter = transform;
-
         character.CardHolder.OnCardAdded += AddCard;
         character.CardHolder.OnCardRemoved += RemoveCard;
         UpdateCards(character.CardHolder.Hand);

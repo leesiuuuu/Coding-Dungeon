@@ -5,20 +5,21 @@ using UnityEngine.EventSystems;
 public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
 {
     [SerializeField] private Character _character;
-    public static bool CanSelect = true;
+    public bool Moved = false;
     public event Action<Character> OnSelect;
-
+    public event Action<GameObject> OnReturnGameObject;
     private void Start()
     {
         OnSelect+=PartyManager.Instance.OnSelectCharacter;
+        OnReturnGameObject += PartyManager.Instance.OnSelectPortrait;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (CanSelect)
+        if (!Moved)
         {
-            CanSelect = false;
             OnSelect?.Invoke(_character);
+            OnReturnGameObject?.Invoke(gameObject);
         }
     }
 
@@ -31,4 +32,5 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
     {
         _character = character;
     }
+    
 }
