@@ -5,6 +5,8 @@ public class GridSelector : MonoBehaviour
 	[SerializeField] private GridMovement gridMovement;
 	private float selectRange = 0.8f;
 
+	private Vector3 pos;
+
 	private void Update()
 	{
 		Vector3 mouseWorldPos = Input.mousePosition;
@@ -34,10 +36,11 @@ public class GridSelector : MonoBehaviour
 			{
 				Debug.Log("선택됨");
 				gridMovement = grid;
-				gridMovement.Select();
+				//gridMovement.Select();
 			}
 			else if (gridMovement != null)
 			{
+				Debug.Log(transform.position);
 				Vector3 moveDir = (transform.position - gridMovement.transform.position).normalized;
 
 				int _dirX = Mathf.RoundToInt(moveDir.x);
@@ -48,7 +51,7 @@ public class GridSelector : MonoBehaviour
 				Debug.Log($"최종 벡터 : {moveDir1}");
 
 				gridMovement.Move(moveDir1);
-				gridMovement.Deselect();
+				//gridMovement.Deselect();
 				gridMovement = null;
 			}
 		}
