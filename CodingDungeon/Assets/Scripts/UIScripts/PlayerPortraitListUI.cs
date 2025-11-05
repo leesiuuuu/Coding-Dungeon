@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerPortraitListUI : MonoBehaviour
+public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 {
     [SerializeField] private GameObject[] _playerPortraitList;
     private PartyManager _partyManager;
-    private Character _character;
-    public Character Character=>_character;
+    public event Action<Character> OnSelected;
     
     private void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerPortraitListUI : MonoBehaviour
 
     public void GetCurrentEventCharacter(Character character)
     {
-        _character = character;
+        OnSelected?.Invoke(character);
     }
     
 }

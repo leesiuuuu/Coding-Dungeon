@@ -12,13 +12,17 @@ public class CharacterCardHolder
 
 	public List<AbstractCardSo> Hand => _hand.ToList();
 
-	public AbstractCardSo[] ActiveQueueCards => _activeQueue.Cards;
+	public List<AbstractCardSo> ActiveQueueCards => _activeQueue.Cards;
 
 	private CardActiveQueue _activeQueue = new();
 	
 	public event Action<AbstractCardSo> OnCardAdded;
 
-	public event Action<AbstractCardSo> OnCardRemoved;
+	public event Action<int> OnCardRemoved;
+
+	public event Action<AbstractCardSo> OnActiveQueueAdded;
+
+	public event Action<int> OnActiveQueueRemoved;
 
 	public CharacterCardHolder(DeckSo deckSo)
 	{
@@ -43,15 +47,16 @@ public class CharacterCardHolder
 
 	private void RemoveHandCard(AbstractCardSo card)
 	{
+		int index = Array.IndexOf(_hand.ToArray(), card);
 		_hand.Remove(card);
-		OnCardRemoved?.Invoke(card);
+		OnCardRemoved?.Invoke(index);
 	}
 
 	public void ActiveCardsSequentially(CardActionContext context)
 	{
 		var activeCardArray = _activeQueue.Cards;
 
-		for (int i = 0; i < activeCardArray.Length; i++)
+		for (int i = 0; i < activeCardArray.Count; i++)
 		{
 			if (activeCardArray[i] != null)
 			{
@@ -62,16 +67,19 @@ public class CharacterCardHolder
 		_activeQueue.Clear();
 	}
 	
-	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
+	public void AddCardAtActiveQueue(AbstractCardSo card)
 	{
 		RemoveHandCard(card);
-		_activeQueue.AddCard(index, card);
+		_activeQueue.AddCard(card);
+		OnActiveQueueAdded?.Invoke(card);
 	}
 	
 	public void RemoveCardAtActiveQueue(int index)
 	{
-		AbstractCardSo card = _activeQueue.RemoveCard(index);
-		AddHandCard(card);
+		Debug.Log(index);
+		AddHandCard(_activeQueue.Cards[index]);
+		_activeQueue.RemoveCard(index);
+		OnActiveQueueRemoved?.Invoke(index);
 	}
 
 }

@@ -1,8 +1,34 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class ActiveQueueUISystem : CardHandSystem
 {
+	[SerializeField] private PlayerPortraitUI _portraitUI;
+	
+	protected new void Start()
+	{
+		if (handCenter == null)
+			handCenter = transform;
+
+		_portraitUI.OnSelect += OnCharacterSelectedInternal;
+	}
+
+	private void OnCharacterSelectedInternal(Character selected)
+	{
+		if (character != null)
+		{
+			character.CardHolder.OnActiveQueueAdded -= AddCard;
+			character.CardHolder.OnActiveQueueRemoved -= RemoveCardAt;
+		}
+        
+		character = selected;
+		UpdateCards(character.CardHolder.ActiveQueueCards);
+
+		character.CardHolder.OnActiveQueueAdded += AddCard;
+		character.CardHolder.OnActiveQueueRemoved += RemoveCardAt;
+	}
+
 	protected new void RecalculatePositions()
 	{
 		base.RecalculatePositions();

@@ -1,36 +1,24 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CardActiveQueue
 {
-	public AbstractCardSo[] Cards = new AbstractCardSo[8];
+	public List<AbstractCardSo> Cards = new();
 
-	public void AddCard(int index, AbstractCardSo card)
+	public void AddCard(AbstractCardSo card)
 	{
-		if (Cards[index] == null)
-		{
-			Cards[index] = card;
-		}
-		else
-		{
-			Debug.LogError("이미 점유된 슬롯에 카드 삽입이 시도됨.");
-		}
+		Cards.Add(card);
 	}
 
-	public AbstractCardSo RemoveCard(int index)
+	public void RemoveCard(int index)
 	{
-		if (Cards[index] != null)
-		{
-			var card = Cards[index];
-			Cards[index] = null;
-			return card;
-		}
-		return Cards[index];
+		Cards.RemoveAt(index);
 	}
 
 	public void Clear()
 	{
-		Cards = new AbstractCardSo[8];
+		Cards.Clear();
 	}
 	
 }
