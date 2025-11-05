@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class TileSelector : MonoBehaviour
@@ -8,6 +9,8 @@ public class TileSelector : MonoBehaviour
 	[SerializeField] private Color selectedColor = Color.red;
 	[SerializeField] private Color defaultColor = Color.white;
 	[SerializeField] private GameObject selectTile;
+
+	[SerializeField] private UnityEvent<Tilemap> onTileSelected;
 
 	private Tilemap currentTilemap;
 	private Vector3Int lastSelectedCell;
@@ -41,7 +44,7 @@ public class TileSelector : MonoBehaviour
 
 						// 이전에 선택한 타일의 색 원복
 						if (currentTilemap != null)
-							currentTilemap.SetColor(lastSelectedCell, defaultColor);
+							onTileSelected?.Invoke(currentTilemap);
 
 						// 새 타일 색 변경
 						tilemap.SetColor(cellPos, selectedColor);
@@ -55,6 +58,10 @@ public class TileSelector : MonoBehaviour
 		}
 	}
 
+	public void OnTileSelected(Tilemap tile)
+	{
+		tile.SetColor(lastSelectedCell, defaultColor);
+	}
 	float SnapWithTolerance(float value, float step, float tolerance)
 	{
 		float snapped = Mathf.Round(value / step) * step;
