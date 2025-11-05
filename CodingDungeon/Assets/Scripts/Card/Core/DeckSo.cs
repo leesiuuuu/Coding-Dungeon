@@ -1,6 +1,9 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName="Coding Dungeon/Deck")]
 public class DeckSo : ScriptableObject
 {
-	public AbstractCardSo[] cards;
+	public OutputCardSo[] outputCards;
+	public OperationCardSo[] operationCards;
+	public PassiveCardSo[] passiveCards;
 }

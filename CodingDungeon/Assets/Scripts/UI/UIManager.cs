@@ -1,12 +1,11 @@
-/*using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
-//using CardSystem;
 using UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("References")]
-    //[SerializeField] private IngameCardModel cardModel;
+    [SerializeField] private IngameCardModel cardModel;
     [SerializeField] private Transform cardContainer;
     [SerializeField] private CardUI cardPrefab;
 
@@ -64,7 +63,7 @@ public class UIManager : MonoBehaviour
             if (cardPrefab != null && card != null)
             {
                 CardUI cardUI = Instantiate(cardPrefab, cardContainer);
-                //cardUI.SetCardData(card);
+                cardUI.SetCardData(card);
                 cardUI.SetOnCardClicked(OnCardClicked);
                 cardUIList.Add(cardUI);
             }
@@ -75,7 +74,7 @@ public class UIManager : MonoBehaviour
     {
         if (cardUI?.CardData != null && cardModel != null)
         {
-            //cardModel.UseCard(cardUI.CardData);
+            cardModel.UseCard(cardUI.CardData);
             UpdateHandUI();
         }
     }
@@ -90,8 +89,8 @@ public class UIManager : MonoBehaviour
         // HP 바 업데이트
         if (hpFillImage != null)
         {
-            //float hpPercentage = (float)character.CurrentHP / character.MaxHP;
-            //hpFillImage.fillAmount = hpPercentage;
+//            float hpPercentage = (float)character.CurrentHP / character.MaxHP;
+//            hpFillImage.fillAmount = hpPercentage;
         }
 
         // 프로필 이미지는 필요시 구현
@@ -112,5 +111,5 @@ public class UIManager : MonoBehaviour
         character = targetCharacter;
         UpdateProfileUI();
     }
-}*/
+}
 
