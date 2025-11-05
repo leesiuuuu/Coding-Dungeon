@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class TestCharacter : MonoBehaviour
 {
     //이 코드 전체는 디버그용 코드입니다
     //이렇게 캐릭터 애니메이터로 때와서 사용하심 됩니다
