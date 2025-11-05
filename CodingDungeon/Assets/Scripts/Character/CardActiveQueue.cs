@@ -23,6 +23,7 @@ public class CardActiveQueue
 		{
 			var card = Cards[index];
 			Cards[index] = null;
+			return card;
 		}
 		return Cards[index];
 	}
