@@ -947,8 +947,9 @@ GameObject:
   - component: {fileID: 3676497736760081415}
   - component: {fileID: 6686234076738312071}
   - component: {fileID: 3087822455250770929}
-  - component: {fileID: -5724865981600863702}
   - component: {fileID: 8319056367951433023}
+  - component: {fileID: -5806226651350508395}
+  - component: {fileID: 1122832582300996037}
   m_Layer: 5
   m_Name: PythonKnight
   m_TagString: Untagged
@@ -1002,18 +1003,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   _chAnimator: {fileID: 6686234076738312071}
---- !u!114 &-5724865981600863702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2486531648413788233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridMovement
 --- !u!114 &8319056367951433023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,6 +1021,32 @@ MonoBehaviour:
     MaxHp: 0
     DamageModifier: 0
     DefenseModifier: 0
+--- !u!114 &-5806226651350508395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2486531648413788233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+--- !u!114 &1122832582300996037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2486531648413788233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7247555a45a89f248a3417247f7dcb81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PathFinder
+  showDebugPath: 1
+  gridMovement: {fileID: -5806226651350508395}
 --- !u!1 &2514719630523759621
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public class PlayerTurnUI : MonoBehaviour
     void Start()
     {
         TurnManager.Instance.OnPlayerSelection+=OnPlayerSelection;
-        TurnManager.Instance.OnMonsterMoves += ExitPlayerSelection;
     }
 
     private void OnPlayerSelection()
@@ -15,7 +14,7 @@ public class PlayerTurnUI : MonoBehaviour
         _animator.SetTrigger("Apear");    
     }
 
-    private void ExitPlayerSelection()
+    public void ExitPlayerSelection()
     {
         _animator.SetTrigger("Disapear");
     }
