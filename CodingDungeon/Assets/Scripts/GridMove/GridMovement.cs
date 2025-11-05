@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GridMovement : MonoBehaviour
 {
+	// 플레이어 이동 범위
 	[SerializeField] private int range = 1;
 	private void Update()
 	{
@@ -24,6 +25,10 @@ public class GridMovement : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// 플레이어 / 적을 특정 방향으로 이동시키는 함수
+	/// </summary>
+	/// <param name="dir">방향 벡터</param>
 	public void Move(Vector3 dir)
 	{
 		Vector3 dest = transform.position + dir;

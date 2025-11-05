@@ -10,8 +10,10 @@ public class TileSelector : MonoBehaviour
 	[SerializeField] private Color defaultColor = Color.white;
 	[SerializeField] private GameObject selectTile;
 
+	// 타일이 선택될 때 실행할 이벤트
 	[SerializeField] private UnityEvent<Tilemap> onTileSelected;
 
+	// 현재 선택된 타일
 	private Tilemap currentTilemap;
 	private Vector3Int lastSelectedCell;
 
@@ -58,6 +60,8 @@ public class TileSelector : MonoBehaviour
 		}
 	}
 
+	// 예시 함수
+	// 클릭 시 타일 컬러 변경
 	public void OnTileSelected(Tilemap tile)
 	{
 		tile.SetColor(lastSelectedCell, defaultColor);
