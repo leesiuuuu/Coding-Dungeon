@@ -8,13 +8,13 @@ public class CharacterCardHolder
 {
 	private DeckSo _deckSo;
 	
-	private List<AbstractCardSo> _hand;
+	private List<AbstractCardSo> _hand = new();
 
 	public List<AbstractCardSo> Hand => _hand.ToList();
 
 	public AbstractCardSo[] ActiveQueueCards => _activeQueue.Cards;
 
-	private CardActiveQueue _activeQueue = new CardActiveQueue();
+	private CardActiveQueue _activeQueue = new();
 	
 	public event Action<AbstractCardSo> OnCardAdded;
 
@@ -57,9 +57,9 @@ public class CharacterCardHolder
 			{
 				context.Card = activeCardArray[i];
 				activeCardArray[i].StartAction(context);
-				_activeQueue.Clear();
 			}
 		}
+		_activeQueue.Clear();
 	}
 	
 	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
