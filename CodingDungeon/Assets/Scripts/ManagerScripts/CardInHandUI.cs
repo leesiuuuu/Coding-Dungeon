@@ -21,16 +21,21 @@ public class CardInHandUI : MonoBehaviour
 
 	public event Action OnSelected;
 
+	public event Action OnDeleted;
+
 	/// <summary>
 	/// Called By UGUI Button
 	/// </summary>
-	public void OnClicked()
+	public void OnClicked(bool selectOrDelete)
 	{
-		OnSelected?.Invoke();
+		(selectOrDelete
+			? OnSelected
+			: OnDeleted)?.Invoke();
 	}
 	
 	public void UpdateInformation(AbstractCardSo card)
 	{
+		Card = card;
 		_name.text = card.Name;
 		_description.text = card.Description;
 		_cost.text = card.Cost.ToString();

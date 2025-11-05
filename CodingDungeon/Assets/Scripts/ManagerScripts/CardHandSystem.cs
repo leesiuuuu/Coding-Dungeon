@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,39 +7,57 @@ using UnityEngine.PlayerLoop;
 
 public class CardHandSystem : MonoBehaviour
 {
-    [SerializeField] protected Character character;
-    
     [Header("카드 설정")]
-    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] protected GameObject cardPrefab;
     
     [Header("포인트 설정")]
-    [SerializeField] private float pointDistance = 150f; 
-    [SerializeField] private Transform handCenter; 
+    [SerializeField] protected float pointDistance = 150f; 
+    [SerializeField] protected Transform handCenter; 
     
     [Header("애니메이션 설정")]
-    [SerializeField] private float slideInDuration = 0.2f;
-    [SerializeField] private float slideInDistance = 300f; 
-    [SerializeField] private AnimationCurve slideInCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] protected float slideInDuration = 0.2f;
+    [SerializeField] protected float slideInDistance = 300f; 
+    [SerializeField] protected AnimationCurve slideInCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     
-    private List<CardInHandUI> cards = new();
-    private List<Vector3> targetPositions = new();
+    protected Character character;
     
-    private Coroutine repositionCoroutine;
-    private bool isAddingCard = false;
+    protected List<CardInHandUI> cards = new();
+    protected List<Vector3> targetPositions = new();
     
-    void Start()
+    protected Coroutine repositionCoroutine;
+    protected bool isAddingCard = false;
+    
+    protected void Start()
     {
         if (handCenter == null)
             handCenter = transform;
-        character.CardHolder.OnCardAdded += AddCard;
-        character.CardHolder.OnCardRemoved += RemoveCard;
-        UpdateCards(character.CardHolder.Hand);
+
+        PlayerPortraitListUI.Instance.OnSelected += _ => OnCharacterSelected();
     }
 
-    private void OnCardSelected(AbstractCardSo selected)
+    protected void OnCharacterSelected()
     {
-        int count = character.CardHolder.ActiveQueueCards.Count(i => i != null);
-        character.CardHolder.AddCardAtActiveQueue(count, selected);
+        if (character != null)
+        {
+            character.CardHolder.OnCardAdded -= AddCard;
+            character.CardHolder.OnCardRemoved -= RemoveCardAt;
+        }
+        
+        character = PartyManager.Instance.SelectedCharacter;
+        UpdateCards(character.CardHolder.Hand);
+
+        character.CardHolder.OnCardAdded += AddCard;
+        character.CardHolder.OnCardRemoved += RemoveCardAt;
+    }
+
+    protected void OnCardSelected(CardInHandUI selected)
+    {
+        character.CardHolder.AddCardAtActiveQueue(selected.Card);
+    }
+    
+    protected void OnCardDeleted(CardInHandUI deleted)
+    {
+        character.CardHolder.RemoveCardAtActiveQueue(Array.IndexOf(cards.ToArray(), deleted));
     }
 
     public void UpdateCards(List<AbstractCardSo> cardParam)
@@ -84,7 +103,8 @@ public class CardHandSystem : MonoBehaviour
         cardInHandUI.gameObject.SetActive(false);
         cardInHandUI.UpdateInformation(card);
         cards.Add(cardInHandUI);
-        cardInHandUI.OnSelected += () => OnCardSelected(card);
+        cardInHandUI.OnSelected += () => OnCardSelected(cardInHandUI);
+        cardInHandUI.OnDeleted += () => OnCardDeleted(cardInHandUI);
         return cardInHandUI;
     }
     
@@ -200,21 +220,6 @@ public class CardHandSystem : MonoBehaviour
         }
     }
     
-    public void RemoveCard(AbstractCardSo card)
-    {
-        CardInHandUI cardInHandUI = cards.FirstOrDefault(i => i.Card == card);
-        if (cardInHandUI != null)
-        {
-            DestroyCard(cardInHandUI);
-
-            RecalculatePositions();
-            
-            if (repositionCoroutine != null)
-                StopCoroutine(repositionCoroutine);
-            repositionCoroutine = StartCoroutine(RepositionExistingCards());
-        }
-    }
-    
     public void RemoveCardAt(int index)
     {
         if (index >= 0 && index < cards.Count)
@@ -227,10 +232,6 @@ public class CardHandSystem : MonoBehaviour
             if (repositionCoroutine != null)
                 StopCoroutine(repositionCoroutine);
             repositionCoroutine = StartCoroutine(RepositionExistingCards());
-        }
-        else
-        {
-            Debug.LogWarning($"인덱스 {index}는 유효하지 않습니다. 현재 카드 수: {cards.Count}");
         }
     }
     
@@ -250,7 +251,7 @@ public class CardHandSystem : MonoBehaviour
 
     protected void DestroyCard(CardInHandUI card)
     {
-        Destroy(card);
+        Destroy(card.gameObject);
         cards.Remove(card);
     }
     

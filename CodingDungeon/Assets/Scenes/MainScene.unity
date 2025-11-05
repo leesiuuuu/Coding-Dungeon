@@ -295,7 +295,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8575754534392903241, guid: 464131fcbc176354aa4e3714c255af71, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: f7e7817211b832847a885c2989caad6c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 59efd50f07678d546a158fbd3d7448d2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401643699}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1593,6 +1593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 352196887628276519, guid: 83526aeb3c36a3344addf41abe8273ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5135214962527168704, guid: 83526aeb3c36a3344addf41abe8273ae, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1688,6 +1692,6 @@ SceneRoots:
   - {fileID: 1192107612}
   - {fileID: 910856396}
   - {fileID: 857294261}
-  - {fileID: 3877347087765705542}
   - {fileID: 401643701}
+  - {fileID: 3877347087765705542}
   - {fileID: 798598241}
