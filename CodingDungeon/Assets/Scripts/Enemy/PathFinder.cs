@@ -68,7 +68,7 @@ public class PathFinder : MonoBehaviour
             {
                 _pathQueue.Enqueue(cell);
             }
-            Debug.Log($"경로 찾기 성공! 총 {path.Count}개의 타일");
+            //Debug.Log($"경로 찾기 성공! 총 {path.Count}개의 타일");
         }
         else
         {
