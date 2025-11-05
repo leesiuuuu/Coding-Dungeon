@@ -948,6 +948,7 @@ GameObject:
   - component: {fileID: 6686234076738312071}
   - component: {fileID: 3087822455250770929}
   - component: {fileID: -5724865981600863702}
+  - component: {fileID: 8319056367951433023}
   m_Layer: 5
   m_Name: PythonKnight
   m_TagString: Untagged
@@ -1013,7 +1014,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
-  range: 1
+--- !u!114 &8319056367951433023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2486531648413788233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00a8d15f6b247fda5913206bdc56b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  _setting: {fileID: 11400000, guid: 6b2d521a5879dbd468c60e039d1df403, type: 2}
+  _attributes:
+    CurrentHp: 0
+    MaxHp: 0
+    DamageModifier: 0
+    DefenseModifier: 0
 --- !u!1 &2514719630523759621
 GameObject:
   m_ObjectHideFlags: 0

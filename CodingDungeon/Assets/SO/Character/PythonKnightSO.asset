@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15cecd386847219af22f114ce9ec39, type: 3}
-  m_Name: New Character So
+  m_Name: PythonKnightSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
-  Name: 
+  Name: "Phthon\uC758 \uAE30\uC0AC"
   Image: {fileID: 0}
   Attributes:
-    CurrentHp: 0
-    MaxHp: 0
-    DamageModifier: 0
-    DefenseModifier: 0
-  Deck: {fileID: 0}
+    CurrentHp: 100
+    MaxHp: 100
+    DamageModifier: 100
+    DefenseModifier: 100
+  Deck: {fileID: 11400000, guid: 9933a6a74d1b6f345817c4ad487b82f6, type: 2}

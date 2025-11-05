@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3204236685981318527}
   - component: {fileID: 6517204386372090150}
   - component: {fileID: 817126023644564698}
+  - component: {fileID: 6202068495476551512}
   m_Layer: 5
   m_Name: JavaSwordMaster
   m_TagString: Untagged
@@ -96,6 +97,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
   _chAnimator: {fileID: 6517204386372090150}
+--- !u!114 &6202068495476551512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205908314657518326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00a8d15f6b247fda5913206bdc56b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  _setting: {fileID: 11400000, guid: cd5fcc7d6e2efa442be58b088ad1656e, type: 2}
+  _attributes:
+    CurrentHp: 0
+    MaxHp: 0
+    DamageModifier: 0
+    DefenseModifier: 0
 --- !u!1 &507979921966663199
 GameObject:
   m_ObjectHideFlags: 0
