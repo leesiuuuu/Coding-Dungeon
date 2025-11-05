@@ -10,16 +10,18 @@ public class TileSelector : MonoBehaviour
 	[SerializeField] private Color defaultColor = Color.white;
 	[SerializeField] private GameObject selectTile;
 
+	// 타일이 선택될 때 실행할 이벤트
 	[SerializeField] private UnityEvent<Tilemap> onTileSelected;
 
+	// 현재 선택된 타일
 	private Tilemap currentTilemap;
 	private Vector3Int lastSelectedCell;
 
 	void Update()
 	{
 		Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		float x = SnapWithTolerance(point.x, 1f, 1f);
-		float y = SnapWithTolerance(point.y, 1f, 1f);
+		int x = Mathf.RoundToInt(point.x);
+		int y = Mathf.RoundToInt(point.y);
 		selectTile.transform.position = new Vector3(x, y, 0);
 
 		transform.position = point;
@@ -58,16 +60,11 @@ public class TileSelector : MonoBehaviour
 		}
 	}
 
+	// 예시 함수
+	// 클릭 시 타일 컬러 변경
 	public void OnTileSelected(Tilemap tile)
 	{
 		tile.SetColor(lastSelectedCell, defaultColor);
-	}
-	float SnapWithTolerance(float value, float step, float tolerance)
-	{
-		float snapped = Mathf.Round(value / step) * step;
-		if (Mathf.Abs(value - snapped) <= tolerance)
-			return snapped;
-		return value;
 	}
 
 }

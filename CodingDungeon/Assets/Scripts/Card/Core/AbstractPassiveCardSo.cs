@@ -1,3 +1,3 @@
-public abstract class AbstractPassiveCardSo<T> : AbstractCardSo<T> where T : PassiveCardActionParams
+public abstract class AbstractPassiveCardSo<T> : CardSo<T> where T : PassiveCardActionParams
 {
 }
