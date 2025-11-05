@@ -4,22 +4,31 @@ using UnityEngine.UI;
 public class PlayerPortraitListUI : MonoBehaviour
 {
     [SerializeField] private GameObject[] _playerPortraitList;
-    //public event Action On
+    private PartyManager _partyManager;
+    private Character _character;
+    public Character Character=>_character;
+    
     private void Start()
     {
-        var partyManager = PartyManager.Instance;
-        for (var i = 0; i < partyManager.Characters.Count; i++)
+        _partyManager = PartyManager.Instance;
+        for (var i = 0; i < _partyManager.Characters.Count; i++)
         {
-            _playerPortraitList[i].GetComponent<Image>().sprite = partyManager.Characters[i].Setting.Image;
-            _playerPortraitList[i].GetComponent<PlayerPortraitUI>().SetCharacter(partyManager.Characters[i]);
+            _playerPortraitList[i].GetComponent<Image>().sprite = _partyManager.Characters[i].Setting.Image;
+            var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
+            playerPortraitUI.SetCharacter(_partyManager.Characters[i]);
+            playerPortraitUI.OnSelect += GetCurrentEventCharacter;
         }
     }
     
 
     public void OnTurnSkip()
     {
-        //PlayerPortraitUI.CanSelect = true;
+        PlayerPortraitUI.CanSelect = true;
     }
-    //public void Re
+
+    public void GetCurrentEventCharacter(Character character)
+    {
+        _character = character;
+    }
     
 }

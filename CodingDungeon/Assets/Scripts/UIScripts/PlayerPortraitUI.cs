@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
 {
     [SerializeField] private Character _character;
-    public bool CanSelect = true;
+    public static bool CanSelect = true;
     public event Action<Character> OnSelect;
 
     private void Start()
