@@ -155,7 +155,6 @@ public class PathFinder : MonoBehaviour
         Vector3Int nextCell = _pathQueue.Dequeue();
         Vector3 targetPos = walkableTilemap.GetCellCenterWorld(nextCell); 
         var dir=targetPos-transform.position;
-        Debug.Log(dir);
         gridMovement.Move(dir);
         transform.position = targetPos;
     }
