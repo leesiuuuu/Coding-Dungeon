@@ -159,7 +159,7 @@ public class PathFinder : MonoBehaviour
         transform.position = targetPos;
     }
     
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         if (!showDebugPath || _pathQueue == null || walkableTilemap == null)
             return;
@@ -170,5 +170,5 @@ public class PathFinder : MonoBehaviour
             Vector3 worldPos = walkableTilemap.GetCellCenterWorld(cell);
             Gizmos.DrawWireCube(worldPos, Vector3.one * 0.8f);
         }
-    }
+    }*/
 }
