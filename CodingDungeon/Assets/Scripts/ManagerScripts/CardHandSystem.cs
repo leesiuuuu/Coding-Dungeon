@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class CardHandSystem : MonoBehaviour
 {
-    [SerializeField] private Character character;
+    [SerializeField] protected Character character;
     
     [Header("카드 설정")]
     [SerializeField] private GameObject cardPrefab;
@@ -98,7 +98,7 @@ public class CardHandSystem : MonoBehaviour
         }
     }
     
-    private IEnumerator SlideInCard(Transform card, int index)
+    protected IEnumerator SlideInCard(Transform card, int index)
     {
         if (index >= targetPositions.Count) yield break;
         
@@ -151,7 +151,7 @@ public class CardHandSystem : MonoBehaviour
         isAddingCard = false;
     }
     
-    private IEnumerator RepositionExistingCards()
+    protected IEnumerator RepositionExistingCards()
     {
         float duration = 0.3f;
         float elapsed = 0f;
