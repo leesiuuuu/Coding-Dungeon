@@ -13,20 +13,7 @@ public class Character : MonoBehaviour
 	public CharacterAttributes CharacterAttributes => _attributes;
 	
 	private CharacterCardHolder _cardHolder;
-	
-	public void ActiveCardsSequentially(CardActionContext context)
-	{
-		_cardHolder.ActiveCardsSequentially(context);
-	}
 
-	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
-	{
-		_cardHolder.AddCardAtActiveQueue(index, card);
-	}
-	
-	public void RemoveCardAtActiveQueue(int index)
-	{
-		_cardHolder.RemoveCardAtActiveQueue(index);
-	}
+	public CharacterCardHolder CardHolder => _cardHolder;
 	
 }
