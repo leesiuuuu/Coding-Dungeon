@@ -45,10 +45,9 @@ public class CharacterCardHolder
 		OnCardAdded?.Invoke(card);
 	}
 
-	private void RemoveHandCard(AbstractCardSo card)
+	private void RemoveHandCard(int index)
 	{
-		int index = Array.IndexOf(_hand.ToArray(), card);
-		_hand.Remove(card);
+		_hand.RemoveAt(index);
 		OnCardRemoved?.Invoke(index);
 	}
 
@@ -67,9 +66,9 @@ public class CharacterCardHolder
 		_activeQueue.Clear();
 	}
 	
-	public void AddCardAtActiveQueue(AbstractCardSo card)
+	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
 	{
-		RemoveHandCard(card);
+		RemoveHandCard(index);
 		_activeQueue.AddCard(card);
 		OnActiveQueueAdded?.Invoke(card);
 	}
