@@ -20,8 +20,8 @@ public class TileSelector : MonoBehaviour
 	void Update()
 	{
 		Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		float x = SnapWithTolerance(point.x, 1f, 1f);
-		float y = SnapWithTolerance(point.y, 1f, 1f);
+		int x = Mathf.RoundToInt(point.x);
+		int y = Mathf.RoundToInt(point.y);
 		selectTile.transform.position = new Vector3(x, y, 0);
 
 		transform.position = point;
@@ -65,13 +65,6 @@ public class TileSelector : MonoBehaviour
 	public void OnTileSelected(Tilemap tile)
 	{
 		tile.SetColor(lastSelectedCell, defaultColor);
-	}
-	float SnapWithTolerance(float value, float step, float tolerance)
-	{
-		float snapped = Mathf.Round(value / step) * step;
-		if (Mathf.Abs(value - snapped) <= tolerance)
-			return snapped;
-		return value;
 	}
 
 }
