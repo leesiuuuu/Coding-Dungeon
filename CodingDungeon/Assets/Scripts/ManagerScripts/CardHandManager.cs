@@ -19,7 +19,6 @@ public class CardHandSystem : MonoBehaviour
     private List<GameObject> cards = new List<GameObject>();
     private List<Vector3> targetPositions = new List<Vector3>();
     
-    // 애니메이션 관리
     private Coroutine repositionCoroutine;
     private bool isAddingCard = false;
     
@@ -40,6 +39,12 @@ public class CardHandSystem : MonoBehaviour
         {
             ClearAllCards();
         }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1)) RemoveCardAt(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) RemoveCardAt(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) RemoveCardAt(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) RemoveCardAt(3);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) RemoveCardAt(4);
     }
 
     public void AddCard()
@@ -50,7 +55,6 @@ public class CardHandSystem : MonoBehaviour
             return;
         }
         
-        // 이미 추가 중이면 대기열에 추가
         if (isAddingCard)
         {
             StartCoroutine(WaitAndAddCard());
@@ -59,14 +63,13 @@ public class CardHandSystem : MonoBehaviour
         
         isAddingCard = true;
         
-        // 기존 재배치 코루틴 중단
         if (repositionCoroutine != null)
         {
             StopCoroutine(repositionCoroutine);
         }
         
         GameObject newCard = Instantiate(cardPrefab, handCenter);
-        newCard.SetActive(false); // 일단 비활성화
+        newCard.SetActive(false);
         cards.Add(newCard);
         
         RecalculatePositions();
@@ -103,13 +106,11 @@ public class CardHandSystem : MonoBehaviour
         Vector3 targetPos = targetPositions[index];
         Vector3 startPos = targetPos + new Vector3(slideInDistance, 0, 0);
         
-        // 위치 설정 후 활성화
         card.transform.position = startPos;
         card.SetActive(true);
         
         float elapsed = 0f;
         
-        // 기존 카드들의 시작 위치 저장
         List<Vector3> oldPositions = new List<Vector3>();
         for (int i = 0; i < cards.Count - 1; i++)
         {
@@ -123,14 +124,12 @@ public class CardHandSystem : MonoBehaviour
             float t = elapsed / slideInDuration;
             float curveValue = slideInCurve.Evaluate(t);
             
-            // 새 카드 이동
             if (index < targetPositions.Count)
             {
                 targetPos = targetPositions[index];
                 card.transform.position = Vector3.Lerp(startPos, targetPos, curveValue);
             }
-            
-            // 기존 카드들도 동시에 이동
+
             for (int i = 0; i < cards.Count - 1; i++)
             {
                 if (cards[i] != null && i < targetPositions.Count && i < oldPositions.Count)
@@ -142,7 +141,6 @@ public class CardHandSystem : MonoBehaviour
             yield return null;
         }
         
-        // 최종 위치 보정
         for (int i = 0; i < cards.Count; i++)
         {
             if (cards[i] != null && i < targetPositions.Count)
@@ -213,17 +211,21 @@ public class CardHandSystem : MonoBehaviour
             GameObject card = cards[index];
             cards.RemoveAt(index);
             Destroy(card);
+            
             RecalculatePositions();
             
             if (repositionCoroutine != null)
                 StopCoroutine(repositionCoroutine);
             repositionCoroutine = StartCoroutine(RepositionExistingCards());
         }
+        else
+        {
+            Debug.LogWarning($"인덱스 {index}는 유효하지 않습니다. 현재 카드 수: {cards.Count}");
+        }
     }
     
     public void ClearAllCards()
     {
-        // 모든 코루틴 중단
         StopAllCoroutines();
         
         foreach (var card in cards)
