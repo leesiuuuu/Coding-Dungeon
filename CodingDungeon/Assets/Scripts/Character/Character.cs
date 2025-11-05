@@ -15,5 +15,10 @@ public class Character : MonoBehaviour
 	private CharacterCardHolder _cardHolder;
 
 	public CharacterCardHolder CardHolder => _cardHolder;
+
+	public void Start()
+	{
+		_cardHolder = new CharacterCardHolder(_setting.Deck);
+	}
 	
 }

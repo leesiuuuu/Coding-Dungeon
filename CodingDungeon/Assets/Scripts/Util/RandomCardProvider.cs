@@ -1,11 +1,12 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class RandomCardProvider
 {
-	public static void Fill(DeckSo deck, AbstractCardSo[] hand)
+    public static List<AbstractCardSo> Fill(DeckSo deck, List<AbstractCardSo> hand, int length)
     {
+        List<AbstractCardSo> cardsToAdd = new List<AbstractCardSo>();
+        
         // 현재 hand에 있는 output/passive 카드 수집
         HashSet<OutputCardSo> existingOutputCards = new HashSet<OutputCardSo>();
         HashSet<PassiveCardSo> existingPassiveCards = new HashSet<PassiveCardSo>();
@@ -26,25 +27,36 @@ public static class RandomCardProvider
                 missingOutputCards.Add(outputCard);
         }
         
-        // null 슬롯 채우기
-        for (int i = 0; i < hand.Length; i++)
+        // 채워야 할 카드 수 계산
+        int cardsNeeded = length - hand.Count;
+        
+        // 필요한 만큼 카드 선택
+        for (int i = 0; i < cardsNeeded; i++)
         {
-            if (hand[i] == null)
+            // 우선: 빠진 output 카드가 있으면 추가
+            if (missingOutputCards.Count > 0)
             {
-                // 우선: 빠진 output 카드가 있으면 채우기
-                if (missingOutputCards.Count > 0)
+                cardsToAdd.Add(missingOutputCards[0]);
+                existingOutputCards.Add(missingOutputCards[0]);
+                missingOutputCards.RemoveAt(0);
+            }
+            else
+            {
+                // 랜덤 카드 선택 (중복 체크 포함)
+                AbstractCardSo newCard = ComputeRandomCard(deck, existingOutputCards, existingPassiveCards);
+                if (newCard != null)
                 {
-                    hand[i] = missingOutputCards[0];
-                    existingOutputCards.Add(missingOutputCards[0]);
-                    missingOutputCards.RemoveAt(0);
+                    cardsToAdd.Add(newCard);
                 }
                 else
                 {
-                    // 랜덤 카드 선택 (중복 체크 포함)
-                    hand[i] = ComputeRandomCard(deck, existingOutputCards, existingPassiveCards);
+                    // 더 이상 추가할 카드가 없으면 중단
+                    break;
                 }
             }
         }
+        
+        return cardsToAdd;
     }
 
     private static AbstractCardSo ComputeRandomCard(DeckSo deck, 

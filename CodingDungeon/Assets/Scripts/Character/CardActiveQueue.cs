@@ -5,16 +5,11 @@ public class CardActiveQueue
 {
 	public AbstractCardSo[] Cards = new AbstractCardSo[8];
 
-	public event Action<int, AbstractCardSo> OnCardAdded;
-
-	public event Action<int, AbstractCardSo> OnCardRemoved;
-
 	public void AddCard(int index, AbstractCardSo card)
 	{
 		if (Cards[index] == null)
 		{
 			Cards[index] = card;
-			OnCardAdded?.Invoke(index, card);
 		}
 		else
 		{
@@ -22,14 +17,19 @@ public class CardActiveQueue
 		}
 	}
 
-	public void RemoveCard(int index)
+	public AbstractCardSo RemoveCard(int index)
 	{
 		if (Cards[index] != null)
 		{
 			var card = Cards[index];
 			Cards[index] = null;
-			OnCardRemoved?.Invoke(index, card);
 		}
+		return Cards[index];
+	}
+
+	public void Clear()
+	{
+		Cards = new AbstractCardSo[8];
 	}
 	
 }
