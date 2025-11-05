@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PythonKnightSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
   Name: "Phthon\uC758 \uAE30\uC0AC"
-  Image: {fileID: 0}
+  Image: {fileID: -304936996, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
     MaxHp: 100
