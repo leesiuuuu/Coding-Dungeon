@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerPortraitListUI : MonoBehaviour
 {
     [SerializeField] private GameObject[] _playerPortraitList;
+    //public event Action On
     private void Start()
     {
         var partyManager = PartyManager.Instance;
@@ -13,10 +14,12 @@ public class PlayerPortraitListUI : MonoBehaviour
             _playerPortraitList[i].GetComponent<PlayerPortraitUI>().SetCharacter(partyManager.Characters[i]);
         }
     }
+    
 
     public void OnTurnSkip()
     {
-        PlayerPortraitUI.CanSelect = true;
+        //PlayerPortraitUI.CanSelect = true;
     }
+    //public void Re
     
 }
