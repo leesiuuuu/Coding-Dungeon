@@ -20,8 +20,8 @@ public class TileSelector : MonoBehaviour
 	void Update()
 	{
 		Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		float x = SnapWithTolerance(point.x, 1f, 1f);
-		float y = SnapWithTolerance(point.y, 1f, 1f);
+		int x = Mathf.RoundToInt(point.x);
+		int y = Mathf.RoundToInt(point.y);
 		selectTile.transform.position = new Vector3(x, y, 0);
 
 		transform.position = point;
@@ -42,14 +42,13 @@ public class TileSelector : MonoBehaviour
 					// 타일이 실제로 존재하는지 확인
 					if (tilemap.GetTile(cellPos) != null)
 					{
-						Debug.Log($"타일 선택됨! 좌표: {cellPos}");
+						//Debug.Log($"타일 선택됨! 좌표: {cellPos}");
 
-						// 이전에 선택한 타일의 색 원복
-						if (currentTilemap != null)
-							onTileSelected?.Invoke(currentTilemap);
+						//if (currentTilemap != null)
+						//	//onTileSelected?.Invoke(currentTilemap);
 
 						// 새 타일 색 변경
-						tilemap.SetColor(cellPos, selectedColor);
+						//tilemap.SetColor(cellPos, selectedColor);
 
 						// 현재 선택 상태 저장
 						currentTilemap = tilemap;
@@ -62,16 +61,9 @@ public class TileSelector : MonoBehaviour
 
 	// 예시 함수
 	// 클릭 시 타일 컬러 변경
-	public void OnTileSelected(Tilemap tile)
-	{
-		tile.SetColor(lastSelectedCell, defaultColor);
-	}
-	float SnapWithTolerance(float value, float step, float tolerance)
-	{
-		float snapped = Mathf.Round(value / step) * step;
-		if (Mathf.Abs(value - snapped) <= tolerance)
-			return snapped;
-		return value;
-	}
+	//public void OnTileSelected(Tilemap tile)
+	//{
+	//	tile.SetColor(lastSelectedCell, defaultColor);
+	//}
 
 }
