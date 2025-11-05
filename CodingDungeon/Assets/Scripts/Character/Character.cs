@@ -3,32 +3,30 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 	[SerializeField]
-	private int currentHP = 100;
+	private CharacterSo _setting;
 
+	public CharacterSo Setting => _setting;
+	
 	[SerializeField]
-	private int maxHP = 100;
+	private CharacterAttributes _attributes;
 
-	public int CurrentHP => currentHP;
-	public int MaxHP => maxHP;
-
-	public void ExamplePerform()
+	public CharacterAttributes CharacterAttributes => _attributes;
+	
+	private CharacterCardHolder _cardHolder;
+	
+	public void ActiveCardsSequentially(CardActionContext context)
 	{
-		Debug.Log(name + "이(가) 공격했음!");
+		_cardHolder.ActiveCardsSequentially(context);
+	}
+
+	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
+	{
+		_cardHolder.AddCardAtActiveQueue(index, card);
 	}
 	
-	public void Attacked()
+	public void RemoveCardAtActiveQueue(int index)
 	{
-		Debug.Log(name + "이(가) 공격당함!!");
+		_cardHolder.RemoveCardAtActiveQueue(index);
 	}
-
-	public void SetHP(int hp)
-	{
-		currentHP = Mathf.Clamp(hp, 0, maxHP);
-	}
-
-	public void SetMaxHP(int max)
-	{
-		maxHP = Mathf.Max(1, max);
-		currentHP = Mathf.Min(currentHP, maxHP);
-	}
+	
 }
