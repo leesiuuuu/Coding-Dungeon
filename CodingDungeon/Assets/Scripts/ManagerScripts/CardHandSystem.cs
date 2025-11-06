@@ -32,10 +32,10 @@ public class CardHandSystem : MonoBehaviour
         if (handCenter == null)
             handCenter = transform;
 
-        PlayerPortraitListUI.Instance.OnSelected += _ => OnCharacterSelected();
+        PlayerPortraitListUI.Instance.OnSelected += OnCharacterSelected;
     }
 
-    protected void OnCharacterSelected()
+    protected virtual void OnCharacterSelected(Character selected)
     {
         Debug.Log(gameObject.name);
         if (character != null)
@@ -44,7 +44,7 @@ public class CardHandSystem : MonoBehaviour
             character.CardHolder.OnCardRemoved -= RemoveCardAt;
         }
         
-        character = PartyManager.Instance.SelectedCharacter;
+        character = selected;
         UpdateCards(character.CardHolder.Hand);
 
         character.CardHolder.OnCardAdded += AddCard;

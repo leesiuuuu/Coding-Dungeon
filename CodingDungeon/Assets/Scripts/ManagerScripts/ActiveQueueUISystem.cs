@@ -17,10 +17,10 @@ public class ActiveQueueUISystem : CardHandSystem
        if (handCenter == null)
           handCenter = transform;
 
-       _portraitUI.OnSelect += OnCharacterSelectedInternal;
+       _portraitUI.OnSelect += OnCharacterSelected;
     }
 
-    private  void OnCharacterSelectedInternal(Character selected)
+    protected override void OnCharacterSelected(Character selected)
     {
        if (character != null)
        {
