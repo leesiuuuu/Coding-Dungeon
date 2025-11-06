@@ -4,13 +4,15 @@ using UnityEngine.EventSystems;
 
 public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
 {
-    [SerializeField] private Character _character;
+    [SerializeField] private int index;
     [SerializeField] private GameObject _activeQueueUI;
     public static bool CanSelect = true;
     public event Action<Character> OnSelect;
     public event Action<Character> OnClosed; 
     public bool IsInteractable = true;
     public event Action<GameObject> OnReturnGameObject;
+
+    private Character _character;
 
     /// <summary>
     /// Called By UGUI Button
@@ -20,8 +22,9 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
         PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
     }
 
-    private void Start()
+	private void Start()
     {
+		_character = PartyManager.Instance.Characters[index];
         _activeQueueUI.SetActive(false);
         OnSelect+=PartyManager.Instance.OnSelectCharacter;
 		OnReturnGameObject += PartyManager.Instance.OnSelectPortrait;
