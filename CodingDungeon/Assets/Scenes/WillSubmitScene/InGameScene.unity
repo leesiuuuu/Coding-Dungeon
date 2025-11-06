@@ -379,6 +379,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8110416870713260020, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1613221474}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1115,50 +1119,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.75557, y: -0.42441, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1273692544
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1273692546}
-  - component: {fileID: 1273692545}
-  m_Layer: 0
-  m_Name: CardActionContextHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1273692545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273692544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3650cc3b27f4400bab2f62f8445a48e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardActionContextHolder
---- !u!4 &1273692546
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273692544}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0188, y: 0.74896, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5060,7 +5020,7 @@ PrefabInstance:
     - target: {fileID: 7098572396279759148, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: _cardActionContextHolder
       value: 
-      objectReference: {fileID: 1273692545}
+      objectReference: {fileID: 7372766491836968525}
     - target: {fileID: 7851412462574356199, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: tileSelector
       value: 
@@ -5404,6 +5364,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7372766491836968525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7833639596359817889, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
+  m_PrefabInstance: {fileID: 785871239719580908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3650cc3b27f4400bab2f62f8445a48e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardActionContextHolder
 --- !u!95 &8345533080951676703
 Animator:
   serializedVersion: 7
@@ -5479,6 +5450,5 @@ SceneRoots:
   - {fileID: 785871239719580908}
   - {fileID: 1842381611}
   - {fileID: 1419137993}
-  - {fileID: 1273692546}
   - {fileID: 201559435}
   - {fileID: 231530281}
