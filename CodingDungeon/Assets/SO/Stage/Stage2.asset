@@ -15,6 +15,5 @@ MonoBehaviour:
   StageID: 0-2
   StageName: "\uC5B4\uB518\uAC00 \uC218\uC0C1\uD55C \uCF54\uB529 \uB358\uC804 2"
   AppearEnemys:
-  - {fileID: -7650184365866704765, guid: d1bc3ad920b0d41c5b5d8aff14f0dee9, type: 3}
-  - {fileID: 21300000, guid: ea5c4fc418c71491eb063b759868a2a1, type: 3}
-  - {fileID: 21300000, guid: 119fb0b286335eb40b5bccd74e1df90d, type: 3}
+  - {fileID: -2684662799446805830, guid: 3e7f1bcf5e1004551853fead34d7fb5b, type: 3}
+  - {fileID: -7786538801905712091, guid: 848bc3c193b31c7489b3ad483cc4a824, type: 3}
