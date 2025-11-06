@@ -1316,6 +1316,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 715581893283018582, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardAdd
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d1d39cc2e498744b9f731617dd1ca57, type: 3}
+    - target: {fileID: 715581893283018582, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardRemove
+      value: 
+      objectReference: {fileID: 8300000, guid: 01327f0ef1874214e828211a3dee6b96, type: 3}
+    - target: {fileID: 2302340829331602995, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: selectedAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 1170f4097a018e7428dd71fd751944c8, type: 3}
+    - target: {fileID: 2595974029730993928, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardAdd
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d1d39cc2e498744b9f731617dd1ca57, type: 3}
+    - target: {fileID: 2595974029730993928, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardRemove
+      value: 
+      objectReference: {fileID: 8300000, guid: 01327f0ef1874214e828211a3dee6b96, type: 3}
+    - target: {fileID: 3610496679169793645, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: selectedAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 1170f4097a018e7428dd71fd751944c8, type: 3}
     - target: {fileID: 5497572626490649677, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: m_Name
       value: Ingame Canvas
@@ -1400,10 +1424,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7543902856051342949, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardAdd
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d1d39cc2e498744b9f731617dd1ca57, type: 3}
+    - target: {fileID: 7543902856051342949, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: cardRemove
+      value: 
+      objectReference: {fileID: 8300000, guid: 01327f0ef1874214e828211a3dee6b96, type: 3}
     - target: {fileID: 8110416870713260020, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1613221474}
+    - target: {fileID: 9127842705753995008, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: selectedAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 1170f4097a018e7428dd71fd751944c8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5565,7 +5601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1919336728
 RectTransform:
   m_ObjectHideFlags: 0

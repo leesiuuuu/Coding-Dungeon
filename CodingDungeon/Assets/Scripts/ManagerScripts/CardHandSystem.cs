@@ -18,6 +18,10 @@ public class CardHandSystem : MonoBehaviour
     [SerializeField] protected float slideInDuration = 0.2f;
     [SerializeField] protected float slideInDistance = 300f; 
     [SerializeField] protected AnimationCurve slideInCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    [Header("사운드")]
+    [SerializeField] private AudioClip cardAdd;
+    [SerializeField] private AudioClip cardRemove;
     
     protected Character character;
     
@@ -80,6 +84,7 @@ public class CardHandSystem : MonoBehaviour
         
         if (isAddingCard)
         {
+            SoundManager.Instance.SFXPlay("CardAdd", cardAdd);
             StartCoroutine(WaitAndAddCard(card));
             return;
         }
@@ -252,7 +257,8 @@ public class CardHandSystem : MonoBehaviour
 
     protected void DestroyCard(CardInHandUI card)
     {
-        Destroy(card.gameObject);
+		SoundManager.Instance.SFXPlay("CardRemove", cardRemove);
+		Destroy(card.gameObject);
         cards.Remove(card);
     }
     

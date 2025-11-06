@@ -19,6 +19,9 @@ public class CardInHandUI : MonoBehaviour
 	[SerializeField]
 	private Image _image;
 
+	[SerializeField]
+	private AudioClip onSelect;
+
 	public event Action OnSelected;
 
 	public event Action OnDeleted;
@@ -28,6 +31,7 @@ public class CardInHandUI : MonoBehaviour
 	/// </summary>
 	public void OnClicked(bool selectOrDelete)
 	{
+		SoundManager.Instance.SFXPlay("onclick", onSelect);
 		(selectOrDelete
 			? OnSelected
 			: OnDeleted)?.Invoke();
