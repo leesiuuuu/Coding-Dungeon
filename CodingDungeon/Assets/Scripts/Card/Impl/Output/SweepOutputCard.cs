@@ -5,6 +5,6 @@ public class SweepOutputCard : OutputCardSo
 {
 	public override void StartAction(CardActionContext context)
 	{
-		BattleManager.Instance.BattleActions.Enqueue(new SweepBattleAction(context.User, context.Target));
+		EnqueueBattleAction(context, new SweepBattleAction(context.User, context.Target));
 	}
 }

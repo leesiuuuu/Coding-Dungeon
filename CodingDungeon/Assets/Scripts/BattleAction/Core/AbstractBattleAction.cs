@@ -6,7 +6,7 @@ public abstract class AbstractBattleAction
 
 	public IEntity Target { get; private set; }
 
-	protected AbstractBattleAction(Character user, IEntity target)
+	public AbstractBattleAction(Character user, IEntity target)
 	{
 		User = user;
 		Target = target;

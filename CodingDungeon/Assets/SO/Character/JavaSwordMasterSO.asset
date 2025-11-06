@@ -17,7 +17,7 @@ MonoBehaviour:
   Attributes:
     CurrentHp: 100
     MaxHp: 100
-    DamageModifier: 100
-    DefenseModifier: 100
+    DamageModifier: 1
+    DefenseModifier: 1
     AttackRange: 0
   Deck: {fileID: 11400000, guid: 0043e12769dac20448072307a9f06793, type: 2}
