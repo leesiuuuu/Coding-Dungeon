@@ -8,6 +8,12 @@ public class MemoryBar : MonoBehaviour
 	
 	public void Update()
 	{
+		if (PartyManager.Instance.SelectedCharacter == null)
+		{
+			image.fillAmount = 1;
+			image.color = Color.gray;
+		}
+		
 		var activeQueue = PartyManager.Instance.SelectedCharacter.CardHolder.ActiveQueueCards;
 		int count = 0;
 		foreach (var i in activeQueue)
