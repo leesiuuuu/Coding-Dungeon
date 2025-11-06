@@ -14,14 +14,15 @@ public class EntityStatusEffectListUI : MonoBehaviour
 
 	public void Update()
 	{
+		Debug.Log(Entity != null);
 		string list = "";
 		foreach (var i in Entity.Status.CurrentEffects.ToList())
 		{
-			//string viewString = i.GetViewString();
-			//if (!String.IsNullOrEmpty(viewString))
-			//{
-			//	list += "\n" + viewString;
-			//}
+			string viewString = i.GetViewString();
+			if (!String.IsNullOrEmpty(viewString))
+			{
+				list += "\n" + viewString;
+			}
 		}
 		Text.text = list;
 	} 

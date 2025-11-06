@@ -13,6 +13,7 @@ public class RandomOperationCard : OperationCardSo
 		var damageMultiplier = new DamageMultiplyEffect(EffectLifetime, value);
 		var defenseMultiplier = new DefenseMultiplyEffect(EffectLifetime, value);
 		
+		Debug.Log(context.User);
 		context.User.Status.AddStatusEffect(damageMultiplier);
 		context.User.Status.AddStatusEffect(defenseMultiplier);
 	}
