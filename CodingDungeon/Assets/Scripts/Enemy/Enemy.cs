@@ -9,14 +9,19 @@ public class EnemyRuntimeStatus
 	public int health;
 	public int attack;
 	public int defense;
+	public int attackRange;
 }
 
 public class Enemy : MonoBehaviour, IEntity
 {
+
+	[SerializeField] protected GameObject _target;
+	[SerializeField] protected GameObject _notice;
+	protected bool _isPrepared;
 	[SerializeField] private EnemySo _setting;
-	[SerializeField] protected Fsm _fsm;
 	[SerializeField] protected PathFinder _pathFinder;
 	public EntityAttributes Attributes { get; private set; }
+
 	
 	public EntityStatus Status { get; private set; }
 	
@@ -37,17 +42,11 @@ public class Enemy : MonoBehaviour, IEntity
 
 	protected virtual void Initialize()
 	{
+
+		_notice.SetActive(false);
 		SetAttributes(_setting.Attributes);
 		Status = new EntityStatus(this);
 	}
-
-	protected virtual void Decision()
-	{
-		
-	}
-
-	protected virtual void SetTarget()
-	{
-		
-	}
+	public virtual void Decision(){}
+	protected virtual void SetTarget(){}
 }
