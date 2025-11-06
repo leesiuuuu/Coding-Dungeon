@@ -96,8 +96,9 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         }
     }
 
-    public void OnBattleTargetSelectedHandler(IEntity target)
+    private void OnBattleTargetSelectedHandler(IEntity target)
     {
+        BattleTargetSelector.Instance.OnSelected -= OnBattleTargetSelectedHandler;
         OnBattleTargetSelected(_userTemp, target);
         _userTemp = null;
     }
