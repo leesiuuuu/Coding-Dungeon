@@ -8,14 +8,18 @@ public class EnemyRuntimeStatus
 	public int health;
 	public int attack;
 	public int defense;
+	public int attackRange;
 }
 
 public class Enemy : MonoBehaviour
 {
 	[SerializeField] private EnemyStatusSO _enemyStatsSo;
-	[SerializeField] protected Fsm _fsm;
 	[SerializeField] protected PathFinder _pathFinder;
-	protected EnemyRuntimeStatus _runtimeStatus = new();
+	[SerializeField] protected GameObject _target;
+	[SerializeField] protected GameObject _notice;
+	protected bool _isPrepared;
+	public EnemyRuntimeStatus RuntimeStatus = new();
+	
 	
 
 	private void Start()
@@ -25,19 +29,13 @@ public class Enemy : MonoBehaviour
 
 	protected virtual void Initialize()
 	{
-		_runtimeStatus.maxHealth = _enemyStatsSo.maxHealth;
-		_runtimeStatus.health = _runtimeStatus.maxHealth;
-		_runtimeStatus.attack = _enemyStatsSo.attack;
-		_runtimeStatus.defense = _enemyStatsSo.defense;
+		_notice.SetActive(false);
+		RuntimeStatus.maxHealth = _enemyStatsSo.maxHealth;
+		RuntimeStatus.health = RuntimeStatus.maxHealth;
+		RuntimeStatus.attack = _enemyStatsSo.attack;
+		RuntimeStatus.defense = _enemyStatsSo.defense;
+		RuntimeStatus.attackRange = _enemyStatsSo.attackRange;
 	}
-
-	protected virtual void Decision()
-	{
-		
-	}
-
-	protected virtual void SetTarget()
-	{
-		
-	}
+	public virtual void Decision(){}
+	protected virtual void SetTarget(){}
 }

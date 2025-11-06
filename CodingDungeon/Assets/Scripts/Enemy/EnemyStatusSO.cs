@@ -6,4 +6,5 @@ public class EnemyStatusSO : ScriptableObject
     public int maxHealth;
     public int attack;
     public int defense;
+    public int attackRange;
 }
