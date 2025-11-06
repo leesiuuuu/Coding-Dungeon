@@ -7,18 +7,21 @@ public class Character : MonoBehaviour
 
 	public CharacterSo Setting => _setting;
 	
-	[SerializeField]
-	private CharacterAttributes _attributes;
+	public CharacterStatus Status { get; private set; }
 
-	public CharacterAttributes CharacterAttributes => _attributes;
-	
-	private CharacterCardHolder _cardHolder;
+	public CharacterAttributes Attributes;
 
-	public CharacterCardHolder CardHolder => _cardHolder;
+	public CharacterCardHolder CardHolder { get; private set; }
 
 	public void Start()
 	{
-		_cardHolder = new CharacterCardHolder(_setting.Deck);
+		Status = new CharacterStatus(this);
+		Attributes = _setting.Attributes;
+		CardHolder = new CharacterCardHolder(_setting.Deck);
 	}
-	
+
+	public void Die()
+	{
+		Debug.Log($"[Character] {_setting.Name} 캐릭터 사망!!");
+	}
 }

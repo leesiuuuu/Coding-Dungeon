@@ -1,5 +1,3 @@
-using System.Linq;
-
 public class CardActionContext
 {
 	public AbstractCardSo Card;
@@ -8,19 +6,14 @@ public class CardActionContext
 
 	public Enemy Target;
 	
-	public ParameterProvider[] Providers;
+	public ParameterProviderGroup ProviderGroup;
 
-	public CardActionContext(AbstractCardSo card, Character user, Enemy target, ParameterProvider[] providers)
+	public CardActionContext(AbstractCardSo card, Character user, Enemy target, ParameterProviderGroup providerGroup)
 	{
 		Card = card;
 		User = user;
 		Target = target;
-		Providers = providers;
+		ProviderGroup = providerGroup;
 	}
-
-	public ParameterProvider GetContext<T>() where T : CardActionContext
-	{
-		var provider = Providers.FirstOrDefault(i => i.GetType() == typeof(T));
-		return provider;
-	}
+	
 }

@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class CardActionContextHolder : MonoBehaviour
 {
-	[SerializeField]
-	private ParameterProvider[] _providers;
+	public ParameterProviderGroup ProviderGroup;
 
 	public CardActionContext GetContext(AbstractCardSo card, Character user, Enemy target)
 	{
-		return new CardActionContext(card, user, target, _providers);
+		return new CardActionContext(card, user, target, ProviderGroup);
 	}
 
 }
