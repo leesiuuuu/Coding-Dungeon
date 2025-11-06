@@ -10,5 +10,13 @@ public class GridMovement : MonoBehaviour
 		Vector3 dest = transform.position + dir;
 		SoundManager.Instance.SFXPlay("SFX", _audioClip);
 		transform.DOJump(dest, 0.5f, 1, 0.2f).SetEase(Ease.OutQuad);
+		if (dir.x > 0)
+		{
+			gameObject.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
+		}
+		else if(dir.x < 0)
+		{
+			gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+		}
 	}
 }
