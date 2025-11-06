@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e15cecd386847219af22f114ce9ec39, type: 3}
   m_Name: JavaSwordMasterSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
-  Name: "Java\uC758 \uC18C\uB4DC\uB9C8\uC2A4\uD130"
+  Name: "Java\uC758 \uAC80\uC131"
   Image: {fileID: 1541221689, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
