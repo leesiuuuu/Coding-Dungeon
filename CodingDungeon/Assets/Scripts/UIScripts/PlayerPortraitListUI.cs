@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +31,16 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             _checkObjs[i].SetActive(false);
         }
     }
-    
+
+    private bool TryFinishTurn()
+    {
+        bool canFinish = _playerPortraitList.All(i => !i.GetComponent<PlayerPortraitUI>().IsInteractable);
+        if (canFinish)
+        {
+            TurnManager.Instance.SetTurnStatus(TurnStatus.MonsterMoves);
+        }
+        return canFinish;
+    }
 
 
     public void GetCurrentEventCharacter(Character character)
@@ -66,8 +76,11 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     private void OnMoveLocationSelected()
     {
-        _playerHand.gameObject.SetActive(true);
-        _playerHand.ClearAllCards();
+        if (!TryFinishTurn())
+        {
+            _playerHand.gameObject.SetActive(true);
+            _playerHand.ClearAllCards();
+        }
     }
 
     public void OnActiveQueueSubmitted(Character user)
@@ -85,10 +98,13 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     private void OnBattleTargetSelected(Character user, IEntity target)
     {
-        _playerHand.gameObject.SetActive(true);
-        _playerHand.ClearAllCards();
+        if (!TryFinishTurn())
+        {
+            _playerHand.gameObject.SetActive(true);
+            _playerHand.ClearAllCards();
 
-        BattleManager.Instance.SubmitActiveQueues(user, target);
+            BattleManager.Instance.SubmitActiveQueues(user, target);
+        }
     }
 
     public void OnRefresh()
