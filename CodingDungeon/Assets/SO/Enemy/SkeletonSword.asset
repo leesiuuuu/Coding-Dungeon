@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9e23499aeea3a4dba5486de271c17c, type: 3}
   m_Name: SkeletonSword
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatusSO
-  maxHealth: 100
-  attack: 100
-  defense: 100
-  attackRange: 2
+  Attributes:
+    CurrentHp: 100
+    MaxHp: 100
+    DamageModifier: 1
+    DefenseModifier: 1
+    AttackRange: 1

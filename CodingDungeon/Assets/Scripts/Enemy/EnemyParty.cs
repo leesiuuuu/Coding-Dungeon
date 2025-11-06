@@ -58,12 +58,4 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
     {
         Index++;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EnemyMove();
-        }
-
-    }
 }
