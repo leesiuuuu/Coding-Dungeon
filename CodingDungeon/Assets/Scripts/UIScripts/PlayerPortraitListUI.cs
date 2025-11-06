@@ -9,8 +9,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     [SerializeField] private GameObject[] _checkObjs;
     [SerializeField] private CardHandSystem _playerHand;
     private PartyManager _partyManager;
-    private Character _character;
-    public Character Character=>_character;
+    private Character _userTemp;
     private GameObject _selectedPortrait;
     public event Action<Character> OnSelected;
 
@@ -88,12 +87,19 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
         if (portraitUI.IsInteractable)
         {
-            BattleTargetSelector.Instance.OnSelected += target => OnBattleTargetSelected(user, target);
+            _userTemp = user;
+            BattleTargetSelector.Instance.OnSelected += OnBattleTargetSelectedHandler;
             BattleTargetSelector.Instance.StartTargetSelection();
             
             _playerHand.gameObject.SetActive(false);
             SetPortraitUIInteractable(portraitUI, false);
         }
+    }
+
+    public void OnBattleTargetSelectedHandler(IEntity target)
+    {
+        OnBattleTargetSelected(_userTemp, target);
+        _userTemp = null;
     }
 
     private void OnBattleTargetSelected(Character user, IEntity target)
@@ -103,7 +109,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             _playerHand.gameObject.SetActive(true);
             _playerHand.ClearAllCards();
 
-            BattleManager.Instance.SubmitActiveQueues(user, target);
+            BattleManager.Instance.SubmitAction(user, target);
         }
     }
 

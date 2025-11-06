@@ -4,11 +4,11 @@ public class CardActionContext
 	
 	public Character User;
 
-	public Enemy Target;
+	public IEntity Target;
 	
 	public ParameterProviderGroup ProviderGroup;
 
-	public CardActionContext(AbstractCardSo card, Character user, Enemy target, ParameterProviderGroup providerGroup)
+	public CardActionContext(AbstractCardSo card, Character user, IEntity target, ParameterProviderGroup providerGroup)
 	{
 		Card = card;
 		User = user;
