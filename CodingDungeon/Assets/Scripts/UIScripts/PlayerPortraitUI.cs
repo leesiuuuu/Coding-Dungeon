@@ -9,16 +9,18 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
     public static bool CanSelect = true;
     public event Action<Character> OnSelect;
     public event Action<Character> OnClosed;
+	public bool Moved = false;
+    public event Action<GameObject> OnReturnGameObject;
 
     private void Start()
     {
         _activeQueueUI.SetActive(false);
         OnSelect+=PartyManager.Instance.OnSelectCharacter;
+		OnReturnGameObject += PartyManager.Instance.OnSelectPortrait;
         PlayerPortraitListUI.Instance.OnSelected += character =>
         {
             if (character != _character)
             {
-                Debug.Log("[PlayerPortraitUI] Closed: " + character.name);
                 OnClosed?.Invoke(character);
                 _activeQueueUI.SetActive(false);
             }
@@ -27,13 +29,12 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (CanSelect)
+        if (!Moved)
         {
-            CanSelect = false;
-            OnSelect?.Invoke(_character);
-            _activeQueueUI.SetActive(true);
-            Debug.Log("[PlayerPortraitUI] Selected: " + _character.Setting.Name);
+            OnReturnGameObject?.Invoke(gameObject);
         }
+        _activeQueueUI.SetActive(true);
+		OnSelect?.Invoke(_character);
     }
 
     public Character GetCharacter()
@@ -45,4 +46,5 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
     {
         _character = character;
     }
+    
 }

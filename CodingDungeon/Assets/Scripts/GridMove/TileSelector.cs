@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,65 +6,58 @@ using UnityEngine.Tilemaps;
 
 public class TileSelector : MonoBehaviour
 {
-	[SerializeField] private LayerMask tilemapLayer;
-	[SerializeField] private Color selectedColor = Color.red;
-	[SerializeField] private Color defaultColor = Color.white;
-	[SerializeField] private GameObject selectTile;
+    [SerializeField] private LayerMask tilemapLayer;
+    [SerializeField] private Color defaultColor = Color.white;
+    [SerializeField] private GameObject selectTile;
 
-	// 타일이 선택될 때 실행할 이벤트
-	[SerializeField] private UnityEvent<Tilemap> onTileSelected;
+    public event Action<Vector3Int> OnTileSelected;
 
-	// 현재 선택된 타일
-	private Tilemap currentTilemap;
-	private Vector3Int lastSelectedCell;
+    private Tilemap currentTilemap;
+    private Vector3Int lastSelectedCell;
 
-	void Update()
-	{
-		Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		int x = Mathf.RoundToInt(point.x);
-		int y = Mathf.RoundToInt(point.y);
-		selectTile.transform.position = new Vector3(x, y, 0);
+    void Update()
+    {
+        Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D col = Physics2D.OverlapPoint(point, tilemapLayer);
 
-		transform.position = point;
+        if (col != null && IsInLayerMask(col.gameObject.layer, tilemapLayer))
+        {
+            // MapManager 사용으로 통일
+            Vector3Int cellPos = MapManager.Instance.WorldToCell(point);
+            Vector3 cellCenterWorld = MapManager.Instance.GetCellCenterWorld(cellPos);
+            
+            selectTile.transform.position = cellCenterWorld;
+            transform.position = point;
 
-		// 마우스 위치 기준으로 콜라이더 찾기
-		Collider2D col = Physics2D.OverlapPoint(point, tilemapLayer);
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnTileSelected?.Invoke(cellPos);
+                
+                // Tilemap 정보가 필요하면 다시 가져오기
+                Tilemap tilemap = col.GetComponent<Tilemap>();
+                if (tilemap != null && tilemap.GetTile(cellPos) != null)
+                {
+                    currentTilemap = tilemap;
+                    lastSelectedCell = cellPos;
+                }
+                
+                gameObject.SetActive(false);
+            }
+        }
+    }
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			if (col != null)
-			{
-				Tilemap tilemap = col.GetComponent<Tilemap>();
-				if (tilemap != null)
-				{
-					// 마우스 위치를 셀 좌표로 변환
-					Vector3Int cellPos = tilemap.WorldToCell(point);
+    private void OnEnable()
+    {
+        selectTile.gameObject.SetActive(true);
+    }
 
-					// 타일이 실제로 존재하는지 확인
-					if (tilemap.GetTile(cellPos) != null)
-					{
-						//Debug.Log($"타일 선택됨! 좌표: {cellPos}");
+    private void OnDisable()
+    {
+        selectTile.gameObject.SetActive(false);
+    }
 
-						//if (currentTilemap != null)
-						//	//onTileSelected?.Invoke(currentTilemap);
-
-						// 새 타일 색 변경
-						//tilemap.SetColor(cellPos, selectedColor);
-
-						// 현재 선택 상태 저장
-						currentTilemap = tilemap;
-						lastSelectedCell = cellPos;
-					}
-				}
-			}
-		}
-	}
-
-	// 예시 함수
-	// 클릭 시 타일 컬러 변경
-	//public void OnTileSelected(Tilemap tile)
-	//{
-	//	tile.SetColor(lastSelectedCell, defaultColor);
-	//}
-
+    private bool IsInLayerMask(int layer, LayerMask layerMask)
+    {
+        return layerMask == (layerMask | (1 << layer));
+    }
 }

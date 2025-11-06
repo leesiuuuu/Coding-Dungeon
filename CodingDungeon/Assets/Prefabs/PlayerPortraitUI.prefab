@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveQueueUISystem
   cardPrefab: {fileID: 2858392584009125918, guid: ba16d8c2dde7d4d5392c30a92f66dba1, type: 3}
-  pointDistance: 1.7
+  pointDistance: 180
   handCenter: {fileID: 2841622247575452628}
   slideInDuration: 0.2
   slideInDistance: 10
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPortraitUI
   _character: {fileID: 0}
   _activeQueueUI: {fileID: 4303645698980524270}
+  Moved: 0
 --- !u!1 &9062282099291907205
 GameObject:
   m_ObjectHideFlags: 0

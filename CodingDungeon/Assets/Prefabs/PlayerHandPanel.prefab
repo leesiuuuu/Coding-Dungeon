@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardHandSystem
   cardPrefab: {fileID: 8077944342811767953, guid: 059b869c946fffd4cbf85359480b3bd0, type: 3}
-  pointDistance: 1.7
+  pointDistance: 180
   handCenter: {fileID: 6798559377484305691}
   slideInDuration: 0.2
   slideInDistance: 10
