@@ -241,6 +241,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14738291}
   m_CullTransparentMesh: 1
+--- !u!114 &18180489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6991998469794907727, guid: 83526aeb3c36a3344addf41abe8273ae, type: 3}
+  m_PrefabInstance: {fileID: 3877347087765705542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1869c6ae8a6514fb97711b6109da58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Transition
 --- !u!1 &22399048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1346,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &235058625
 MonoBehaviour:
@@ -10493,7 +10516,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960110716}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.94
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -21534,7 +21557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSpawner
   spawnParent: {fileID: 1808205384}
   spawnOffset: {x: 2, y: 0, z: 0}
-  basePosition: {x: -0.5, y: 0.5, z: 0}
+  basePosition: {x: 0, y: 0, z: 0}
   spawnAnimOffset: {x: 0, y: 1, z: 0}
 --- !u!4 &1808205384
 Transform:
@@ -21545,7 +21568,7 @@ Transform:
   m_GameObject: {fileID: 1808205382}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21783,7 +21806,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882014537}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 18180489}
+        m_TargetAssemblyTypeName: Transition, Assembly-CSharp
+        m_MethodName: FadeIn
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: InGameScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 401643702}
+        m_TargetAssemblyTypeName: BGMPlayer, Assembly-CSharp
+        m_MethodName: FadeIn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1882014537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22057,6 +22104,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1104568795}
+        m_TargetAssemblyTypeName: StageCameraMove, Assembly-CSharp
+        m_MethodName: ResetCameraZoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1119444615}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -24261,7 +24320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352196887628276519, guid: 83526aeb3c36a3344addf41abe8273ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5135214962527168704, guid: 83526aeb3c36a3344addf41abe8273ae, type: 3}
       propertyPath: m_Pivot.x
@@ -24354,11 +24413,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 1104568793}
   - {fileID: 2072097226}
+  - {fileID: 1224716888}
   - {fileID: 1119444616}
   - {fileID: 960110721}
   - {fileID: 1478540791}
   - {fileID: 1540932506}
-  - {fileID: 1224716888}
   - {fileID: 1192107612}
   - {fileID: 910856396}
   - {fileID: 857294261}
@@ -24369,5 +24428,5 @@ SceneRoots:
   - {fileID: 1004531233}
   - {fileID: 1766325109}
   - {fileID: 1808205384}
-  - {fileID: 798598241}
   - {fileID: 1922519627}
+  - {fileID: 798598241}
