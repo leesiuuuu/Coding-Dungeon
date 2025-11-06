@@ -364,6 +364,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActiveQueueUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4557673881398791191, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1018416377785821625}
+    - target: {fileID: 4557673881398791191, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SubmitActiveQueue
+      objectReference: {fileID: 0}
     - target: {fileID: 6243388184394500752, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
