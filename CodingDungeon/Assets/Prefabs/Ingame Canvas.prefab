@@ -152,6 +152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHandPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4397597218087393137, guid: 32f7e250a202d4c80abfd443da5ad075, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4534611656308060166}
+    - target: {fileID: 4397597218087393137, guid: 32f7e250a202d4c80abfd443da5ad075, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMoveSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 4839707402310865258, guid: 32f7e250a202d4c80abfd443da5ad075, type: 3}
       propertyPath: pointDistance
       value: 180
