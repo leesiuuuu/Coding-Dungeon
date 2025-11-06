@@ -35,6 +35,7 @@ public class SkeletonSword : Enemy
 				Debug.Log(gameObject.name + "준비됨");
 				_isPrepared = true;
 				_notice.SetActive(true);
+				StartCoroutine(PrepareFlow());
 			}
 		}
 		else
