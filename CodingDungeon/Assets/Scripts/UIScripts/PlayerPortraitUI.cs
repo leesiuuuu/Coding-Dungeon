@@ -1,63 +1,85 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
+public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private int index;
-    [SerializeField] private GameObject _activeQueueUI;
-    public static bool CanSelect = true;
-    public event Action<Character> OnSelect;
-    public event Action<Character> OnClosed; 
-    public bool IsInteractable = true;
-    public event Action<GameObject> OnReturnGameObject;
+	[SerializeField] private int index;
+	[SerializeField] private GameObject _activeQueueUI;
 
-    private Character _character;
+	public static bool CanSelect = true;
+	public event Action<Character> OnSelect;
+	public event Action<Character> OnClosed;
+	public bool IsInteractable = true;
+	public event Action<GameObject> OnReturnGameObject;
 
-    /// <summary>
-    /// Called By UGUI Button
-    /// </summary>
-    public void SubmitActiveQueue()
-    {
-        PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
-    }
+	private Character _character;
+
+	/// <summary>
+	/// Called By UGUI Button
+	/// </summary>
+	public void SubmitActiveQueue()
+	{
+		PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
+	}
 
 	private void Start()
-    {
-		_character = PartyManager.Instance.Characters[index];
-        _activeQueueUI.SetActive(false);
-        OnSelect+=PartyManager.Instance.OnSelectCharacter;
-		OnReturnGameObject += PartyManager.Instance.OnSelectPortrait;
-        PlayerPortraitListUI.Instance.OnSelected += character =>
-        {
-            if (character != _character)
-            {
-                OnClosed?.Invoke(character);
-                _activeQueueUI.SetActive(false);
-            }
-        };
-    }
+	{
+		StartCoroutine(InitializeCharacter());
+	}
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (IsInteractable)
-        {
-            OnReturnGameObject?.Invoke(gameObject);
-            _activeQueueUI.SetActive(true);
-            OnSelect?.Invoke(_character);
+	private IEnumerator InitializeCharacter()
+	{
+		// 캐릭터가 스폰될 때까지 대기
+		while (PartyManager.Instance.Characters.Count <= index)
+		{
+			yield return null;
+		}
 
-        }
+		// 안전 체크
+		if (index >= 0 && index < PartyManager.Instance.Characters.Count)
+		{
+			_character = PartyManager.Instance.Characters[index];
+			_activeQueueUI.SetActive(false);
 
-    }
+			OnSelect += PartyManager.Instance.OnSelectCharacter;
+			OnReturnGameObject += PartyManager.Instance.OnSelectPortrait;
 
-    public Character GetCharacter()
-    {
-        return _character;
-    }
+			PlayerPortraitListUI.Instance.OnSelected += character =>
+			{
+				if (character != _character)
+				{
+					OnClosed?.Invoke(character);
+					_activeQueueUI.SetActive(false);
+				}
+			};
 
-    public void SetCharacter(Character character)
-    {
-        _character = character;
-    }
-    
+			Debug.Log($"초상화 초기화 완료: {_character.name} (인덱스: {index})");
+		}
+		else
+		{
+			Debug.LogError($"인덱스 {index}는 범위를 벗어났습니다. 캐릭터 수: {PartyManager.Instance.Characters.Count}");
+		}
+	}
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		if (IsInteractable && _character != null)
+		{
+			OnReturnGameObject?.Invoke(gameObject);
+			_activeQueueUI.SetActive(true);
+			OnSelect?.Invoke(_character);
+		}
+	}
+
+	public Character GetCharacter()
+	{
+		return _character;
+	}
+
+	public void SetCharacter(Character character)
+	{
+		_character = character;
+	}
 }
