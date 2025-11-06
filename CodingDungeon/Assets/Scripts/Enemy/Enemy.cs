@@ -20,6 +20,9 @@ public class Enemy : MonoBehaviour, IEntity
 	protected bool _isPrepared;
 	[SerializeField] private EnemySo _setting;
 	[SerializeField] protected PathFinder _pathFinder;
+
+	public GameObject source => gameObject;
+
 	public EntityAttributes Attributes { get; private set; }
 
 	
