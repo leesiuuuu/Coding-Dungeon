@@ -5,6 +5,6 @@ public class FireBallOutputCard : OutputCardSo
 {
 	public override void StartAction(CardActionContext context)
 	{
-		BattleManager.Instance.BattleActions.Enqueue(new FireBallBattleAction(context.User, context.Target));
+		EnqueueBattleAction(context, new FireBallBattleAction(context.User, context.Target));
 	}
 }

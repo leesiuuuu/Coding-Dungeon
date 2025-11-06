@@ -8,9 +8,8 @@ public class FireBallBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
-		
-		EntityDamageEffect damageEffect = new EntityDamageEffect();
-		damageEffect.damage = (int)(damageEffect.damage * User.Attributes.DamageModifier);
+		EntityDamageEffect damageEffect = new EntityDamageEffect(0, 20);
+		damageEffect.Damage = (int)(damageEffect.Damage * User.Attributes.DamageModifier);
 		
 		Target.Status.AddStatusEffect(damageEffect);
 		yield break;

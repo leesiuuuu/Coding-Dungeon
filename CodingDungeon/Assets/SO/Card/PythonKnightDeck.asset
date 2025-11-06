@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckSo
   outputCards:
   - {fileID: 11400000, guid: 7c4f0fce0f77d0c4690b894467e95c62, type: 2}
+  - {fileID: 11400000, guid: 409b251a0770ef947bb8b60f935715b5, type: 2}
   operationCards:
   - {fileID: 11400000, guid: f05654aa54d383b4a8b115c81e6aa60d, type: 2}
   - {fileID: 11400000, guid: 80d5d7b85bf4e714fb8114ef739f28a4, type: 2}

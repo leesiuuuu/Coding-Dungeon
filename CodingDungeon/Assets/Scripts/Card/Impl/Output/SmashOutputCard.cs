@@ -5,6 +5,6 @@ public class SmashOutputCard : OutputCardSo
 {
 	public override void StartAction(CardActionContext context)
 	{
-		BattleManager.Instance.BattleActions.Enqueue(new SmashBattleAction(context.User, context.Target));
+		EnqueueBattleAction(context, new SmashBattleAction(context.User, context.Target));
 	}
 }
