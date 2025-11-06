@@ -8,6 +8,7 @@ public class FireBallBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
+		
 		EntityDamageEffect damageEffect = new EntityDamageEffect();
 		damageEffect.damage = (int)(damageEffect.damage * User.Attributes.DamageModifier);
 		
