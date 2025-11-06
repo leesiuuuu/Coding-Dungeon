@@ -66,8 +66,21 @@ public class CharacterCardHolder
 		_activeQueue.Clear();
 	}
 	
+	public EntityTarget GetRequiredTarget()
+	{
+		var outputCard = _activeQueue.Cards.FirstOrDefault(c => c is OutputCardSo) as OutputCardSo;
+		return outputCard?.Target ?? EntityTarget.NONE;
+	}
+	
 	public void AddCardAtActiveQueue(int index, AbstractCardSo card)
 	{
+		// Output 카드가 이미 ActiveQueue에 있으면 추가를 취소
+		if (IsOutputCard(card) && _activeQueue.Cards.Any(c => c != null && IsOutputCard(c)))
+		{
+			Debug.Log("Output 카드가 이미 ActiveQueue에 존재합니다. 추가를 취소합니다.");
+			return;
+		}
+
 		RemoveHandCard(index);
 		_activeQueue.AddCard(card);
 		OnActiveQueueAdded?.Invoke(card);
@@ -79,6 +92,13 @@ public class CharacterCardHolder
 		AddHandCard(_activeQueue.Cards[index]);
 		_activeQueue.RemoveCard(index);
 		OnActiveQueueRemoved?.Invoke(index);
+	}
+	
+	private bool IsOutputCard(AbstractCardSo card)
+	{
+		if (card == null) return false;
+		// 현재는 Name으로 판별. 필요하면 다른 프로퍼티로 교체하세요.
+		return card is OutputCardSo;
 	}
 
 }

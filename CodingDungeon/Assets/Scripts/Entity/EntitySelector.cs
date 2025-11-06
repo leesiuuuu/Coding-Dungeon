@@ -7,11 +7,32 @@ public class EntitySelector : SceneSingleMono<EntitySelector>
 	[SerializeField] private LayerMask layerFilter;
 	private IEntity target;
 	
-	public bool GetEntity(out IEntity entity)
+	public bool GetEntity(out IEntity entity, EntityTarget type)
 	{
 		CastRay();
 		entity = target;
-		return target != null;
+		return target != null && IsCorrectEntityType(type, entity);
+	}
+
+	private bool IsCorrectEntityType(EntityTarget target, IEntity entity)
+	{
+		switch (target)
+		{
+			case EntityTarget.NONE:
+				return false;
+			
+			case EntityTarget.ENTITY:
+				return entity != null;
+			
+			case EntityTarget.ENEMY:
+				return entity is Enemy;
+			
+			case EntityTarget.PLAYER:
+				return entity is Character;
+			
+			default:
+				return false;
+		}
 	}
 	
 	private void CastRay()

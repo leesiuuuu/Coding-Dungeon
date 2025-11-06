@@ -11,8 +11,16 @@ public abstract class AbstractCardSo : ScriptableObject
 	
 	public int Cost;
 
-	public bool hasTarget = true;
+	public EntityTarget Target;
 
 	public abstract void StartAction(CardActionContext ctx);
 
+}
+
+public enum EntityTarget
+{
+	NONE,
+	ENTITY,
+	ENEMY,
+	PLAYER
 }

@@ -39,7 +39,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     private bool TryFinishTurn()
     {
-        bool canFinish = _playerPortraitList.All(i => !i.GetComponent<PlayerPortraitUI>().IsInteractable);
+        bool canFinish = _checkObjs.All(i => i.activeSelf);
         if (canFinish)
         {
             TurnManager.Instance.SetTurnStatus(TurnStatus.MonsterMoves);
@@ -67,6 +67,14 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         portrait.IsInteractable = active;
     }
 
+    private void SetInteractables(bool value)
+    {
+        foreach (var i in _playerPortraitList)
+        {
+            i.GetComponent<PlayerPortraitUI>().IsInteractable = value;
+        }
+    }
+
     public void OnMoveSelected()
     {
         if (PartyManager.Instance.PortraitPrefab == null)
@@ -75,6 +83,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
         if (portraitUI.IsInteractable)
         {
+            SetInteractables(false);
             TileSelecerManager.Instance.tileSelector.OnTileSelected += _ => OnMoveLocationSelected();
             TileSelecerManager.Instance.OnSetTile();
             
@@ -85,11 +94,11 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     private void OnMoveLocationSelected()
     {
-        if (!TryFinishTurn())
-        {
-            _playerHand.gameObject.SetActive(true);
-            _playerHand.ClearAllCards();
-        }
+        TryFinishTurn();
+     
+        SetInteractables(true);
+        _playerHand.gameObject.SetActive(true);
+        _playerHand.ClearAllCards();
     }
 
     public void OnActiveQueueSubmitted(Character user)
@@ -97,12 +106,23 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
         if (portraitUI.IsInteractable)
         {
+            SetInteractables(false);
             _userTemp = user;
-            BattleTargetSelector.Instance.OnSelected += OnBattleTargetSelectedHandler;
-            BattleTargetSelector.Instance.StartTargetSelection();
-            
-            _playerHand.gameObject.SetActive(false);
+            var requiredTarget = user.CardHolder.GetRequiredTarget();
             SetPortraitUIInteractable(portraitUI, false);
+            
+            if (requiredTarget != EntityTarget.NONE)
+            {
+                BattleTargetSelector.Instance.OnSelected += OnBattleTargetSelectedHandler;
+                BattleTargetSelector.Instance.StartTargetSelection();
+                
+                _playerHand.gameObject.SetActive(false);
+            }
+            else
+            {
+                // 타겟이 필요없는 경우 바로 실행
+                OnBattleTargetSelected(_userTemp, null);
+            }
         }
     }
 
@@ -115,13 +135,12 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     private void OnBattleTargetSelected(Character user, IEntity target)
     {
-        if (!TryFinishTurn())
-        {
-            _playerHand.gameObject.SetActive(true);
-            _playerHand.ClearAllCards();
+        SetInteractables(true);
+        _playerHand.ClearAllCards();
+        _playerHand.gameObject.SetActive(true);
+        BattleManager.Instance.SubmitAction(user, target);
 
-            BattleManager.Instance.SubmitAction(user, target);
-        }
+        TryFinishTurn();
     }
 
     public void OnRefresh()
