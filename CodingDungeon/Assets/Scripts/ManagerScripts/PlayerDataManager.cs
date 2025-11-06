@@ -23,6 +23,7 @@ public class PlayerDataManager : SingleMono<PlayerDataManager>
 
 	private void Start()
 	{
+		Debug.Log(SaveFilePath);
 		// 저장된 데이터가 없을 때만 초기화
 		if (data.CharacterList == null || data.CharacterList.Count == 0)
 		{

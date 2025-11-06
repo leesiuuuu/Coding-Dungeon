@@ -10,7 +10,9 @@ public class FireBallBattleAction : AbstractBattleAction
 	public override IEnumerator StartAction()
 	{
 
+		
 		var cameraManager = CameraManager.Instance;
+		//Debug.Log(cameraManager);
 		if (Target.Attributes.CurrentHp <= 0)
 		{
 			cameraManager.SetTarget(cameraManager.MidPos.transform);
@@ -18,7 +20,8 @@ public class FireBallBattleAction : AbstractBattleAction
 			cameraManager.ResetZoom();
 			yield break;
 		}
-		cameraManager.SetTarget(User.gameObject.transform);
+		Debug.Log(User.source);
+		cameraManager.SetTarget(User.source.transform);
 		cameraManager.StartFollow(10);
 		cameraManager.ZoomIn(3f);
 		yield return new WaitForSeconds(1f);
