@@ -28,6 +28,8 @@ public class CharacterCardHolder
 	{
 		_deckSo = deckSo;
 		FillHand();
+
+		TurnManager.Instance.OnTurnChange += FillHand;
 	}
 
 	private void FillHand()

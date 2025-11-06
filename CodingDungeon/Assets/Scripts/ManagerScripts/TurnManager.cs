@@ -9,7 +9,6 @@ public enum TurnStatus
 	PlayerSelection,
 	MonsterMoves,
 	PlayerMoves,
-	OnTurnChange,
 	
 }
 
@@ -37,7 +36,7 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 		SetTurnStatus(TurnStatus.PlayerSelection);
 	}
 
-	private void TurnChange()
+	public void TurnChange()
 	{
 		++_turn;
 		OnTurnChange?.Invoke();
@@ -62,9 +61,6 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 				break;
 			case TurnStatus.PlayerMoves:
 				PlayerMoves();
-				break;
-			case TurnStatus.OnTurnChange:
-				TurnChange();
 				break;
 		}
 	}

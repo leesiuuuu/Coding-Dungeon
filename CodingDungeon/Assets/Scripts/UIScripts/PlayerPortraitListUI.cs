@@ -18,6 +18,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     {
         _partyManager = PartyManager.Instance;
         PartyManager.Instance.InitializeParty += OnRefresh;
+        TurnManager.Instance.OnTurnChange += OnRefresh;
         //TurnManager.Instance.OnMonsterMoves += OnRefresh;
         for (var i = 0; i < _partyManager.Characters.Count; i++)
         {
@@ -43,6 +44,10 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         if (canFinish)
         {
             TurnManager.Instance.SetTurnStatus(TurnStatus.MonsterMoves);
+        }
+        for (var i = 0; i < _playerSelectFrame.Length; i++)
+        {
+            _playerSelectFrame[i].SetActive(false);
         }
         return canFinish;
     }
@@ -149,6 +154,10 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         {
             var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
             SetPortraitUIInteractable(playerPortraitUI, true);
+        }
+        for (var i = 0; i < _checkObjs.Length; i++)
+        {
+            _checkObjs[i].SetActive(false);
         }
     }
     

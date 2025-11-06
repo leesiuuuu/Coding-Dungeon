@@ -43,5 +43,8 @@ public class BattleManager : SceneSingleMono<BattleManager>
 			AbstractBattleAction battleAction = BattleActions.Dequeue();
 			yield return battleAction.StartAction();
 		}
+		
+		TurnManager.Instance.TurnChange();
+		TurnManager.Instance.SetTurnStatus(TurnStatus.PlayerSelection);
 	}
 }
