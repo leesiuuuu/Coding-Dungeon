@@ -20,7 +20,7 @@ public class SkeletonSword : Enemy
 			
 		}
 		_target = semiTarget;
-		if (Vector2.Distance(gameObject.transform.position, _target.transform.position) <= RuntimeStatus.attackRange)
+		if (Vector2.Distance(gameObject.transform.position, _target.transform.position) <= Attributes.AttackRange)
 		{
 			if (_isPrepared)
 			{

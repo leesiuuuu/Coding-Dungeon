@@ -47,16 +47,6 @@ public class Enemy : MonoBehaviour, IEntity
 		SetAttributes(_setting.Attributes);
 		Status = new EntityStatus(this);
 	}
-
-	protected virtual void Decision()
-	{
-		
-	}
-
-	protected virtual void SetTarget()
-	{
-		
-	}
 	public virtual void Decision(){}
 	protected virtual void SetTarget(){}
 }

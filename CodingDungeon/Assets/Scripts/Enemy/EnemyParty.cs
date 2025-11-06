@@ -36,7 +36,7 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
         {
             if (_index >= 0 && _index < _party.Count)
             {
-                if (_party[_index].RuntimeStatus.health <= 0)
+                if (_party[_index].Attributes.CurrentHp <= 0)
                 {
                     _party.RemoveAt(_index);
                 }
