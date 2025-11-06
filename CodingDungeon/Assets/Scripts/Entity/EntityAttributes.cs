@@ -10,4 +10,6 @@ public struct EntityAttributes
 	public float DamageModifier;
 
 	public float DefenseModifier;
+
+	public int AttackRange;
 }

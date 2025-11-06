@@ -8,9 +8,17 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
     [SerializeField] private GameObject _activeQueueUI;
     public static bool CanSelect = true;
     public event Action<Character> OnSelect;
-    public event Action<Character> OnClosed;
-	public bool Moved = false;
+    public event Action<Character> OnClosed; 
+    public bool IsInteractable = true;
     public event Action<GameObject> OnReturnGameObject;
+
+    /// <summary>
+    /// Called By UGUI Button
+    /// </summary>
+    public void SubmitActiveQueue()
+    {
+        PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
+    }
 
     private void Start()
     {
@@ -29,7 +37,7 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!Moved)
+        if (IsInteractable)
         {
             OnReturnGameObject?.Invoke(gameObject);
             _activeQueueUI.SetActive(true);
