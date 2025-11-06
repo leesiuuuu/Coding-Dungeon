@@ -61,7 +61,23 @@ public class SkeletonSword : Enemy
 
     private IEnumerator AttackFlow()
     {
-        yield return null;
+        var cameraManager = CameraManager.Instance;
+        cameraManager.SetTarget(gameObject.transform);
+        cameraManager.StartFollow(10);
+        cameraManager.ZoomIn(3f);
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Attack);
+        yield return new WaitForSeconds(1f);
+        cameraManager.SetTarget(_target.gameObject.transform);
+        cameraManager.StartFollow(10);
+        cameraManager.ZoomIn(3f);
+        yield return new WaitForSeconds(1f);
+        _target.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Hit);
+        //실제 데미지 로직
+        yield return new WaitForSeconds(1f);
+        cameraManager.SetTarget(cameraManager.MidPos.transform);
+        cameraManager.StartFollow(10);
+        cameraManager.ResetZoom();
         _isActing = false; // 행동 완료
         EnemyParty.Instance.NextEnemy();
     }

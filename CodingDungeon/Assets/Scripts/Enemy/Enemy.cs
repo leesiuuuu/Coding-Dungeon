@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour, IEntity
 
 	public void Die()
 	{
+		gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Death);
 		Debug.Log($"[Enemy] {_setting.name} 캐릭터 사망!!");
 	}
 
