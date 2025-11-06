@@ -16,7 +16,7 @@ public class CharacterProfile : MonoBehaviour
 	[SerializeField] private GameObject selectedObj;
 
 	private CharacterSo character;
-	private CharacterAttributes characterAttributes;
+	private EntityAttributes characterAttributes;
 	private GameObject prefab;
 	private bool isSelected = false;
 
@@ -61,4 +61,5 @@ public class CharacterProfile : MonoBehaviour
 	}
 
 	public GameObject GetPrefab() => prefab;
+	public PartySO GetPartySO() => partySO;
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class EnemyRuntimeStatus
@@ -11,16 +12,28 @@ public class EnemyRuntimeStatus
 	public int attackRange;
 }
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEntity
 {
-	[SerializeField] private EnemyStatusSO _enemyStatsSo;
-	[SerializeField] protected PathFinder _pathFinder;
+
 	[SerializeField] protected GameObject _target;
 	[SerializeField] protected GameObject _notice;
 	protected bool _isPrepared;
-	public EnemyRuntimeStatus RuntimeStatus = new();
+	[SerializeField] private EnemySo _setting;
+	[SerializeField] protected PathFinder _pathFinder;
+	public EntityAttributes Attributes { get; private set; }
+
 	
+	public EntityStatus Status { get; private set; }
 	
+	public void SetAttributes(EntityAttributes value)
+	{
+		Attributes = value;
+	}
+
+	public void Die()
+	{
+		Debug.Log($"[Enemy] {_setting.name} 캐릭터 사망!!");
+	}
 
 	private void Start()
 	{
@@ -29,12 +42,20 @@ public class Enemy : MonoBehaviour
 
 	protected virtual void Initialize()
 	{
+
 		_notice.SetActive(false);
-		RuntimeStatus.maxHealth = _enemyStatsSo.maxHealth;
-		RuntimeStatus.health = RuntimeStatus.maxHealth;
-		RuntimeStatus.attack = _enemyStatsSo.attack;
-		RuntimeStatus.defense = _enemyStatsSo.defense;
-		RuntimeStatus.attackRange = _enemyStatsSo.attackRange;
+		SetAttributes(_setting.Attributes);
+		Status = new EntityStatus(this);
+	}
+
+	protected virtual void Decision()
+	{
+		
+	}
+
+	protected virtual void SetTarget()
+	{
+		
 	}
 	public virtual void Decision(){}
 	protected virtual void SetTarget(){}

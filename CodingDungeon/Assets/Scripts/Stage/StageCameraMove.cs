@@ -27,7 +27,8 @@ public class StageCameraMove : MonoBehaviour
 	private void MoveCameraTo(Vector2 dest)
 	{
 		// 이동 애니메이션
-		mainCamera.transform.DOMove(dest + offset, moveDuration).SetEase(easeType);
+		Vector3 vec = dest + offset;
+		mainCamera.transform.DOMove(new Vector3(vec.x, vec.y, -10f), moveDuration).SetEase(easeType);
 
 		// 줌(확대) 애니메이션
 		mainCamera.DOOrthoSize(targetZoom, moveDuration).SetEase(easeType);
@@ -36,6 +37,6 @@ public class StageCameraMove : MonoBehaviour
 	public void ResetCameraZoom()
 	{
 		mainCamera.DOOrthoSize(originalZoom, moveDuration).SetEase(easeType);
-		mainCamera.transform.DOMove(Vector3.zero, moveDuration).SetEase(easeType);
+		mainCamera.transform.DOMove(new Vector3(0f, 0f, -10f), moveDuration).SetEase(easeType);
 	}
 }

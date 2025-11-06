@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public struct CharacterAttributes
+public struct EntityAttributes
 {
 	public int CurrentHp;
 

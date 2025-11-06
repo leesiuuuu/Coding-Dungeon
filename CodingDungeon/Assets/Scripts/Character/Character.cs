@@ -1,22 +1,28 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IEntity
 {
 	[SerializeField]
 	private CharacterSo _setting;
 
 	public CharacterSo Setting => _setting;
 	
-	public CharacterStatus Status { get; private set; }
+	public EntityAttributes Attributes { get; private set; }
+	
+	public EntityStatus Status { get; private set; }
 
-	public CharacterAttributes Attributes;
+
+	public void SetAttributes(EntityAttributes value)
+	{
+		Attributes = value;
+	}
 
 	public CharacterCardHolder CardHolder { get; private set; }
 
 	public void Start()
 	{
-		Status = new CharacterStatus(this);
 		Attributes = _setting.Attributes;
+		Status = new EntityStatus(this);
 		CardHolder = new CharacterCardHolder(_setting.Deck);
 	}
 
