@@ -1,19 +1,22 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class ResultUI : MonoBehaviour
+public class ResultUI : MonoBehaviour,IBootStrapper
 {
 	[SerializeField] private TMP_Text resultText;
 	[SerializeField] private CanvasFader fader;
 
-	private void Start()
+	public IEnumerator BootStrap()
 	{
+		yield return new WaitForSeconds(0.5f);
 		TurnManager.Instance.OnWin += OnWin;
 		TurnManager.Instance.OnLose += OnLose;
 	}
 
 	private void OnWin()
 	{
+		Debug.Log(resultText.text);
 		enableFader();
 		resultText.text = "성공!";
 		resultText.color = new Color(0.4125519f, 1f, 0.345098f, 0.682353f);
@@ -21,6 +24,7 @@ public class ResultUI : MonoBehaviour
 
 	private void OnLose()
 	{
+		Debug.Log(resultText.text);
 		enableFader();
 		resultText.text = "실패...";
 		resultText.color = new Color(1f, 0.2421383f, 0.2739033f, 0.8862745f);

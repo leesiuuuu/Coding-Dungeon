@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &314335069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,6 +1367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 523977969748337450, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 715581893283018582, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: cardAdd
       value: 
@@ -1375,6 +1379,10 @@ PrefabInstance:
       propertyPath: cardRemove
       value: 
       objectReference: {fileID: 8300000, guid: 01327f0ef1874214e828211a3dee6b96, type: 3}
+    - target: {fileID: 1280911864951699270, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2302340829331602995, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: selectedAudio
       value: 
@@ -1391,6 +1399,10 @@ PrefabInstance:
       propertyPath: selectedAudio
       value: 
       objectReference: {fileID: 8300000, guid: 1170f4097a018e7428dd71fd751944c8, type: 3}
+    - target: {fileID: 4336464915537843992, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5497572626490649677, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: m_Name
       value: Ingame Canvas
@@ -1473,6 +1485,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5682225997571290867, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733204150013173291, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7543902856051342949, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}

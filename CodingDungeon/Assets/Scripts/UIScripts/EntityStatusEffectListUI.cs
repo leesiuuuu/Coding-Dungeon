@@ -14,7 +14,6 @@ public class EntityStatusEffectListUI : MonoBehaviour
 
 	public void Update()
 	{
-		Debug.Log(Entity != null);
 		string list = "";
 		foreach (var i in Entity.Status.CurrentEffects.ToList())
 		{

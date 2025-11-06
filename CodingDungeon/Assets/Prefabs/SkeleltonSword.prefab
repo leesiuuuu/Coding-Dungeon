@@ -4207,6 +4207,7 @@ MonoBehaviour:
   _notice: {fileID: 1190325660885560737}
   _setting: {fileID: 11400000, guid: eea680fae962ecd40904c5d77ae0afc4, type: 2}
   _pathFinder: {fileID: 5971121726879988794}
+  _collider: {fileID: 4325059839920878868}
 --- !u!1 &7644011520350702199
 GameObject:
   m_ObjectHideFlags: 0

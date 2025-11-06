@@ -13,9 +13,11 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
     }
     
     private int _index = 0;
+    public int currentEnemyCount = 0;
 
     private void Start()
     {
+        currentEnemyCount = _party.Count;
         if (TurnManager.Instance != null)
         {
             TurnManager.Instance.OnMonsterMoves += EnemyMove;

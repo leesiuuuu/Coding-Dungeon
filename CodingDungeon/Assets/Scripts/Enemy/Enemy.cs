@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour, IEntity
 	protected bool _isPrepared;
 	[SerializeField] private EnemySo _setting;
 	[SerializeField] protected PathFinder _pathFinder;
+	[SerializeField] private Collider2D _collider;
 
 	public GameObject source => gameObject;
 
@@ -36,6 +37,12 @@ public class Enemy : MonoBehaviour, IEntity
 	public void Die()
 	{
 		gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Death);
+		_collider.enabled = false;
+		EnemyParty.Instance.currentEnemyCount--;
+		if (EnemyParty.Instance.currentEnemyCount<=0)
+		{
+			Debug.Log("승리");
+		}
 		Debug.Log($"[Enemy] {_setting.name} 캐릭터 사망!!");
 	}
 
