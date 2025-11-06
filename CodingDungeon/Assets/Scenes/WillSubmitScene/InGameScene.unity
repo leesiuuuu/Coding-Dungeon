@@ -1460,6 +1460,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+--- !u!114 &1227861593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7924212210610504081, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
+  m_PrefabInstance: {fileID: 1227861592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a48a2bea9bf4a848a9e4af34ef50161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSelectionUI
 --- !u!1 &1234711401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleTargetSelector
   EntitySelector: {fileID: 1419137991}
+  targetSelectionUI: {fileID: 1227861593}
 --- !u!4 &1419137993
 Transform:
   m_ObjectHideFlags: 0
