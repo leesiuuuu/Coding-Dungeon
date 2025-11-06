@@ -84,7 +84,7 @@ public class CardHandSystem : MonoBehaviour
         
         if (isAddingCard)
         {
-            SoundManager.Instance.SFXPlay("CardAdd", cardAdd);
+//            SoundManager.Instance.SFXPlay("CardAdd", cardAdd);
             StartCoroutine(WaitAndAddCard(card));
             return;
         }
@@ -257,7 +257,7 @@ public class CardHandSystem : MonoBehaviour
 
     protected void DestroyCard(CardInHandUI card)
     {
-		SoundManager.Instance.SFXPlay("CardRemove", cardRemove);
+//		SoundManager.Instance.SFXPlay("CardRemove", cardRemove);
 		Destroy(card.gameObject);
         cards.Remove(card);
     }

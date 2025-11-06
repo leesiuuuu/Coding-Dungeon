@@ -31,7 +31,7 @@ public class CardInHandUI : MonoBehaviour
 	/// </summary>
 	public void OnClicked(bool selectOrDelete)
 	{
-		SoundManager.Instance.SFXPlay("onclick", onSelect);
+//		SoundManager.Instance.SFXPlay("onclick", onSelect);
 		(selectOrDelete
 			? OnSelected
 			: OnDeleted)?.Invoke();
