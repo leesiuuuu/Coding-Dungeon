@@ -4143,6 +4143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+  _audioClip: {fileID: 8300000, guid: 3f5c38383a5605542af8c7104581c81b, type: 3}
 --- !u!61 &4325059839920878868
 BoxCollider2D:
   m_ObjectHideFlags: 0

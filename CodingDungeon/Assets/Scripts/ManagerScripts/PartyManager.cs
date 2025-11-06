@@ -34,7 +34,7 @@ public class PartyManager : SceneSingleMono<PartyManager>
             if (characterObject != null)
             {
                 CharacterObjects[character] = characterObject;
-                Debug.Log($"캐릭터 등록: {character.name} -> {characterObject.name}");
+               // Debug.Log($"캐릭터 등록: {character.name} -> {characterObject.name}");
             }
             else
             {
