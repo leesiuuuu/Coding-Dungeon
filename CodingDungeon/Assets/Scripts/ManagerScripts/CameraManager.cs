@@ -9,9 +9,20 @@ public class CameraManager : SceneSingleMono<CameraManager>
     [SerializeField] private Vector3 _offset = new Vector3(0, 0, -10);
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _shakeIntensity = 0.3f;
+    [SerializeField] private float _defaultZoom = 5f;
+    [SerializeField] private float _zoomSpeed = 2f;
     
     private Coroutine _followCoroutine;
     private Coroutine _shakeCoroutine;
+    private Coroutine _zoomCoroutine;
+    private Camera _camera;
+    private float _currentZoom;
+
+    private void Awake()
+    {
+        _camera = GetComponent<Camera>();
+        _currentZoom = _camera.orthographicSize;
+    }
 
     //디버그용
     /*private void Start()
@@ -29,6 +40,21 @@ public class CameraManager : SceneSingleMono<CameraManager>
         {
             StopFollow();
             StartShake(0.5f,0.1f);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ZoomIn(3f, 1f);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ZoomOut(7f, 1f);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetZoom(0.5f);
         }
     }*/
     
@@ -75,6 +101,41 @@ public class CameraManager : SceneSingleMono<CameraManager>
         }
     }
     
+    public void ZoomIn(float targetZoom, float duration = 0.5f)
+    {
+        SetZoom(targetZoom, duration);
+    }
+    
+    public void ZoomOut(float targetZoom, float duration = 0.5f)
+    {
+        SetZoom(targetZoom, duration);
+    }
+    
+    public void ResetZoom(float duration = 0.5f)
+    {
+        SetZoom(_defaultZoom, duration);
+    }
+    
+    private void SetZoom(float targetZoom, float duration)
+    {
+        if (_zoomCoroutine != null)
+        {
+            StopCoroutine(_zoomCoroutine);
+        }
+        _zoomCoroutine = StartCoroutine(ZoomFlow(targetZoom, duration));
+    }
+    
+    public void SetZoomImmediate(float zoomLevel)
+    {
+        if (_zoomCoroutine != null)
+        {
+            StopCoroutine(_zoomCoroutine);
+            _zoomCoroutine = null;
+        }
+        _camera.orthographicSize = zoomLevel;
+        _currentZoom = zoomLevel;
+    }
+    
     private IEnumerator FollowTargetFlow(float followSpeed)
     {
         while (_target != null)
@@ -108,5 +169,23 @@ public class CameraManager : SceneSingleMono<CameraManager>
         
         transform.position = originalPosition;
         _shakeCoroutine = null;
+    }
+    
+    private IEnumerator ZoomFlow(float targetZoom, float duration)
+    {
+        float startZoom = _camera.orthographicSize;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            _camera.orthographicSize = Mathf.Lerp(startZoom, targetZoom, t);
+            yield return null;
+        }
+        
+        _camera.orthographicSize = targetZoom;
+        _currentZoom = targetZoom;
+        _zoomCoroutine = null;
     }
 }

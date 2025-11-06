@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum TurnStatus
@@ -68,6 +69,14 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 		}
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			SetTurnStatus(TurnStatus.PlayerSelection);
+		}
+	}
+
 	public void NextTurnStatus()
 	{
 		var len = Enum.GetValues(typeof(TurnStatus)).Length;
@@ -82,6 +91,12 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 
 	private void MonsterMoves()
 	{
+		StartCoroutine(MonsterMoveFlow());
+	}
+
+	private IEnumerator MonsterMoveFlow()
+	{
+		yield return new WaitForSeconds(1f);
 		OnMonsterMoves?.Invoke();
 	}
 
