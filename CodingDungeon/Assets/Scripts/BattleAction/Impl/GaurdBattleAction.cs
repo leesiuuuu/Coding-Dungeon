@@ -8,7 +8,8 @@ public class GaurdBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
-		//Target.Status.AddStatusEffect(damageEffect);
+		
+		Target.Status.AddStatusEffect();
 		yield break;
 	}
 }
