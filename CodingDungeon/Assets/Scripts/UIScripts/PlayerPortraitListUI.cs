@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 {
     [SerializeField] private GameObject[] _playerPortraitList;
+    [SerializeField] private GameObject[] _checkObjs;
+    [SerializeField] private GameObject _playerHand;
     private PartyManager _partyManager;
     private Character _character;
     public Character Character=>_character;
@@ -22,6 +24,11 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             playerPortraitUI.SetCharacter(_partyManager.Characters[i]);
             playerPortraitUI.OnSelect += GetCurrentEventCharacter;
         }
+
+        for (var i = 0; i < _checkObjs.Length; i++)
+        {
+            _checkObjs[i].SetActive(false);
+        }
     }
     
 
@@ -29,6 +36,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     public void GetCurrentEventCharacter(Character character)
     {
         OnSelected?.Invoke(character);
+        _playerHand.SetActive(true);
     }
 
     public void OnMoveSelected()
@@ -39,7 +47,9 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
         if (portraitUI == null)
             return;
-        
+        PartyManager.Instance.PortraitPrefab.transform.GetChild(1).gameObject.SetActive(true);
+        PartyManager.Instance.PortraitPrefab.transform.GetChild(0).gameObject.SetActive(false);
+        _playerHand.SetActive(false);
         if (!portraitUI.Moved)
         {
             TileSelecerManager.Instance.OnSetTile();
@@ -53,6 +63,10 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         {
             var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
             playerPortraitUI.Moved = false;
+        }
+        for (var i = 0; i < _checkObjs.Length; i++)
+        {
+            _checkObjs[i].SetActive(true);
         }
     }
     

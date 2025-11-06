@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FireBallOutputCard
   m_EditorClassIdentifier: Assembly-CSharp::FireBallOutputCard
   Name: fireball()
-  Image: {fileID: 0}
+  Image: {fileID: -6232032947860721543, guid: 3e9ea030f4aea3c4c936e3c0da2c59b3, type: 3}
   Description: "\uD30C\uC774\uC5B4\uBCFC\uC744 \uC3D8\uC558\uB2E4."
   Cost: 3

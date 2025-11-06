@@ -51,7 +51,7 @@ public class CardHandSystem : MonoBehaviour
         character.CardHolder.OnCardRemoved += RemoveCardAt;
     }
 
-    protected void OnCardSelected(CardInHandUI selected)
+    protected  void OnCardSelected(CardInHandUI selected)
     {
         character.CardHolder.AddCardAtActiveQueue(Array.IndexOf(cards.ToArray(), selected), selected.Card);
     }
@@ -115,7 +115,7 @@ public class CardHandSystem : MonoBehaviour
         AddCard(card);
     }
     
-    protected void RecalculatePositions()
+    protected virtual void RecalculatePositions()
     {
         targetPositions.Clear();
         
@@ -130,7 +130,7 @@ public class CardHandSystem : MonoBehaviour
         }
     }
     
-    protected IEnumerator SlideInCard(Transform card, int index)
+    protected virtual IEnumerator SlideInCard(Transform card, int index)
     {
         if (index >= targetPositions.Count) yield break;
         
@@ -183,7 +183,7 @@ public class CardHandSystem : MonoBehaviour
         isAddingCard = false;
     }
     
-    protected IEnumerator RepositionExistingCards()
+    protected virtual IEnumerator RepositionExistingCards()
     {
         float duration = 0.3f;
         float elapsed = 0f;
