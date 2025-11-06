@@ -11,6 +11,8 @@ public abstract class AbstractCardSo : ScriptableObject
 	
 	public int Cost;
 
+	public bool hasTarget = true;
+
 	public abstract void StartAction(CardActionContext ctx);
 
 }

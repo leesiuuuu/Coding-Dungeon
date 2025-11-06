@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b85d46e5424a41932e3c7c296c623c, type: 3}
+  m_Name: JavaRepeatOperationCard
+  m_EditorClassIdentifier: Assembly-CSharp::RepeatOperationCard
+  Name: for (int i = 0; i < 3; i++)
+  Image: {fileID: -1803673642, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
+  Description: "\uB2E4\uC74C \uCD9C\uB825\uC744 3\uBC88 \uBC18\uBCF5\uD55C\uB2E4"
+  Cost: 0
+  hasTarget: 1
+  times: 3

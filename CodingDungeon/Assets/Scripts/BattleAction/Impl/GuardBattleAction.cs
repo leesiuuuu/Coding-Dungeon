@@ -8,9 +8,9 @@ public class GuardBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
-		EntityDefenseEffect defenseEffect = new EntityDefenseEffect(1, 3.33f);
+		DefenseMultiplyEffect effect = new DefenseMultiplyEffect(1, 3.33f);
 		
-		Target.Status.AddStatusEffect(defenseEffect);
+		Target.Status.AddStatusEffect(effect);
 		yield break;
 	}
 }

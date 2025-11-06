@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec4dd56e6e09e545bb9292220fbac31, type: 3}
-  m_Name: ForOperationCard
-  m_EditorClassIdentifier: Assembly-CSharp::ForOperationCard
-  Name: for
+  m_Script: {fileID: 11500000, guid: 08b85d46e5424a41932e3c7c296c623c, type: 3}
+  m_Name: CRepeatOperationCard_3
+  m_EditorClassIdentifier: Assembly-CSharp::RepeatOperationCard
+  Name: for (int i = 0; i < 3; i++)
   Image: {fileID: -1803673642, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
-  Description: "\uD50C\uB808\uC774\uC5B4\uC758 \uB3D9\uC791\uC744 \uBC18\uBCF5\uD55C\uB2E4.."
-  Cost: 3
+  Description: "\uB2E4\uC74C \uCD9C\uB825\uC744 3\uBC88 \uBC18\uBCF5\uD55C\uB2E4"
+  Cost: 0
+  hasTarget: 1
+  times: 3

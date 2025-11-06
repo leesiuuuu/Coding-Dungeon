@@ -16,3 +16,4 @@ MonoBehaviour:
   Image: {fileID: -1051207329, guid: 3e9ea030f4aea3c4c936e3c0da2c59b3, type: 3}
   Description: "\uCE7C\uC744 \uD718\uB458\uB800\uB2E4."
   Cost: 2
+  hasTarget: 1

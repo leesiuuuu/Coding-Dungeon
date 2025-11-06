@@ -14,4 +14,6 @@ public abstract class AbstractStatusFx : ScriptableObject
 	public abstract void OnStarted(IEntity entity);
 
 	public abstract void OnFinished(IEntity entity);
+	
+	public abstract string GetViewString();
 }
