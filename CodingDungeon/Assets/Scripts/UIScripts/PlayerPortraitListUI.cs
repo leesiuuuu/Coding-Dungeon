@@ -7,6 +7,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 {
     [SerializeField] private GameObject[] _playerPortraitList;
     [SerializeField] private GameObject[] _checkObjs;
+    [SerializeField] private GameObject[] _playerSelectFrame;
     [SerializeField] private CardHandSystem _playerHand;
     private PartyManager _partyManager;
     private Character _userTemp;
@@ -24,6 +25,10 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
             playerPortraitUI.SetCharacter(_partyManager.Characters[i]);
             playerPortraitUI.OnSelect += GetCurrentEventCharacter;
+        }
+        for (var i = 0; i < _playerSelectFrame.Length; i++)
+        {
+            _playerSelectFrame[i].SetActive(false);
         }
 
         for (var i = 0; i < _checkObjs.Length; i++)
@@ -46,6 +51,10 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     public void GetCurrentEventCharacter(Character character)
     {
         _playerHand.gameObject.SetActive(true);
+        for (var i = 0; i < _playerSelectFrame.Length; i++)
+        {
+            _playerSelectFrame[i].SetActive(false);
+        }
         OnSelected?.Invoke(character);
     }
 

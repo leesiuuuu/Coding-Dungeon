@@ -7,6 +7,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField] private int index;
 	[SerializeField] private GameObject _activeQueueUI;
+	[SerializeField] private GameObject _selectedQueueUI;
 
 	public static bool CanSelect = true;
 	public event Action<Character> OnSelect;
@@ -69,6 +70,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 			_activeQueueUI.SetActive(true);
 			_activeQueueUI.GetComponent<Animator>().SetTrigger("Apear");
 			OnSelect?.Invoke(_character);
+			_selectedQueueUI.gameObject.SetActive(true);	
 		}
 	}
 
