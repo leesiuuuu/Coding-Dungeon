@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IEntity
 {
+	public GameObject source => gameObject;
+
 	[SerializeField]
 	private CharacterSo _setting;
 
