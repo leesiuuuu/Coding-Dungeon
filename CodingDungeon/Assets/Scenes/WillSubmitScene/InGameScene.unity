@@ -396,50 +396,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bb8d5d5abfd249c5a3f283ca8fb94a1, type: 3}
---- !u!1 &455934505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455934507}
-  - component: {fileID: 455934506}
-  m_Layer: 0
-  m_Name: BootManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &455934506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455934505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066632c5921e4d74daabeb134823039b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BootManager
---- !u!4 &455934507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455934505}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08772, y: 0.29598, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585523628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4287,54 +4243,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1443810340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1760140849
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1760140851}
-  - component: {fileID: 1760140850}
-  m_Layer: 0
-  m_Name: PartyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1760140850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760140849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289266ccdde289147995419f412070af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PartyManager
-  spanwer: {fileID: 850862495}
-  _selectedCharacter: {fileID: 0}
-  _portraitPrefab: {fileID: 0}
-  _realPlayerPrefab: {fileID: 0}
---- !u!4 &1760140851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760140849}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08772, y: 0.29598, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842381609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,17 +4742,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1969690367536752169, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
+      propertyPath: spanwer
+      value: 
+      objectReference: {fileID: 850862495}
+    - target: {fileID: 1969690367536752169, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: 'Characters.Array.data[0]'
       value: 
-      objectReference: {fileID: 1874825235}
+      objectReference: {fileID: 0}
     - target: {fileID: 1969690367536752169, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: 'Characters.Array.data[1]'
       value: 
-      objectReference: {fileID: 981900714}
+      objectReference: {fileID: 0}
     - target: {fileID: 1969690367536752169, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: 'Characters.Array.data[2]'
       value: 
-      objectReference: {fileID: 1557523227}
+      objectReference: {fileID: 0}
     - target: {fileID: 2315210155134159281, guid: ac06ccb4df011864881924e583a3cb94, type: 3}
       propertyPath: m_Name
       value: GameManagers
