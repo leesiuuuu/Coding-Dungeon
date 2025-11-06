@@ -51,6 +51,7 @@ public class StoreCharacter : MonoBehaviour
 
 	public void SureBuy()
 	{
+		if (isBought) return;
 		if(sureBuyPanel.activeSelf)
 		{
 			GetComponent<RectTransform>().DOScaleX(0f, 0.125f).OnComplete(() =>
