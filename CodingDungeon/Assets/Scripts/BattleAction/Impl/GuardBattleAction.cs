@@ -10,8 +10,8 @@ public class GuardBattleAction : AbstractBattleAction
 	public override IEnumerator StartAction()
 	{
 		var cameraManager = CameraManager.Instance;
-		//Debug.Log(cameraManager);
-		//Debug.Log(User.source);
+//		Debug.Log(cameraManager);
+//		Debug.Log(User.source);
 		cameraManager.SetTarget(User.source.transform);
 		cameraManager.StartFollow(10);
 		cameraManager.ZoomIn(3f);
@@ -19,7 +19,7 @@ public class GuardBattleAction : AbstractBattleAction
 		User.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Attack);
 		yield return new WaitForSeconds(1f);
 		DefenseMultiplyEffect effect = new DefenseMultiplyEffect(1, 3.33f);
-		Target.Status.AddStatusEffect(effect);
+		User.Status.AddStatusEffect(effect);
 		yield return new WaitForSeconds(1f);
 		cameraManager.SetTarget(cameraManager.MidPos.transform);
 		cameraManager.StartFollow(10);
