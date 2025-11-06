@@ -5,4 +5,5 @@ public class PartySO : ScriptableObject
 {
 	public CharacterSo character;
 	public GameObject Prefab;
+	public GameObject InGamePrefab;
 }
