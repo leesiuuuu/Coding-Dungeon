@@ -15,6 +15,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 	public event Action<Character> OnClosed;
 	public bool IsInteractable = true;
 	public event Action<GameObject> OnReturnGameObject;
+	public event Action<Character> OnCantAllocMemory;
 
 	private Character _character;
 
@@ -23,12 +24,25 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 	/// </summary>
 	public void SubmitActiveQueue()
 	{
-		PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
+		var sum = 0;
+		foreach (var i in _character.CardHolder.ActiveQueueCards)
+		{
+			sum += i.Cost;
+		}
+		if (sum <= 10)
+		{
+			PlayerPortraitListUI.Instance.OnActiveQueueSubmitted(_character);
+		}
+		else
+		{
+			OnCantAllocMemory?.Invoke(_character);
+		}
 	}
 
 	private void Start()
 	{
 		StartCoroutine(InitializeCharacter());
+		OnCantAllocMemory += PartyManager.Instance.OnCharacterExpload;
 	}
 
 	private IEnumerator InitializeCharacter()

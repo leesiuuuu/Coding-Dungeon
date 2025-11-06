@@ -7,6 +7,7 @@ public class PartyManager : SceneSingleMono<PartyManager>
 {
 	private List<Character> characters = new List<Character>();
 	public PlayerSpanwer spanwer;
+	[SerializeField] private ParticleSystem _memoryExpload;
 	public int alivePlayers = 3;
 	// 무한 재귀 방지 플래그
 	private bool isSpawning = false;
@@ -136,5 +137,11 @@ public class PartyManager : SceneSingleMono<PartyManager>
 	public void OnSelectPortrait(GameObject selectedPortrait)
 	{
 		_portraitPrefab = selectedPortrait;
+	}
+
+	public void OnCharacterExpload(Character character)
+	{
+		_memoryExpload.gameObject.transform.position = CharacterObjects[character].transform.position;
+		_memoryExpload.Play();
 	}
 }
