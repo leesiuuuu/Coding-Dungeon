@@ -11,6 +11,21 @@ public class Character : MonoBehaviour, IEntity
 	
 	public EntityStatus Status { get; private set; }
 
+	private bool _isAlive = true;
+
+	public bool IsAlive
+	{
+		get=>_isAlive;
+		set
+		{
+			_isAlive = value;
+			if (!_isAlive)
+			{
+				Die();
+			}
+		}
+	}
+
 
 	public void SetAttributes(EntityAttributes value)
 	{
@@ -28,6 +43,7 @@ public class Character : MonoBehaviour, IEntity
 
 	public void Die()
 	{
+		PartyManager.Instance.alivePlayers--;
 		Debug.Log($"[Character] {_setting.Name} 캐릭터 사망!!");
 	}
 }
