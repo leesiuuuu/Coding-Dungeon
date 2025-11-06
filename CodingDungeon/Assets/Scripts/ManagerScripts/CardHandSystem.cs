@@ -37,6 +37,7 @@ public class CardHandSystem : MonoBehaviour
 
     protected void OnCharacterSelected()
     {
+        Debug.Log(gameObject.name);
         if (character != null)
         {
             character.CardHolder.OnCardAdded -= AddCard;
@@ -52,7 +53,7 @@ public class CardHandSystem : MonoBehaviour
 
     protected void OnCardSelected(CardInHandUI selected)
     {
-        character.CardHolder.AddCardAtActiveQueue(selected.Card);
+        character.CardHolder.AddCardAtActiveQueue(Array.IndexOf(cards.ToArray(), selected), selected.Card);
     }
     
     protected void OnCardDeleted(CardInHandUI deleted)
@@ -238,11 +239,11 @@ public class CardHandSystem : MonoBehaviour
     public void ClearAllCards()
     {
         StopAllCoroutines();
-        
-        foreach (var card in cards)
+
+        for (int i = cards.Count - 1; i >= 0; i--)
         {
-            if (card != null)
-                DestroyCard(card);
+            if (cards[i] != null)
+                DestroyCard(cards[i]);
         }
         
         targetPositions.Clear();
