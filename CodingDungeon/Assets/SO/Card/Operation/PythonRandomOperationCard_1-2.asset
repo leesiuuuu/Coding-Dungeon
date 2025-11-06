@@ -16,8 +16,8 @@ MonoBehaviour:
   Image: {fileID: 829450983, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
   Description: "\uCE90\uB9AD\uD130\uC5D0\uAC8C 1-2\uC758\n\uACF5\uACA9\uB825 \uBC0F
     \uBC29\uC5B4\uB825\n\uBC30\uC728\uB97C \uC81C\uACF5\uD55C\uB2E4."
-  Cost: 0
-  hasTarget: 1
+  Cost: 3
+  Target: 0
   EffectLifetime: 1
   RandomMin: 1
   RandomMax: 2

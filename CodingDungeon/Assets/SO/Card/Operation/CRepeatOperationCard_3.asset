@@ -15,6 +15,6 @@ MonoBehaviour:
   Name: for (int i = 0; i < 3; i++)
   Image: {fileID: -1803673642, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
   Description: "\uB2E4\uC74C \uCD9C\uB825\uC744 3\uBC88 \uBC18\uBCF5\uD55C\uB2E4"
-  Cost: 0
-  hasTarget: 1
+  Cost: 4
+  Target: 0
   times: 3
