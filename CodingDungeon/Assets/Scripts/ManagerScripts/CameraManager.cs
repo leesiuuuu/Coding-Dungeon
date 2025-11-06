@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraManager : SceneSingleMono<CameraManager>
 {
+    public GameObject MidPos;
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _offset = new Vector3(0, 0, -10);
     [SerializeField] private float _followSpeed = 5f;

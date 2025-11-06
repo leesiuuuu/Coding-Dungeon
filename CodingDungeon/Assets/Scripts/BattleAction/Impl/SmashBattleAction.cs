@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 public class SmashBattleAction : AbstractBattleAction
 {
@@ -8,10 +9,34 @@ public class SmashBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
+		var cameraManager = CameraManager.Instance;
+		if (Target.Attributes.CurrentHp <= 0)
+		{
+			cameraManager.SetTarget(cameraManager.MidPos.transform);
+			cameraManager.StartFollow(10);
+			cameraManager.ResetZoom();
+			yield break;
+		}
+		cameraManager.SetTarget(User.gameObject.transform);
+		cameraManager.StartFollow(10);
+		cameraManager.ZoomIn(3f);
+		yield return new WaitForSeconds(1f);
+		User.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Attack);
+		yield return new WaitForSeconds(1f);
+		cameraManager.SetTarget(Target.source.gameObject.transform);
+		cameraManager.StartFollow(10);
+		cameraManager.ZoomIn(3f);
+		yield return new WaitForSeconds(1f);
+		Target.source.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Hit);
+		
 		EntityDamageEffect damageEffect = new EntityDamageEffect(0, 11);
 		damageEffect.Damage = (int)(damageEffect.Damage * User.Attributes.DamageModifier);
-		
 		Target.Status.AddStatusEffect(damageEffect);
+		
+		yield return new WaitForSeconds(1f);
+		cameraManager.SetTarget(cameraManager.MidPos.transform);
+		cameraManager.StartFollow(10);
+		cameraManager.ResetZoom();
 		yield break;;
 	}
 }
