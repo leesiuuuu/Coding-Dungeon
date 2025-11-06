@@ -3,8 +3,6 @@ using System.Collections;
 
 public class CameraManager : SceneSingleMono<CameraManager>
 {
-    //플레이어 겜오브젝트는 디버그용입니다 실제 개발시엔 SetTarget를 써주십시요
-    [SerializeField] private GameObject player;
     [SerializeField] private Transform _target;
     [SerializeField] private Vector3 _offset = new Vector3(0, 0, -10);
     [SerializeField] private float _followSpeed = 5f;
@@ -18,8 +16,9 @@ public class CameraManager : SceneSingleMono<CameraManager>
     private Camera _camera;
     private float _currentZoom;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _camera = GetComponent<Camera>();
         _currentZoom = _camera.orthographicSize;
     }
