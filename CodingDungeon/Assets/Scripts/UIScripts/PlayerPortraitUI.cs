@@ -8,6 +8,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 	[SerializeField] private int index;
 	[SerializeField] private GameObject _activeQueueUI;
 	[SerializeField] private GameObject _selectedQueueUI;
+	[SerializeField] private AudioClip selectedAudio;
 
 	public static bool CanSelect = true;
 	public event Action<Character> OnSelect;
@@ -66,6 +67,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 	{
 		if (_character.IsAlive&&IsInteractable && _character != null)
 		{
+			SoundManager.Instance.SFXPlay("selected", selectedAudio);
 			OnReturnGameObject?.Invoke(gameObject);
 			_activeQueueUI.SetActive(true);
 			_activeQueueUI.GetComponent<Animator>().SetTrigger("Apear");
