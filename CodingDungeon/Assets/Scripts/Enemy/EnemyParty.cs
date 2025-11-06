@@ -32,6 +32,7 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
     }
     public void ExecuteMove()
     {
+        Debug.Log(_index);
         if (_party.Count > 0)
         {
             if (_index >= 0 && _index < _party.Count)
@@ -45,17 +46,22 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
                     _party[_index].Decision();
                 }
             }
-
+            else if (_index >= _party.Count)
+            {
+                TurnManager.Instance.SetTurnStatus(TurnStatus.PlayerMoves);
+                Debug.Log("모든 적 행동 완료");
+                return;
+            }
         }
         else
         {
             //게임 승리 로직
         }
-
     }
 
     public void NextEnemy()
     {
+        Debug.Log("증가");
         Index++;
     }
 }
