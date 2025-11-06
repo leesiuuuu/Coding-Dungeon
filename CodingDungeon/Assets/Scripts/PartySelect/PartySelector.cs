@@ -10,13 +10,6 @@ public class PartySelector : SingleMono<PartySelector>
 	[Header("Data for Scene Transfer")]
 	public List<PartySO> selectedPartyData = new List<PartySO>(); // 씬 전환용 데이터
 
-	protected override void Awake()
-	{
-		base.Awake();
-		// 씬 전환 시에도 유지
-		DontDestroyOnLoad(gameObject);
-	}
-
 	public void Enqueue(CharacterProfile profile)
 	{
 		profile.Select();
