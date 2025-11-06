@@ -17,7 +17,7 @@ public class StoreCharacter : MonoBehaviour
 	[SerializeField] private TMP_Text Defence;
 	[SerializeField] private TMP_Text HP;
 
-	private CharacterAttributes characterAttributes;
+	private EntityAttributes characterAttributes;
 
 	private void Start()
 	{

@@ -7,7 +7,7 @@ public class CharacterSo : ScriptableObject
 
 	public Sprite Image;
 
-	public CharacterAttributes Attributes;
+	public EntityAttributes Attributes;
 	
 	public DeckSo Deck;
 }

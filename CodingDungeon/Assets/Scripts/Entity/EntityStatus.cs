@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class CharacterStatus
+public class EntityStatus
 {
-	private Character _character;
+	private IEntity _entity;
 
 	public List<AbstractStatusFx> CurrentEffects { get; private set; } = new();
 	
-	public CharacterStatus(Character character)
+	public EntityStatus(IEntity entity)
 	{
-		_character = character;
+		_entity = entity;
 		TurnManager.Instance.OnTurnChange += OnTurnChanged;
 	}
 
@@ -17,13 +17,13 @@ public class CharacterStatus
 	{
 		if (effect.TurnToLive <= 0)
 		{
-			effect.OnStarted(_character);
-			effect.OnFinished(_character);
+			effect.OnStarted(_entity);
+			effect.OnFinished(_entity);
 			return;
 		}
 		
 		CurrentEffects.Add(effect);
-		effect.OnStarted(_character);
+		effect.OnStarted(_entity);
 	}
 
 	private void OnTurnChanged()
@@ -33,7 +33,7 @@ public class CharacterStatus
 			effect.ElapsedTurn += 1;
 			if (effect.TurnToLive == effect.ElapsedTurn)
 			{
-				effect.OnFinished(_character);
+				effect.OnFinished(_entity);
 				CurrentEffects.Remove(effect);
 			}
 		}

@@ -6,7 +6,7 @@ public abstract class AbstractStatusFx : ScriptableObject
 	
 	public int ElapsedTurn { get; set; }
 	
-	public abstract void OnStarted(Character character);
+	public abstract void OnStarted(IEntity entity);
 
-	public abstract void OnFinished(Character character);
+	public abstract void OnFinished(IEntity entity);
 }
