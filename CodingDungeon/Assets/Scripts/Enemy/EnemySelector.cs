@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class EnemySelector : MonoBehaviour
 {
+	[SerializeField] private string tagFilter;
 	[SerializeField] private LayerMask enemyLayer;
 	private GameObject target;
-
-	private void Update()
-	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log(GetEnemy()?.name);
-		}
-	}
 
 	// 적 오브젝트를 반환(비어있을 시 null)
 	public GameObject GetEnemy()
@@ -27,7 +20,7 @@ public class EnemySelector : MonoBehaviour
 		RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f, enemyLayer);
 
 
-		if (hit.collider != null)
+		if (hit.collider != null && hit.collider.gameObject.CompareTag(tagFilter))
 		{ 
 			target = hit.collider.gameObject;
 		}
