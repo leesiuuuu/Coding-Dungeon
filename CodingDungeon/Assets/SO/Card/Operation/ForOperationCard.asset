@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ForOperationCard
   m_EditorClassIdentifier: Assembly-CSharp::ForOperationCard
   Name: for
-  Image: {fileID: 0}
+  Image: {fileID: -1803673642, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
   Description: "\uD50C\uB808\uC774\uC5B4\uC758 \uB3D9\uC791\uC744 \uBC18\uBCF5\uD55C\uB2E4.."
   Cost: 3

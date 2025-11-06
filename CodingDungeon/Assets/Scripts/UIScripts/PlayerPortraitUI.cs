@@ -32,9 +32,11 @@ public class PlayerPortraitUI : MonoBehaviour,IPointerClickHandler
         if (!Moved)
         {
             OnReturnGameObject?.Invoke(gameObject);
+            _activeQueueUI.SetActive(true);
+            OnSelect?.Invoke(_character);
+
         }
-        _activeQueueUI.SetActive(true);
-		OnSelect?.Invoke(_character);
+
     }
 
     public Character GetCharacter()

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GuardOutputCard
   m_EditorClassIdentifier: Assembly-CSharp::GuardOutputCard
   Name: guard()
-  Image: {fileID: 0}
+  Image: {fileID: 488865110, guid: 3e9ea030f4aea3c4c936e3c0da2c59b3, type: 3}
   Description: "\uBC29\uD328\uB85C \uB9C9\uB294\uB2E4."
   Cost: 3
