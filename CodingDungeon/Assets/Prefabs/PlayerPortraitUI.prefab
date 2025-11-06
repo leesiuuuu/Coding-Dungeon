@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8aa14096c4db946b53d9cb6b67385a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPortraitUI
-  _character: {fileID: 0}
+  index: 0
   _activeQueueUI: {fileID: 4303645698980524270}
   IsInteractable: 1
 --- !u!1001 &10137124349346459
@@ -284,10 +284,6 @@ PrefabInstance:
       propertyPath: _portraitUI
       value: 
       objectReference: {fileID: 1018416377785821625}
-    - target: {fileID: 1737238114622759495, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
-      propertyPath: pointDistance
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 4135557440561583318, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -349,10 +345,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4135557440561583318, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 198
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135557440561583318, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -371,6 +363,14 @@ PrefabInstance:
     - target: {fileID: 4295762651083715189, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
       propertyPath: m_Name
       value: ActiveQueueUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243388184394500752, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1018416377785821625}
+    - target: {fileID: 6243388184394500752, guid: 343d33c349d3f4914a2be43026f820bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SubmitActiveQueue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
