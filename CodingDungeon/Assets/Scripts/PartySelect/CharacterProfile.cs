@@ -61,4 +61,5 @@ public class CharacterProfile : MonoBehaviour
 	}
 
 	public GameObject GetPrefab() => prefab;
+	public PartySO GetPartySO() => partySO;
 }

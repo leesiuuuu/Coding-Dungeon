@@ -42,9 +42,38 @@ public class CharacterSpawner : SingleMono<CharacterSpawner>
 		spawnedPrefabs[profile] = spawnedObj;
 
 		// 최종 위치로 이동 애니메이션
-		spawnedObj.transform.DOMove(finalPosition, 0.3f).SetEase(Ease.OutBack);
+		spawnedObj.transform.DOMove(finalPosition, 0.5f).SetEase(Ease.OutBack);
 
 		Debug.Log($"캐릭터 생성됨: {profile.name} at {finalPosition}");
+	}
+
+	/// <summary>
+	/// PartySO 데이터로 직접 캐릭터 생성 (씬 전환 후 사용)
+	/// </summary>
+	public void SpawnCharacterFromData(PartySO partySO)
+	{
+		if (partySO == null || partySO.Prefab == null)
+		{
+			Debug.LogError("PartySO 또는 Prefab이 없습니다.");
+			return;
+		}
+
+		// 현재 선택된 캐릭터 수에 따라 위치 계산
+		int index = PartySelector.Instance.selectedPartyData.IndexOf(partySO);
+		Vector3 offset = spawnOffset * index;
+		Vector3 finalPosition = spawnParent != null ?
+			spawnParent.position + basePosition + offset :
+			basePosition + offset;
+
+		Vector3 startPosition = finalPosition + spawnAnimOffset;
+
+		// 프리팹 생성
+		GameObject spawnedObj = Instantiate(partySO.Prefab, startPosition, Quaternion.identity, spawnParent);
+
+		// 이동 애니메이션
+		spawnedObj.transform.DOMove(finalPosition, 0.5f).SetEase(Ease.OutBack);
+
+		Debug.Log($"데이터로 캐릭터 생성됨: {partySO.character.Name} at {finalPosition}");
 	}
 
 	/// <summary>
@@ -103,7 +132,7 @@ public class CharacterSpawner : SingleMono<CharacterSpawner>
 					spawnParent.position + basePosition + (spawnOffset * i) :
 					basePosition + (spawnOffset * i);
 
-				spawnedPrefabs[profile].transform.DOMove(newPosition, 0.2f).SetEase(Ease.OutQuad);
+				spawnedPrefabs[profile].transform.DOMove(newPosition, 0.3f).SetEase(Ease.OutQuad);
 			}
 		}
 	}
