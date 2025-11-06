@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: JavaSwordMasterSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
   Name: "Java\uC758 \uAC80\uC131"
-  Image: {fileID: 1541221689, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
+  Image: {fileID: 1062318879, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
     MaxHp: 100
     DamageModifier: 100
     DefenseModifier: 100
+    AttackRange: 0
   Deck: {fileID: 11400000, guid: 0043e12769dac20448072307a9f06793, type: 2}

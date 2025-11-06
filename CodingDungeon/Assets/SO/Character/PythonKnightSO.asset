@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: PythonKnightSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
   Name: "Phthon\uC758 \uAE30\uC0AC"
-  Image: {fileID: -304936996, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
+  Image: {fileID: 844323472, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
     MaxHp: 100
     DamageModifier: 100
     DefenseModifier: 100
+    AttackRange: 0
   Deck: {fileID: 11400000, guid: 9933a6a74d1b6f345817c4ad487b82f6, type: 2}
