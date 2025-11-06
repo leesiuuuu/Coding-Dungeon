@@ -5,137 +5,139 @@ using UnityEngine;
 
 public class ActiveQueueUISystem : CardHandSystem
 {
-	[SerializeField] private PlayerPortraitUI _portraitUI;
+    [SerializeField] private PlayerPortraitUI _portraitUI;
+    private int previousCardCount = 0;
 
-	protected new void Start()
-	{
-	}
-	
-	protected void Awake()
-	{
-		if (handCenter == null)
-			handCenter = transform;
+    protected new void Start()
+    {
+    }
+    
+    protected void Awake()
+    {
+       if (handCenter == null)
+          handCenter = transform;
 
-		_portraitUI.OnSelect += OnCharacterSelectedInternal;
-	}
+       _portraitUI.OnSelect += OnCharacterSelectedInternal;
+    }
 
-	private void OnCharacterSelectedInternal(Character selected)
-	{
-		if (character != null)
-		{
-			character.CardHolder.OnActiveQueueAdded -= AddCard;
-			character.CardHolder.OnActiveQueueRemoved -= RemoveCardAt;
-		}
+    private  void OnCharacterSelectedInternal(Character selected)
+    {
+       if (character != null)
+       {
+          character.CardHolder.OnActiveQueueAdded -= AddCard;
+          character.CardHolder.OnActiveQueueRemoved -= RemoveCardAt;
+       }
         
-		character = selected;
-		UpdateCards(character.CardHolder.ActiveQueueCards);
+       character = selected;
+       UpdateCards(character.CardHolder.ActiveQueueCards);
 
-		character.CardHolder.OnActiveQueueAdded += AddCard;
-		character.CardHolder.OnActiveQueueRemoved += RemoveCardAt;
-	}
+       character.CardHolder.OnActiveQueueAdded += AddCard;
+       character.CardHolder.OnActiveQueueRemoved += RemoveCardAt;
+    }
+    protected override void RecalculatePositions()
+    {
+        targetPositions.Clear();
+    
+        int cardCount = cards.Count;
+    
+        for (int i = 0; i < cardCount; i++)
+        {
+            Vector3 localOffset = new Vector3(i * pointDistance, 0, 0);
+            Vector3 pos = handCenter.TransformPoint(localOffset);
+            targetPositions.Add(pos);
+        }
+    }
 
-	protected new void RecalculatePositions()
-	{
-		targetPositions.Clear();
+protected override IEnumerator SlideInCard(Transform card, int index)
+{
+    if (index >= targetPositions.Count) yield break;
     
-		int cardCount = cards.Count;
+    Vector3 targetPos = targetPositions[index];
+    Vector3 startPos = targetPos + new Vector3(slideInDistance, 0, 0);
     
-		for (int i = 0; i < cardCount; i++)
-		{
-			Vector3 pos = handCenter.position + new Vector3(i * pointDistance, 0, 0);
-			targetPositions.Add(pos);
-		}
-	}
-	
-	protected new IEnumerator SlideInCard(Transform card, int index)
-	{
-		if (index >= targetPositions.Count) yield break;
+    card.position = startPos;
+    card.gameObject.SetActive(true);
     
-		Vector3 targetPos = targetPositions[index];
-		Vector3 startPos = targetPos + new Vector3(slideInDistance, 0, 0);
+    float elapsed = 0f;
     
-		card.position = startPos;
-		card.gameObject.SetActive(true);
+    List<Vector3> oldPositions = new List<Vector3>();
+    for (int i = 0; i < cards.Count - 1; i++)
+    {
+        if (cards[i] != null)
+            oldPositions.Add(cards[i].transform.position);
+    }
     
-		float elapsed = 0f;
-    
-		List<Vector3> oldPositions = new List<Vector3>();
-		for (int i = 0; i < cards.Count - 1; i++)
-		{
-			if (cards[i] != null)
-				oldPositions.Add(cards[i].transform.position);
-		}
-    
-		while (elapsed < slideInDuration)
-		{
-			elapsed += Time.deltaTime;
-			float t = elapsed / slideInDuration;
-			float curveValue = slideInCurve.Evaluate(t);
+    while (elapsed < slideInDuration)
+    {
+        elapsed += Time.deltaTime;
+        float t = elapsed / slideInDuration;
+        float curveValue = slideInCurve.Evaluate(t);
         
-			if (index < targetPositions.Count)
-			{
-				targetPos = targetPositions[index];
-				card.position = Vector3.Lerp(startPos, targetPos, curveValue);
-			}
-			
-			for (int i = 0; i < cards.Count - 1; i++)
-			{
-				if (cards[i] != null && i < targetPositions.Count && i < oldPositions.Count)
-				{
-					cards[i].transform.position = Vector3.Lerp(oldPositions[i], targetPositions[i], curveValue);
-				}
-			}
-        
-			yield return null;
-		}
-    
-		for (int i = 0; i < cards.Count; i++)
-		{
-			if (cards[i] != null && i < targetPositions.Count)
-			{
-				cards[i].transform.position = targetPositions[i];
-			}
-		}
-    
-		isAddingCard = false;
-	}
+        if (index < targetPositions.Count)
+        {
+            targetPos = targetPositions[index];
+            card.position = Vector3.Lerp(startPos, targetPos, curveValue);
+        }
 
-	protected new IEnumerator RepositionExistingCards()
-	{
-		float duration = 0.3f;
-		float elapsed = 0f;
-    
-		List<Vector3> startPositions = new List<Vector3>();
-		foreach (var card in cards)
-		{
-			if (card != null)
-				startPositions.Add(card.transform.position);
-		}
-    
-		while (elapsed < duration)
-		{
-			elapsed += Time.deltaTime;
-			float t = Mathf.Clamp01(elapsed / duration);
-			float curveValue = slideInCurve.Evaluate(t);
+        for (int i = 0; i < cards.Count - 1; i++)
+        {
+            if (cards[i] != null && i < targetPositions.Count && i < oldPositions.Count)
+            {
+                cards[i].transform.position = Vector3.Lerp(oldPositions[i], targetPositions[i], curveValue);
+            }
+        }
         
-			for (int i = 0; i < cards.Count; i++)
-			{
-				if (cards[i] != null && i < targetPositions.Count && i < startPositions.Count)
-				{
+        yield return null;
+    }
+    
+    for (int i = 0; i < cards.Count; i++)
+    {
+        if (cards[i] != null && i < targetPositions.Count)
+        {
+            cards[i].transform.position = targetPositions[i];
+        }
+    }
+    
+    isAddingCard = false;
+}
 
-					cards[i].transform.position = Vector3.Lerp(startPositions[i], targetPositions[i], curveValue);
-				}
-			}
+protected override IEnumerator RepositionExistingCards()
+{
+    float duration = 0.3f;
+    float elapsed = 0f;
+    
+    List<Vector3> startPositions = new List<Vector3>();
+    foreach (var card in cards)
+    {
+        if (card != null)
+            startPositions.Add(card.transform.position);
+    }
+    
+    while (elapsed < duration)
+    {
+        elapsed += Time.deltaTime;
+        float t = Mathf.Clamp01(elapsed / duration);
+        float curveValue = slideInCurve.Evaluate(t);
         
-			yield return null;
-		}
+        for (int i = 0; i < cards.Count; i++)
+        {
+            if (cards[i] != null && i < targetPositions.Count && i < startPositions.Count)
+            {
+                cards[i].transform.position = Vector3.Lerp(startPositions[i], targetPositions[i], curveValue);
+            }
+        }
+        
+        yield return null;
+    }
 
-		for (int i = 0; i < cards.Count; i++)
-		{
-			if (cards[i] != null && i < targetPositions.Count)
-			{
-				cards[i].transform.position = targetPositions[i];
-			}
-		}
-	}
+    for (int i = 0; i < cards.Count; i++)
+    {
+        if (cards[i] != null && i < targetPositions.Count)
+        {
+            cards[i].transform.position = targetPositions[i];
+        }
+    }
+}
+
+
 }

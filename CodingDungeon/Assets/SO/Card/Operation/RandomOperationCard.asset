@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RandomOperationCard
   m_EditorClassIdentifier: Assembly-CSharp::RandomOperationCard
   Name: random
-  Image: {fileID: 0}
+  Image: {fileID: 829450983, guid: 78b292d982163534db6ef00c47cfa842, type: 3}
   Description: "\uD589\uC6B4\uC758 \uC5EC\uC2E0\uC774 \uBBF8\uC18C\uB97C \uC9D3\uC2B5\uB2C8\uB2E4.."
   Cost: 4
