@@ -15,6 +15,10 @@ public class CharacterProfile : MonoBehaviour
 	[SerializeField] private TMP_Text HP;
 	[SerializeField] private GameObject selectedObj;
 
+	[Header("SFX")]
+	[SerializeField] private AudioClip SelectSFX;
+	[SerializeField] private AudioClip DeselectSFX;
+
 	private CharacterSo character;
 	private EntityAttributes characterAttributes;
 	private GameObject prefab;
@@ -53,12 +57,14 @@ public class CharacterProfile : MonoBehaviour
 	public void Select()
 	{
 		isSelected = true;
+		SoundManager.Instance.SFXPlay("Select", SelectSFX);
 		selectedObj.SetActive(isSelected);
 	}
 
 	public void Deselect()
 	{
 		isSelected = false;
+		SoundManager.Instance.SFXPlay("Deselect", DeselectSFX);
 		selectedObj.SetActive(isSelected);
 	}
 

@@ -420,6 +420,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71052238}
   m_CullTransparentMesh: 1
+--- !u!1 &106180703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106180704}
+  - component: {fileID: 106180705}
+  m_Layer: 0
+  m_Name: UISoundBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106180704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106180703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106180705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106180703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400aa2edcfaedd147b9030840d607a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISoundBoard
+  clips:
+  - {fileID: 8300000, guid: 2a804dc666f6de6409b88a63c42259db, type: 3}
+  - {fileID: 8300000, guid: 6831194e3a996464095dc3442f0e0ed1, type: 3}
+  - {fileID: 8300000, guid: 1170f4097a018e7428dd71fd751944c8, type: 3}
+  - {fileID: 8300000, guid: e18bfeb4d4592a54d957d2defa138d61, type: 3}
+  - {fileID: 8300000, guid: 3882c12a1edb60a469dc3178820951dc, type: 3}
+  - {fileID: 8300000, guid: 21a05bbf73551e946b01c81e9a4747b7, type: 3}
+  - {fileID: 8300000, guid: 6b00929495de3c348967f6560171109e, type: 3}
 --- !u!1 &157849029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1322,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 106180705}
+        m_TargetAssemblyTypeName: UISoundBoard, Assembly-CSharp
+        m_MethodName: SFXPlay
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1540932508}
         m_TargetAssemblyTypeName: CanvasFader, Assembly-CSharp
         m_MethodName: FadeInNext
@@ -7896,6 +7960,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 106180705}
+        m_TargetAssemblyTypeName: UISoundBoard, Assembly-CSharp
+        m_MethodName: SFXPlay
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1478540793}
         m_TargetAssemblyTypeName: CanvasFader, Assembly-CSharp
         m_MethodName: FadeInNext
@@ -15569,6 +15645,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 106180705}
+        m_TargetAssemblyTypeName: UISoundBoard, Assembly-CSharp
+        m_MethodName: SFXPlay
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1478540793}
         m_TargetAssemblyTypeName: CanvasFader, Assembly-CSharp
         m_MethodName: FadeInNext
@@ -17511,6 +17599,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 106180705}
+        m_TargetAssemblyTypeName: UISoundBoard, Assembly-CSharp
+        m_MethodName: SFXPlay
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 18180489}
         m_TargetAssemblyTypeName: Transition, Assembly-CSharp
         m_MethodName: FadeIn
@@ -17808,6 +17908,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 106180705}
+        m_TargetAssemblyTypeName: UISoundBoard, Assembly-CSharp
+        m_MethodName: SFXPlay
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1104568795}
         m_TargetAssemblyTypeName: StageCameraMove, Assembly-CSharp
         m_MethodName: ResetCameraZoom
@@ -17966,7 +18078,7 @@ Transform:
   m_GameObject: {fileID: 1930963928}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.62401, y: -4.86972, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18806,3 +18918,4 @@ SceneRoots:
   - {fileID: 1922519627}
   - {fileID: 798598241}
   - {fileID: 1318545646}
+  - {fileID: 106180704}
