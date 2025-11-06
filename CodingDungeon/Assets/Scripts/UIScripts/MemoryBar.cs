@@ -12,6 +12,7 @@ public class MemoryBar : MonoBehaviour
 		{
 			image.fillAmount = 1;
 			image.color = Color.gray;
+			return;
 		}
 		
 		var activeQueue = PartyManager.Instance.SelectedCharacter.CardHolder.ActiveQueueCards;
