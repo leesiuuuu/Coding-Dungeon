@@ -17,7 +17,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     {
         _partyManager = PartyManager.Instance;
         PartyManager.Instance.InitializeParty += OnRefresh;
-        //TurnManager.Instance.OnPlayerSelection += OnRefresh;
+        TurnManager.Instance.OnMonsterMoves += OnRefresh;
         for (var i = 0; i < _partyManager.Characters.Count; i++)
         {
             _playerPortraitList[i].GetComponent<Image>().sprite = _partyManager.Characters[i].Setting.Image;
