@@ -403,6 +403,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &170006994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170006995}
+  m_Layer: 0
+  m_Name: MidMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &170006995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170006994}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314335068
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &314335069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,6 +988,7 @@ GameObject:
   - component: {fileID: 784368515}
   - component: {fileID: 784368514}
   - component: {fileID: 784368517}
+  - component: {fileID: 784368518}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1084,6 +1116,25 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &784368518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784368513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac822d5330746847af705d4aa375230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  MidPos: {fileID: 170006994}
+  _target: {fileID: 0}
+  _offset: {x: 0, y: 0, z: -10}
+  _followSpeed: 5
+  _shakeIntensity: 0.3
+  _defaultZoom: 5
+  _zoomSpeed: 2
 --- !u!1 &824531977
 GameObject:
   m_ObjectHideFlags: 0
@@ -6428,6 +6479,7 @@ SceneRoots:
   - {fileID: 785871239719580908}
   - {fileID: 1842381611}
   - {fileID: 1419137993}
+  - {fileID: 170006995}
   - {fileID: 850862494}
   - {fileID: 1699624723}
   - {fileID: 1917148640}
