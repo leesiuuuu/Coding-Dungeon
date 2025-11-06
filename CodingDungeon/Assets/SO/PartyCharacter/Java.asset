@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9475f9bc3a928d54ea5222a8c944d32a, type: 3}
-  m_Name: C
+  m_Name: Java
   m_EditorClassIdentifier: Assembly-CSharp::PartySO
-  character: {fileID: 11400000, guid: e36b5a82a89081a488a1fe32410d2f3b, type: 2}
-  Prefab: {fileID: 8833575657907809490, guid: 94a6c7805d2280247960bad2a9abe5c4, type: 3}
+  character: {fileID: 11400000, guid: cd5fcc7d6e2efa442be58b088ad1656e, type: 2}
+  Prefab: {fileID: 205908314657518326, guid: ad8f1bd9e5f60864fabc2a3b36c26577, type: 3}
