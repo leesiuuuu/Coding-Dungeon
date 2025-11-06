@@ -20,6 +20,7 @@ public class PartyManager : SceneSingleMono<PartyManager>
 			{
 				isSpawning = true; // 플래그 설정
 				spanwer?.SpawnPlayers();
+				InitializeCharacterDictionary();
 				isSpawning = false; // 플래그 해제
 			}
 			return characters;
@@ -43,10 +44,6 @@ public class PartyManager : SceneSingleMono<PartyManager>
 
 	public event Action InitializeParty;
 
-	private void Start()
-	{
-		InitializeCharacterDictionary();
-	}
 
 	private void InitializeCharacterDictionary()
 	{

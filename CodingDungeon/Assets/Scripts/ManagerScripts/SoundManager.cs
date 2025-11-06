@@ -39,6 +39,7 @@ public class SoundManager : SingleMono<SoundManager>
 		float volume = BgPlayer.volume;
 		while (ElapsedTime < Duration)
 		{
+			if (BgPlayer == null) yield break;
 			ElapsedTime += Time.deltaTime;
 			float t = ElapsedTime / Duration;
 			BgPlayer.volume = Mathf.Lerp(volume, 0f, t);

@@ -1,15 +1,15 @@
-using System.Collections;
+//using System.Collections;
 
-public class GaurdBattleAction : AbstractBattleAction
-{
-	public GaurdBattleAction(Character user, IEntity target) : base(user, target)
-	{
-	}
+//public class GaurdBattleAction : AbstractBattleAction
+//{
+//	public GaurdBattleAction(Character user, IEntity target) : base(user, target)
+//	{
+//	}
 
-	public override IEnumerator StartAction()
-	{
+//	public override IEnumerator StartAction()
+//	{
 		
-		//Target.Status.AddStatusEffect();
-		yield break;
-	}
-}
+//		Target.Status.AddStatusEffect();
+//		yield break;
+//	}
+//}
