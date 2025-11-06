@@ -69,6 +69,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 		{
 			OnReturnGameObject?.Invoke(gameObject);
 			_activeQueueUI.SetActive(true);
+			_activeQueueUI.GetComponent<Animator>().SetTrigger("Apear");
 			OnSelect?.Invoke(_character);
 		}
 	}
