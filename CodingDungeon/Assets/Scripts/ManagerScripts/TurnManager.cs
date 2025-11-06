@@ -21,6 +21,9 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 	public event Action OnMonsterMoves;
 	public event Action OnPlayerMoves;
 
+	public event Action OnLose;
+	public event Action OnWin;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -47,6 +50,7 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 	public void SetTurnStatus(TurnStatus turnStatus)
 	{
 		_currentTurnStatus = turnStatus;
+		CheckWinLose();
 		switch (_currentTurnStatus)
 		{
 			case TurnStatus.PlayerSelection:
@@ -89,6 +93,18 @@ public class TurnManager : SceneSingleMono<TurnManager>,IBootStrapper
 	public int GetTurn()
 	{
 		return _turn;
+	}
+
+	public void CheckWinLose()
+	{
+		if (PartyManager.Instance.alivePlayers <= 0)
+		{
+			OnLose?.Invoke();
+		}
+		else if (EnemyParty.Instance.Party.Count <= 0)
+		{
+			OnWin?.Invoke();
+		}
 	}
 	
 	

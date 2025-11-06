@@ -5,6 +5,12 @@ using UnityEngine;
 public class EnemyParty : SceneSingleMono<EnemyParty>
 {
     [SerializeField] protected List<Enemy>_party;
+
+    public List<Enemy> Party
+    {
+        get => _party;
+        set => _party = value;
+    }
     private int _index = 0;
 
     public int Index
@@ -52,10 +58,6 @@ public class EnemyParty : SceneSingleMono<EnemyParty>
                 Debug.Log("모든 적 행동 완료");
                 return;
             }
-        }
-        else
-        {
-            //게임 승리 로직
         }
     }
 

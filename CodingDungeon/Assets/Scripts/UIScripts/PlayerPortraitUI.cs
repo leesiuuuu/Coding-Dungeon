@@ -31,13 +31,11 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 
 	private IEnumerator InitializeCharacter()
 	{
-		// 캐릭터가 스폰될 때까지 대기
 		while (PartyManager.Instance.Characters.Count <= index)
 		{
 			yield return null;
 		}
-
-		// 안전 체크
+		
 		if (index >= 0 && index < PartyManager.Instance.Characters.Count)
 		{
 			_character = PartyManager.Instance.Characters[index];
@@ -65,7 +63,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (IsInteractable && _character != null)
+		if (_character.IsAlive&&IsInteractable && _character != null)
 		{
 			OnReturnGameObject?.Invoke(gameObject);
 			_activeQueueUI.SetActive(true);

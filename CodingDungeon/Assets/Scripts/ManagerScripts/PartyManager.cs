@@ -7,7 +7,7 @@ public class PartyManager : SceneSingleMono<PartyManager>
 {
 	private List<Character> characters = new List<Character>();
 	public PlayerSpanwer spanwer;
-
+	public int alivePlayers = 3;
 	// 무한 재귀 방지 플래그
 	private bool isSpawning = false;
 
