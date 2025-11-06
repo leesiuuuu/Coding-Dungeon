@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fd53483abc8cb498f8d13b804bf41a, type: 3}
   m_Name: Python
   m_EditorClassIdentifier: Assembly-CSharp::StoreCharacterSO
-  CharacterSO: {fileID: 11400000, guid: 6b2d521a5879dbd468c60e039d1df403, type: 2}
-  Description: "\uD30C\uC774\uC36C\uC740 \uB9D0\uC774 \uC548\uB41C\uB2E4."
-  Cost: 9999
+  CharacterSO: {fileID: 11400000, guid: a04615ac8aadcd748a7a2948d6d2b397, type: 2}
+  Description: "\uCF54\uB529 \uC138\uACC4\uB97C \uC539\uC5B4\uBA39\uC744 \uCD5C\uACE0\uC758
+    \uC0AC\uB098\uC774"
+  Cost: 1000

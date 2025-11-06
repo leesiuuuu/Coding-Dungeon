@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fd53483abc8cb498f8d13b804bf41a, type: 3}
   m_Name: Java
   m_EditorClassIdentifier: Assembly-CSharp::StoreCharacterSO
-  CharacterSO: {fileID: 11400000, guid: cd5fcc7d6e2efa442be58b088ad1656e, type: 2}
-  Description: "\uC790\uBC14\uB294 \uBB50....\uC88B\uB2E4"
-  Cost: 250
+  CharacterSO: {fileID: 11400000, guid: 8e95e8c8610044540a00965ebf822a33, type: 2}
+  Description: "\uBB50\uB4E0\uC9C0 \uD560 \uC218 \uC788\uB294 \uB9CC\uB2A5\uACF5\uD608\uC790"
+  Cost: 600

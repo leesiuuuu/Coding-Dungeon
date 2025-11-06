@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fd53483abc8cb498f8d13b804bf41a, type: 3}
   m_Name: C
   m_EditorClassIdentifier: Assembly-CSharp::StoreCharacterSO
-  CharacterSO: {fileID: 11400000, guid: e36b5a82a89081a488a1fe32410d2f3b, type: 2}
-  Description: "C\uC5B8\uC5B4\uC758 \uB9C8\uBC95\uC0AC\uB294 \uC0AC\uAE30\uC131\uC774
-    \uBCF4\uC778\uB2E4"
-  Cost: 999
+  CharacterSO: {fileID: 11400000, guid: 35a6ee37e67c46d4dacd6d767f4e2560, type: 2}
+  Description: "\uAC00\uC7A5 \uCC98\uC74C \uBC30\uC6B0\uACE0 \uAC00\uC7A5 \uCC98\uC74C
+    \uB9CC\uB098\uB294 \uCE5C\uAD6C"
+  Cost: 500
