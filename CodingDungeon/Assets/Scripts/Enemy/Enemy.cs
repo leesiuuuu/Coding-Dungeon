@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IEntity
 		EnemyParty.Instance.currentEnemyCount--;
 		if (EnemyParty.Instance.currentEnemyCount<=0)
 		{
-			Debug.Log("승리");
+			ResultUI.Instance.OnWin();
 		}
 		Debug.Log($"[Enemy] {_setting.name} 캐릭터 사망!!");
 	}

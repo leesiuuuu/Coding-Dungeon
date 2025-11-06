@@ -37,6 +37,9 @@ public class CardHandSystem : MonoBehaviour
             handCenter = transform;
 
         PlayerPortraitListUI.Instance.OnSelected += OnCharacterSelected;
+        TurnManager.Instance.OnTurnChange += ClearAllCards;
+        TurnManager.Instance.OnPlayerSelection += ClearAllCards;
+
     }
 
     protected virtual void OnCharacterSelected(Character selected)

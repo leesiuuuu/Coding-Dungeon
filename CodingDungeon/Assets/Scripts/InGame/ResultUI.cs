@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class ResultUI : MonoBehaviour,IBootStrapper
+public class ResultUI : SceneSingleMono<ResultUI>, IBootStrapper
 {
 	[SerializeField] private TMP_Text resultText;
 	[SerializeField] private CanvasFader fader;
@@ -10,11 +10,9 @@ public class ResultUI : MonoBehaviour,IBootStrapper
 	public IEnumerator BootStrap()
 	{
 		yield return new WaitForSeconds(0.5f);
-		TurnManager.Instance.OnWin += OnWin;
-		TurnManager.Instance.OnLose += OnLose;
 	}
 
-	private void OnWin()
+	public void OnWin()
 	{
 		Debug.Log(resultText.text);
 		enableFader();
