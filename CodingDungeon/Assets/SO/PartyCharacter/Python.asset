@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9475f9bc3a928d54ea5222a8c944d32a, type: 3}
+  m_Name: Python
+  m_EditorClassIdentifier: Assembly-CSharp::PartySO
+  character: {fileID: 11400000, guid: 6b2d521a5879dbd468c60e039d1df403, type: 2}
+  Prefab: {fileID: 2486531648413788233, guid: 917cfd1e732263e479ac545c9b807a08, type: 3}
