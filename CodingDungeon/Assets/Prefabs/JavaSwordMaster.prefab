@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c513a42bb6c4342b7645781678113a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridMovement
+  _audioClip: {fileID: 8300000, guid: 3f5c38383a5605542af8c7104581c81b, type: 3}
 --- !u!114 &-2282284956150250241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFinder
   showDebugPath: 1
+  showObstacles: 1
   gridMovement: {fileID: 6157719176663106846}
 --- !u!61 &6342579570618459817
 BoxCollider2D:

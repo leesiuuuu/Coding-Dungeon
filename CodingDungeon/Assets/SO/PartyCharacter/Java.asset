@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PartySO
   character: {fileID: 11400000, guid: cd5fcc7d6e2efa442be58b088ad1656e, type: 2}
   Prefab: {fileID: 205908314657518326, guid: ad8f1bd9e5f60864fabc2a3b36c26577, type: 3}
+  InGamePrefab: {fileID: 205908314657518326, guid: 08d7f2f172dd16e459f1ffd5d29f5645, type: 3}

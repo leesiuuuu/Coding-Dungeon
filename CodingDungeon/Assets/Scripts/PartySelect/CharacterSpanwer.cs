@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSpawner : SingleMono<CharacterSpawner>
+public class CharacterSpawner : SceneSingleMono<CharacterSpawner>
 {
 	[Header("Spawn Settings")]
 	[SerializeField] private Transform spawnParent; // 프리팹이 생성될 부모 오브젝트
