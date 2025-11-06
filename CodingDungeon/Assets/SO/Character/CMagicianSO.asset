@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: CMagicianSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSo
   Name: "C\uC758 \uB9C8\uBC95\uC0AC"
-  Image: {fileID: 811960651493979081, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
+  Image: {fileID: -5178966210957354335, guid: ab14e5a34c8c3f44290ef5029305e782, type: 3}
   Attributes:
     CurrentHp: 100
     MaxHp: 100
     DamageModifier: 100
     DefenseModifier: 100
+    AttackRange: 0
   Deck: {fileID: 11400000, guid: bf46a426ef760024e9695f83b3951359, type: 2}
