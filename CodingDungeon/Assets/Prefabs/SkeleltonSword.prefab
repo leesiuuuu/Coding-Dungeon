@@ -4064,7 +4064,7 @@ GameObject:
   - component: {fileID: 8610986132306356459}
   m_Layer: 5
   m_Name: SkeleltonSword
-  m_TagString: Enemy
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4129,6 +4129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathFinder
   showDebugPath: 1
+  showObstacles: 1
   gridMovement: {fileID: 8519661561229026773}
 --- !u!114 &8519661561229026773
 MonoBehaviour:
@@ -4200,10 +4201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf2c2ce7b7888b4d906df8be3ea2fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonSword
-  _enemyStatsSo: {fileID: 11400000, guid: eea680fae962ecd40904c5d77ae0afc4, type: 2}
-  _pathFinder: {fileID: 5971121726879988794}
   _target: {fileID: 0}
   _notice: {fileID: 1190325660885560737}
+  _setting: {fileID: 11400000, guid: eea680fae962ecd40904c5d77ae0afc4, type: 2}
+  _pathFinder: {fileID: 5971121726879988794}
 --- !u!1 &7644011520350702199
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 {
     [SerializeField] private GameObject[] _playerPortraitList;
     [SerializeField] private GameObject[] _checkObjs;
-    [SerializeField] private GameObject _playerHand;
+    [SerializeField] private CardHandSystem _playerHand;
     private PartyManager _partyManager;
     private Character _character;
     public Character Character=>_character;
@@ -35,8 +35,17 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
 
     public void GetCurrentEventCharacter(Character character)
     {
+        _playerHand.gameObject.SetActive(true);
         OnSelected?.Invoke(character);
-        _playerHand.SetActive(true);
+    }
+
+    public void SetPortraitUIInteractable(PlayerPortraitUI portrait, bool active)
+    {
+        if (portrait == null)
+            return;
+        PartyManager.Instance.PortraitPrefab.transform.GetChild(1).gameObject.SetActive(!active);
+        PartyManager.Instance.PortraitPrefab.transform.GetChild(0).gameObject.SetActive(active);
+        portrait.IsInteractable = active;
     }
 
     public void OnMoveSelected()
@@ -45,16 +54,41 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             return;
         
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
-        if (portraitUI == null)
-            return;
-        PartyManager.Instance.PortraitPrefab.transform.GetChild(1).gameObject.SetActive(true);
-        PartyManager.Instance.PortraitPrefab.transform.GetChild(0).gameObject.SetActive(false);
-        _playerHand.SetActive(false);
-        if (!portraitUI.Moved)
+        if (portraitUI.IsInteractable)
         {
+            TileSelecerManager.Instance.tileSelector.OnTileSelected += _ => OnMoveLocationSelected();
             TileSelecerManager.Instance.OnSetTile();
+            
+            _playerHand.gameObject.SetActive(false);
+            SetPortraitUIInteractable(portraitUI, false);
         }
-        portraitUI.Moved = true;
+    }
+
+    private void OnMoveLocationSelected()
+    {
+        _playerHand.gameObject.SetActive(true);
+        _playerHand.ClearAllCards();
+    }
+
+    public void OnActiveQueueSubmitted(Character user)
+    { 
+        PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
+        if (portraitUI.IsInteractable)
+        {
+            BattleTargetSelector.Instance.OnSelected += target => OnBattleTargetSelected(user, target);
+            BattleTargetSelector.Instance.StartTargetSelection();
+            
+            _playerHand.gameObject.SetActive(false);
+            SetPortraitUIInteractable(portraitUI, false);
+        }
+    }
+
+    private void OnBattleTargetSelected(Character user, IEntity target)
+    {
+        _playerHand.gameObject.SetActive(true);
+        _playerHand.ClearAllCards();
+
+        BattleManager.Instance.SubmitActiveQueues(user, target);
     }
 
     public void OnRefresh()
@@ -62,11 +96,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         for (var i = 0; i < _partyManager.Characters.Count; i++)
         {
             var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
-            playerPortraitUI.Moved = false;
-        }
-        for (var i = 0; i < _checkObjs.Length; i++)
-        {
-            _checkObjs[i].SetActive(true);
+            SetPortraitUIInteractable(playerPortraitUI, true);
         }
     }
     
