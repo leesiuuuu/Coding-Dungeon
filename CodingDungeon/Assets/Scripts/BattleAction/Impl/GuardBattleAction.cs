@@ -16,8 +16,8 @@ public class GuardBattleAction : AbstractBattleAction
 		yield return new WaitForSeconds(1f);
 		User.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Attack);
 		yield return new WaitForSeconds(1f);
-		EntityDefenseEffect defenseEffect = new EntityDefenseEffect(1, 3.33f);
-		Target.Status.AddStatusEffect(defenseEffect);
+		DefenseMultiplyEffect effect = new DefenseMultiplyEffect(1, 3.33f);
+		Target.Status.AddStatusEffect(effect);
 		yield return new WaitForSeconds(1f);
 		cameraManager.SetTarget(cameraManager.MidPos.transform);
 		cameraManager.StartFollow(10);

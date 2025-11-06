@@ -15,7 +15,6 @@ MonoBehaviour:
   outputCards:
   - {fileID: 11400000, guid: ea8dd01e80494fe41ad75877cb5a0a9e, type: 2}
   operationCards:
-  - {fileID: 11400000, guid: f05654aa54d383b4a8b115c81e6aa60d, type: 2}
-  - {fileID: 11400000, guid: 80d5d7b85bf4e714fb8114ef739f28a4, type: 2}
-  - {fileID: 11400000, guid: 8b4c18b46bd774b4d86908b0e5703f38, type: 2}
+  - {fileID: 11400000, guid: ba3f1a6d7e6a04d27b0f1953497df5ed, type: 2}
+  - {fileID: 11400000, guid: b00a9f3b1ae284369b4c15290d5e2511, type: 2}
   passiveCards: []

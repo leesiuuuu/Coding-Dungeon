@@ -9,6 +9,7 @@ public class FireBallBattleAction : AbstractBattleAction
 
 	public override IEnumerator StartAction()
 	{
+
 		var cameraManager = CameraManager.Instance;
 		if (Target.Attributes.CurrentHp <= 0)
 		{
@@ -29,7 +30,7 @@ public class FireBallBattleAction : AbstractBattleAction
 		yield return new WaitForSeconds(1f);
 		Target.source.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Hit);
 		
-		EntityDamageEffect damageEffect = new EntityDamageEffect(0, 20);
+		DamageEffect damageEffect = new DamageEffect(0, 20);
 		damageEffect.Damage = (int)(damageEffect.Damage * User.Attributes.DamageModifier);
 		Target.Status.AddStatusEffect(damageEffect);
 		

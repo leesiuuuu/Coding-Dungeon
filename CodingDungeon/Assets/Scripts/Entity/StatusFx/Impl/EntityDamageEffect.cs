@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Coding Dungeon/Status Effect/Character Damage")]
-public class EntityDamageEffect : AbstractStatusFx
+[CreateAssetMenu(menuName = "Coding Dungeon/Status Effect/Damage")]
+public class DamageEffect : AbstractStatusFx
 {
 	public int Damage = 1;
 
-	public EntityDamageEffect(int turnToLive, int damage) : base(turnToLive)
+	public DamageEffect(int turnToLive, int damage) : base(turnToLive)
 	{
 		Damage = damage;
 	}
@@ -26,5 +26,10 @@ public class EntityDamageEffect : AbstractStatusFx
 
 	public override void OnFinished(IEntity entity)
 	{
+	}
+
+	public override string GetViewString()
+	{
+		return null;
 	}
 }

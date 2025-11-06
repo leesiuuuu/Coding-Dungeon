@@ -28,8 +28,7 @@ public class SweepBattleAction : AbstractBattleAction
 		cameraManager.ZoomIn(3f);
 		yield return new WaitForSeconds(1f);
 		Target.source.gameObject.GetComponent<CharacterAnimator>().SetAnimation(EntityMoves.Hit);
-		
-		EntityDamageEffect damageEffect = new EntityDamageEffect(0, 16);
+		DamageEffect damageEffect = new DamageEffect(0, 16);
 		damageEffect.Damage = (int)(damageEffect.Damage * User.Attributes.DamageModifier);
 		
 		Target.Status.AddStatusEffect(damageEffect);
