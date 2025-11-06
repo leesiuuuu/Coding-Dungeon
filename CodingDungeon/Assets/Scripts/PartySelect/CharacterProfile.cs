@@ -20,8 +20,10 @@ public class CharacterProfile : MonoBehaviour
 	private GameObject prefab;
 	private bool isSelected = false;
 
-	void Start()
+	public void UpdateSO(PartySO so)
 	{
+		partySO = so;
+
 		character = partySO.character;
 		prefab = partySO.Prefab;
 		characterAttributes = character.Attributes;
