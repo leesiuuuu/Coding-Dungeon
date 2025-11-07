@@ -63,6 +63,18 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         OnSelected?.Invoke(character);
     }
 
+    public void ConsumePortraitUI(PlayerPortraitUI portrait)
+    {
+        SetPortraitUIInteractable(portrait, false);
+        portrait.IsPerformed = true;
+    }
+    
+    public void RefreshPortraitUI(PlayerPortraitUI portrait)
+    {
+        SetPortraitUIInteractable(portrait, true);
+        portrait.IsPerformed = false;
+    }
+
     public void SetPortraitUIInteractable(PlayerPortraitUI portrait, bool active)
     {
         if (portrait == null)
@@ -86,14 +98,14 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
             return;
         
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
-        if (portraitUI.IsInteractable)
+        if (portraitUI.IsInteractable && !portraitUI.IsPerformed)
         {
             SetInteractables(false);
+            ConsumePortraitUI(portraitUI);
             TileSelecerManager.Instance.tileSelector.OnTileSelected += _ => OnMoveLocationSelected();
             TileSelecerManager.Instance.OnSetTile();
             
             _playerHand.gameObject.SetActive(false);
-            SetPortraitUIInteractable(portraitUI, false);
         }
     }
 
@@ -109,12 +121,12 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
     public void OnActiveQueueSubmitted(Character user)
     { 
         PlayerPortraitUI portraitUI = PartyManager.Instance.PortraitPrefab.GetComponent<PlayerPortraitUI>();
-        if (portraitUI.IsInteractable)
+        if (portraitUI.IsInteractable  && !portraitUI.IsPerformed)
         {
             SetInteractables(false);
             _userTemp = user;
             var requiredTarget = user.CardHolder.GetRequiredTarget();
-            SetPortraitUIInteractable(portraitUI, false);
+            ConsumePortraitUI(portraitUI);
             
             if (requiredTarget != EntityTarget.NONE)
             {
@@ -153,7 +165,7 @@ public class PlayerPortraitListUI : SceneSingleMono<PlayerPortraitListUI>
         for (var i = 0; i < _partyManager.Characters.Count; i++)
         {
             var playerPortraitUI = _playerPortraitList[i].GetComponent<PlayerPortraitUI>();
-            SetPortraitUIInteractable(playerPortraitUI, true);
+            RefreshPortraitUI(playerPortraitUI);
         }
         for (var i = 0; i < _checkObjs.Length; i++)
         {

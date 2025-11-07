@@ -14,6 +14,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 	public event Action<Character> OnSelect;
 	public event Action<Character> OnClosed;
 	public bool IsInteractable = true;
+	public bool IsPerformed = false;
 	public event Action<GameObject> OnReturnGameObject;
 	public event Action<Character> OnCantAllocMemory;
 
@@ -79,7 +80,7 @@ public class PlayerPortraitUI : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (_character.IsAlive&&IsInteractable && _character != null)
+		if (_character.IsAlive&&IsInteractable && _character != null && !IsPerformed)
 		{
 			SoundManager.Instance.SFXPlay("selected", selectedAudio);
 			OnReturnGameObject?.Invoke(gameObject);
